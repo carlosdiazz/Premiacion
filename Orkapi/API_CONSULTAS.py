@@ -5,7 +5,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from Datos_Loterias import NEW_YORk_OFICIAL_NUMBERS
 from datetime import datetime
 import time, os
 
@@ -88,6 +87,3 @@ class Obtener():
             self.americana_cuatro(datos)
         else:
             pass
-
-numeros = Obtener(True, NEW_YORk_OFICIAL_NUMBERS).devolver_numeros()
-print(numeros)
