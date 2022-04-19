@@ -1,5 +1,4 @@
 from lib2to3.pgen2 import driver
-import numbers
 from traceback import print_tb
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -31,9 +30,11 @@ class Numeros():
             num1 = driver.find_element_by_xpath(xpath_num1).text
             num2 = driver.find_element_by_xpath(xpath_num2).text
             self.primer_numero = num1 + num2
+            time.sleep(2)
         else:
             print("No es la fecha correcta")
-            return False
+            self.primer_numero = ''
+            time.sleep(5)
 
     def obtener_win4(self,win4, xpath_fecha, xpath_number3, xpath_number4, xpath_number5, xpath_number6):\
 
@@ -55,16 +56,17 @@ class Numeros():
             num5 = driver.find_element_by_xpath(xpath_number5).text
             num6 = driver.find_element_by_xpath(xpath_number6).text
             self.tercer_numero = num5 + num6
+            time.sleep(2)
         else:
             print("No es la fecha correcta")
-            return False
+            self.segundo_numero = ''
+            self.tercer_numero = ''
 
     def obtener_Todo(self):
         if(self.primer_numero and self.segundo_numero and self.tercer_numero ):
             print("Obteniendo Numeros")
             print(f'{self.primer_numero} - {self.segundo_numero} - {self.tercer_numero}')
             time.sleep(5)
-
             return [self.primer_numero, self.segundo_numero, self.tercer_numero]
         else:
             return False
@@ -81,8 +83,11 @@ class Numeros():
         xpath_num4      = arr[7]
         xpath_num5      = arr[8]
         xpath_num6      = arr[9]
-
+        os.system('cls')
         self.setUp()
+        os.system('cls')
         self.obtener_numbers(numbers, xpath_fecha_1, xpath_num1, xpath_num2 )
+        os.system('cls')
         self.obtener_win4(wind4,xpath_fecha_2,xpath_num3, xpath_num4, xpath_num5, xpath_num6 )
+        os.system('cls')
         self.driver.close()

@@ -1,5 +1,5 @@
-from Orkapi2 import Premio
-from obtenerNumeros3 import Numeros
+from ColocarPremio import Premio
+from obtenerNumerosUSA import Numeros
 
 xpath_LOTTERY_POST_NY = [
     'https://www.lotterypost.com/game/146/results',

@@ -1,5 +1,4 @@
-from datetime import datetime
+ok = ''
 
-ok=datetime.today().strftime('%A, %b %d, %Y')
-
-print(ok)
+if(ok):
+    print(';es true')
