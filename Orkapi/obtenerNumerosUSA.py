@@ -1,5 +1,4 @@
 from lib2to3.pgen2 import driver
-from traceback import print_tb
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
@@ -10,21 +9,28 @@ import time
 class Numeros():
 
     def setUp(self):
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        #chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        self.chrome_options = webdriver.ChromeOptions()
+        self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
+        #self.chrome_options.add_argument("--headless")
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
 
     def obtener_numbers(self, numbers, xpath_fecha, xpath_num1, xpath_num2):
         driver = self.driver
         Link_Numbers = numbers
         driver.get(Link_Numbers)
-
+        print("*---------------------------------")
+        print(xpath_fecha)
+        time.sleep(5)
         fechaHoy = datetime.today().strftime('%A, %B %d, %Y')
         fechaHoy2 = datetime.today().strftime('%A, %b %d, %Y')
-        #fechaHoy = 'Sunday, April 17, 2022'
+        fechaHoy2 = 'Monday, Apr 18, 2022'
+        fechaHoy = 'Monday, April 18, 2022'
         fecha_numbers = driver.find_element_by_xpath(xpath_fecha).text
 
+        print(fecha_numbers)
+        print('--------')
+        time.sleep(5)
+        
         if(fechaHoy == fecha_numbers or fechaHoy2 == fecha_numbers):
             print("la fecha es de HOY")
             num1 = driver.find_element_by_xpath(xpath_num1).text
@@ -44,7 +50,8 @@ class Numeros():
 
         fechaHoy = datetime.today().strftime('%A, %B %d, %Y')
         fechaHoy2 = datetime.today().strftime('%A, %b %d, %Y')
-        #fechaHoy = 'Sunday, April 17, 2022'
+        fechaHoy = 'Monday, April 18, 2022'
+        fechaHoy2 = 'Monday, Apr 18, 2022'
         fecha_win = driver.find_element_by_xpath(xpath_fecha).text
 
         if(fecha_win == fechaHoy or fechaHoy2 == fecha_win ):
@@ -83,11 +90,7 @@ class Numeros():
         xpath_num4      = arr[7]
         xpath_num5      = arr[8]
         xpath_num6      = arr[9]
-        os.system('cls')
         self.setUp()
-        os.system('cls')
         self.obtener_numbers(numbers, xpath_fecha_1, xpath_num1, xpath_num2 )
-        os.system('cls')
         self.obtener_win4(wind4,xpath_fecha_2,xpath_num3, xpath_num4, xpath_num5, xpath_num6 )
-        os.system('cls')
         self.driver.close()

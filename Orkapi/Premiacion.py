@@ -1,17 +1,24 @@
 from ColocarPremio import Premio
 from obtenerNumerosUSA import Numeros
 
+FLorida_POST = {
+    'URL'     : ['URL'],
+    "TRES"    : ['fecha','nu1','nu2','nu3'],
+    "CUATRO"  : ['fecha','nu4','nu5','nu6','n7']
+}
+
+
 xpath_LOTTERY_POST_NY = [
     'https://www.lotterypost.com/game/146/results',
-    '//*[@id="resultsTable"]/table/tbody/tr[1]/td/div/div[1]',
-    '//*[@id="resultsTable"]/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[2]',
-    '//*[@id="resultsTable"]/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[3]',
+    '/html/body/form/div[3]/table/tbody/tr/td[2]/div[2]/div[1]/div[1]/div/table/tbody/tr[1]/td/div/div[1]',
+    '/html/body/form/div[3]/table/tbody/tr/td[2]/div[2]/div[1]/div[1]/div/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[2]',
+    '/html/body/form/div[3]/table/tbody/tr/td[2]/div[2]/div[1]/div[1]/div/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[3]',
     'https://www.lotterypost.com/game/149/results',
-    '//*[@id="resultsTable"]/table/tbody/tr[1]/td/div/div[1]',
-    '//*[@id="resultsTable"]/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[1]',
-    '//*[@id="resultsTable"]/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[2]',
-    '//*[@id="resultsTable"]/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[3]',
-    '//*[@id="resultsTable"]/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[4]'
+    '/html/body/form/div[3]/table/tbody/tr/td[2]/div[2]/div[1]/div[1]/div/table/tbody/tr[1]/td/div/div[1]',
+    '/html/body/form/div[3]/table/tbody/tr/td[2]/div[2]/div[1]/div[1]/div/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[1]',
+    '/html/body/form/div[3]/table/tbody/tr/td[2]/div[2]/div[1]/div[1]/div/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[2]',
+    '/html/body/form/div[3]/table/tbody/tr/td[2]/div[2]/div[1]/div[1]/div/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[3]',
+    '/html/body/form/div[3]/table/tbody/tr/td[2]/div[2]/div[1]/div[1]/div/table/tbody/tr[1]/td/div/div[2]/div[2]/ul/li[4]'
 ]
 
 xpath_LOTTERY_USA_NY = [
@@ -69,4 +76,4 @@ Numeros_lottery_POST_FL = Numeros(xpath_LOTTERY_POST_FL).obtener_Todo()
 Numeros_lottery_USA_FL = Numeros(xpath_LOTTERY_USA_FL).obtener_Todo()
 
 if(Numeros_lottery_POST_FL and Numeros_lottery_POST_FL == Numeros_lottery_USA_FL ):
-    Premio(url, 'carlos@orkapi',1234,'loteria', Numeros_lottery_USA_FL )
+    Premio(url, 'carlos@orkapi',1234,'nacion', Numeros_lottery_USA_FL )
