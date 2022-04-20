@@ -1,5 +1,5 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from Validar_Fecha import comprobar_sistema
 import time
@@ -10,7 +10,7 @@ class Premio():
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
         chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        #self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
     def iniciar_Ubuntu(self):
         self.driver_location = "/snap/bin/chromium.chromedriver"

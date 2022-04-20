@@ -1,6 +1,6 @@
 
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -14,7 +14,7 @@ class Obtener():
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
         self.chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
+        #self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         borrarPantalla()
 
     def iniciar_Ubuntu(self):
