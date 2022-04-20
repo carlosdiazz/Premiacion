@@ -5,17 +5,20 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from Validar_Fecha import Validar_Fecha_Hoy, borrarPantalla
+from Validar_Fecha import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema
 import time
 
 class Obtener():
 
-    def iniciar(self):
+    def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
         self.chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         borrarPantalla()
+    
+    def iniciar_Ubuntu(self):
+        pass
 
     def americana_tres(self, datos):
         driver = self.driver
@@ -68,7 +71,11 @@ class Obtener():
             return ""
 
     def __init__(self, americana, datos) :
-        self.iniciar()
+        if(comprobar_sistema == 'Dawrin'):
+            self.iniciar_Mac_Windows()
+        else:
+            self.iniciar_Ubuntu
+
         if(americana):
             self.americana_tres(datos)
             self.americana_cuatro(datos)

@@ -1,5 +1,9 @@
 import os, time
 from datetime import datetime
+import platform
+
+def comprobar_sistema():
+    return platform.system()
 
 def fecha(tipo_fecha):
     return datetime.today().strftime(tipo_fecha)
