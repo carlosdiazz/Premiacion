@@ -1,20 +1,10 @@
-class main():
+from datetime import datetime
 
-    def __init__(self,loteria,sorteo):
+print('Tuesday, April 19, 2022')
+fechaHOY = datetime.today().strftime('%A, %b %d, %Y')
+fechaHOY2 = datetime.today().strftime('%A, %B %d, %Y')
+fechaHoy3 = datetime.today().strftime('%a %m/%d/%y')
 
-        if(loteria == 'New York'):
-            self.premiar_New_York_Tarde(sorteo)
-        pass
-
-
-    def premiar_New_York_Tarde(self, sorteo):
-
-
-        if(True):
-            print("LOS NUMEROS SON IGUALES")
-            print(sorteo)
-            print(f'NUMEROS PUBLICADOS...')
-        else:
-            print('Los Numeros Son Diferentes')
-
-main('New York','AM')
+#print(fechaHOY)
+print(fechaHOY2)
+#print(fechaHoy3)

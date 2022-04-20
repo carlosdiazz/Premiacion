@@ -5,15 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from datetime import datetime
-import time, os
-
-def borrarPantalla():
-    if os.name == "posix":
-        time.sleep(1)
-        os.system ("clear")
-    elif os.name == "ce" or os.name == "nt" or os.name == "dos":
-        os.system ("cls")
+from Validar_Fecha import Validar_Fecha_Hoy, borrarPantalla
+import time
 
 class Obtener():
 
@@ -66,13 +59,7 @@ class Obtener():
         borrarPantalla()
 
     def validar_fecha(self, fecha):
-        fechaHOY = datetime.today().strftime('%A, %b %d, %Y')
-        fechaHOY2 = datetime.today().strftime('%A %B %dth %Y')
-        fechaHoy3 = datetime.today().strftime('%a %m/%d/%y')
-        if(fechaHOY == fecha or fechaHOY2 == fecha or fechaHoy3 == fecha):
-            return True
-        else:
-            return False
+        return Validar_Fecha_Hoy(fecha)
 
     def devolver_numeros(self):
         if(self.tres and self.cuatro):
