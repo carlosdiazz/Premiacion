@@ -8,8 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from Validar_Fecha import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema
 import time
 
-from DATOS_LOTERIAS.Datos_FL_TARDE import FLORIDA_LOTTERY_USA_TARDE
-
 class Obtener():
 
     def iniciar_Mac_Windows(self):
@@ -80,7 +78,6 @@ class Obtener():
 
     def __init__(self, americana, datos) :
         if(comprobar_sistema() == 'Darwin'):
-            print("sdddsds")
             self.iniciar_Mac_Windows()
         else:
             self.iniciar_Ubuntu()
@@ -90,7 +87,3 @@ class Obtener():
             self.americana_cuatro(datos)
         else:
             pass
-
-prueba = Obtener(True,FLORIDA_LOTTERY_USA_TARDE).devolver_numeros()
-
-print(prueba)

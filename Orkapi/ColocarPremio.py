@@ -1,15 +1,24 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
+from Validar_Fecha import comprobar_sistema
 import time
 
 class Premio():
 
-    def setUp(self):
+    def iniciar_Mac_Windows(self):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
         chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+
+    def iniciar_Ubuntu(self):
+        self.driver_location = "/snap/bin/chromium.chromedriver"
+        self.binary_location = '/usr/bin/chromium-browser'
+        self.options = webdriver.ChromeOptions()
+        self.options.binary_location = self.binary_location
+        self.options.add_argument("--headless")
+        self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
 
     def iniciar_seccion(self, url, username, password):
         driver = self.driver
@@ -55,7 +64,11 @@ class Premio():
 
     def __init__(self, url, username, password, loteria, premios, sorteo):
 
-        self.setUp()
+        if(comprobar_sistema() == 'Darwin'):
+            self.iniciar_Mac_Windows()
+        else:
+            self.iniciar_Ubuntu()
+
         driver = self.driver
         self.iniciar_seccion(url=url ,username=username, password=password)
         self.colocar_Premio(loteria=loteria, premios=premios, sorteo=sorteo)
