@@ -1,4 +1,4 @@
-from API_CONSULTAS import Obtener, borrarPantalla
+from API_Numeros_Americanos import Obtener, borrarPantalla
 from ColocarPremio import Premio
 from DATOS_LOTERIAS.Datos_NY_TARDE import NEW_YORK_TARDE_TODO
 from DATOS_LOTERIAS.Datos_NY_NOCHE import NEW_TORK_NOCHE_TODO
@@ -40,7 +40,7 @@ class main():
         else:
             print('Los Numeros Son Diferentes O No existen')
 
-main(True,'New York','AM')
-main(True,'New York','PM')
+#main(True,'New York','AM')
+#main(True,'New York','PM')
 main(True,'Florida', 'AM')
-main(True, 'Florida', 'PM')
+#main(True, 'Florida', 'PM')

@@ -1,6 +1,6 @@
 
 from selenium import webdriver
-#from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,9 +16,9 @@ class Obtener():
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
         self.chrome_options.add_argument("--headless")
-        #self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         borrarPantalla()
-    
+
     def iniciar_Ubuntu(self):
         self.driver_location = "/snap/bin/chromium.chromedriver"
         self.binary_location = '/usr/bin/chromium-browser'
@@ -79,7 +79,8 @@ class Obtener():
             return ""
 
     def __init__(self, americana, datos) :
-        if(comprobar_sistema == 'Dawrin'):
+        if(comprobar_sistema() == 'Darwin'):
+            print("sdddsds")
             self.iniciar_Mac_Windows()
         else:
             self.iniciar_Ubuntu()
