@@ -1,17 +1,16 @@
-
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from Validar_Fecha import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema
+from Funciones_Necesarias import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema
 import time
 
 try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
     print("ChromeDriverManager no Existe")
-class Obtener():
+class Obtener_Numeros_USA():
 
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
@@ -20,7 +19,7 @@ class Obtener():
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         except:
-            print("sd")
+            print("Esto es Ubuntu")
         borrarPantalla()
 
     def iniciar_Ubuntu(self):
@@ -30,7 +29,7 @@ class Obtener():
         self.options.binary_location = self.binary_location
         self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
-
+        borrarPantalla()
 
     def americana_tres(self, datos):
         driver = self.driver
@@ -39,7 +38,7 @@ class Obtener():
         time.sleep(1)
         fecha_tres = driver.find_element_by_xpath(datos['TRES'][0]).text
         self.tres=''
-        if(self.validar_fecha(fecha_tres)):
+        if(Validar_Fecha_Hoy(fecha_tres)):
             for i in range (1,3):
                 try:
                     element = WebDriverWait(driver, 10).until(
@@ -48,7 +47,8 @@ class Obtener():
 
                 finally:
                     self.tres+=element.text
-                    pass
+                    borrarPantalla()
+
         else:
             self.tres
         borrarPantalla()
@@ -57,9 +57,10 @@ class Obtener():
         driver = self.driver
         driver.get(datos['URL'][0])
         driver.get(datos['URL'][2])
+        time.sleep(1)
         self.cuatro=''
         fecha_cuatro = driver.find_element_by_xpath(datos['CUATRO'][0]).text
-        if(self.validar_fecha(fecha_cuatro)):
+        if(Validar_Fecha_Hoy(fecha_cuatro)):
             for i in range (1,5):
                 try:
                     element = WebDriverWait(driver, 10).until(
@@ -68,13 +69,11 @@ class Obtener():
 
                 finally:
                     self.cuatro+=element.text
-                    pass
+                    borrarPantalla()
+
         else:
             self.cuatro
         borrarPantalla()
-
-    def validar_fecha(self, fecha):
-        return Validar_Fecha_Hoy(fecha)
 
     def devolver_numeros(self):
         if(self.tres and self.cuatro):
@@ -82,14 +81,11 @@ class Obtener():
         else:
             return ""
 
-    def __init__(self, americana, datos) :
+    def __init__(self, datos) :
         if(comprobar_sistema() == 'Darwin' or comprobar_sistema() == 'Windows'):
             self.iniciar_Mac_Windows()
         else:
             self.iniciar_Ubuntu()
 
-        if(americana):
-            self.americana_tres(datos)
-            self.americana_cuatro(datos)
-        else:
-            pass
+        self.americana_tres(datos)
+        self.americana_cuatro(datos)

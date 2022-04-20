@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from Validar_Fecha import comprobar_sistema
+from Funciones_Necesarias import comprobar_sistema
 import time
 
 try:

@@ -2,6 +2,7 @@ import os, time
 from datetime import datetime
 import platform
 
+
 def comprobar_sistema():
     return platform.system()
 

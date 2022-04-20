@@ -1,46 +1,32 @@
-from API_Numeros_Americanos import Obtener, borrarPantalla
+from API_Numeros_Americanos import  borrarPantalla
 from ColocarPremio import Premio
-from DATOS_LOTERIAS.Datos_NY_TARDE import NEW_YORK_TARDE_TODO
-from DATOS_LOTERIAS.Datos_NY_NOCHE import NEW_TORK_NOCHE_TODO
-from DATOS_LOTERIAS.Datos_FL_NOCHES import FLORIDA_NOCHE_TODO
-from DATOS_LOTERIAS.Datos_FL_TARDE import FLORIDA_TARDE_TODO
+from PROCESO import PROCESO
+import time
+
+
 url = 'https://dev_admin.orkapi.net/'
+username = 'carlos@premio'
+password = 1234
 
-class main():
+def ORKAPI(loteria, horario):
 
-    def __init__(self,americana,loteria,sorteo):
+    numeros_a_publicar=PROCESO(loteria,horario)
+    if(numeros_a_publicar):
+        borrarPantalla()
+        print("Los numeros han sido confirmados y son Correctos")
+        print("Los numeros que se van a publicar son")
+        print(numeros_a_publicar)
+        time.sleep(5)
+        Premio(url, username, password, loteria, numeros_a_publicar, horario)
+        print('Numero Publicado')
+        return numeros_a_publicar
 
-        if(americana):
-            if(loteria == 'New York' and sorteo == 'AM'):
-                self.lote = NEW_YORK_TARDE_TODO
-                self.premiar_americana(americana,loteria, sorteo)
+    else:
+        print("No se publicaron los Numeros")
+        return False
 
-            elif(loteria == 'New York' and sorteo == 'PM'):
-                self.lote = NEW_TORK_NOCHE_TODO
-                self.premiar_americana(americana,loteria, sorteo)
 
-            elif(loteria == 'Florida' and sorteo == 'AM'):
-                self.lote = FLORIDA_TARDE_TODO
-                self.premiar_americana(americana,loteria,sorteo)
-
-            elif(loteria == 'Florida' and sorteo == 'PM'):
-                self.lote = FLORIDA_NOCHE_TODO
-                self.premiar_americana(americana,loteria,sorteo)
-
-    def premiar_americana(self, americana, loteria, sorteo):
-        URL_1 = Obtener(americana, self.lote[0]).devolver_numeros()
-        self.prueeee = URL_1
-        URL_2 = Obtener(americana, self.lote[1]).devolver_numeros()
-        #URL_3 = Obtener(True,self.lote[2]).devolver_numeros()
-
-        if(URL_1 == URL_2 and URL_1!='' and URL_2!='' ):
-            print("LOS NUMEROS SON IGUALES")
-            Premio(url, 'carlos@premio',1234,loteria,URL_1, sorteo )
-            borrarPantalla()
-            print(f'NUMEROS PUBLICADOS...')
-            return URL_1
-        else:
-            print('Los Numeros Son Diferentes O No existen')
+ORKAPI('New York',"PM")
 
 #main(True,'New York','AM')
 #main(True,'New York','PM')
