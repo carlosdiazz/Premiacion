@@ -1,6 +1,5 @@
 
 from selenium import webdriver
-#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,13 +7,20 @@ from selenium.webdriver.support.ui import WebDriverWait
 from Validar_Fecha import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema
 import time
 
+try:
+    from webdriver_manager.chrome import ChromeDriverManager
+except:
+    print("ChromeDriverManager no Existe")
 class Obtener():
 
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
         self.chrome_options.add_argument("--headless")
-        #self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
+        try:
+            self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
+        except:
+            print("sd")
         borrarPantalla()
 
     def iniciar_Ubuntu(self):
@@ -77,7 +83,7 @@ class Obtener():
             return ""
 
     def __init__(self, americana, datos) :
-        if(comprobar_sistema() == 'Darwin'):
+        if(comprobar_sistema() == 'Darwin' or comprobar_sistema() == 'Windows'):
             self.iniciar_Mac_Windows()
         else:
             self.iniciar_Ubuntu()

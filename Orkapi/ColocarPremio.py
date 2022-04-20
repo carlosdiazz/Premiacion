@@ -1,17 +1,22 @@
 from selenium import webdriver
-#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from Validar_Fecha import comprobar_sistema
 import time
 
+try:
+    from webdriver_manager.chrome import ChromeDriverManager
+except:
+    print("ChromeDriverManager no Existe")
 class Premio():
 
     def iniciar_Mac_Windows(self):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
         chrome_options.add_argument("--headless")
-        #self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-
+        try:
+            self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        except:
+            print("")
     def iniciar_Ubuntu(self):
         self.driver_location = "/snap/bin/chromium.chromedriver"
         self.binary_location = '/usr/bin/chromium-browser'
@@ -64,7 +69,7 @@ class Premio():
 
     def __init__(self, url, username, password, loteria, premios, sorteo):
 
-        if(comprobar_sistema() == 'Darwin'):
+        if(comprobar_sistema() == 'Darwin' or comprobar_sistema() == 'Windows'):
             self.iniciar_Mac_Windows()
         else:
             self.iniciar_Ubuntu()

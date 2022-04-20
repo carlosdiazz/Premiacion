@@ -29,6 +29,7 @@ class main():
 
     def premiar_americana(self, americana, loteria, sorteo):
         URL_1 = Obtener(americana, self.lote[0]).devolver_numeros()
+        self.prueeee = URL_1
         URL_2 = Obtener(americana, self.lote[1]).devolver_numeros()
         #URL_3 = Obtener(True,self.lote[2]).devolver_numeros()
 
@@ -37,10 +38,12 @@ class main():
             Premio(url, 'carlos@premio',1234,loteria,URL_1, sorteo )
             borrarPantalla()
             print(f'NUMEROS PUBLICADOS...')
+            return URL_1
         else:
             print('Los Numeros Son Diferentes O No existen')
 
 #main(True,'New York','AM')
 #main(True,'New York','PM')
-main(True,'Florida', 'AM')
+#main(True,'Florida', 'AM')
 #main(True, 'Florida', 'PM')
+#print(main(True,'New York','AM').prueeee)
