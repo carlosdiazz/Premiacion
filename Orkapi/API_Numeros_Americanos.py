@@ -1,6 +1,6 @@
 
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,17 +8,25 @@ from selenium.webdriver.support.ui import WebDriverWait
 from Validar_Fecha import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema
 import time
 
+from DATOS_LOTERIAS.Datos_FL_TARDE import FLORIDA_LOTTERY_USA_TARDE
+
 class Obtener():
 
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
         self.chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
+        #self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         borrarPantalla()
     
     def iniciar_Ubuntu(self):
-        pass
+        self.driver_location = "/snap/bin/chromium.chromedriver"
+        self.binary_location = '/usr/bin/chromium-browser'
+        self.options = webdriver.ChromeOptions()
+        self.options.binary_location = self.binary_location
+        self.options.add_argument("--headless")
+        self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
+
 
     def americana_tres(self, datos):
         driver = self.driver
@@ -74,10 +82,14 @@ class Obtener():
         if(comprobar_sistema == 'Dawrin'):
             self.iniciar_Mac_Windows()
         else:
-            self.iniciar_Ubuntu
+            self.iniciar_Ubuntu()
 
         if(americana):
             self.americana_tres(datos)
             self.americana_cuatro(datos)
         else:
             pass
+
+prueba = Obtener(True,FLORIDA_LOTTERY_USA_TARDE).devolver_numeros()
+
+print(prueba)
