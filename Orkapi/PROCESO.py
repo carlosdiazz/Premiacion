@@ -22,7 +22,7 @@ def PROCESO(loteria, horario):
     elif(loteria == 'New York' and horario == 'PM'):
         return comprobar_iguales(NEW_TORK_NOCHE_TODO)
 
-    elif(loteria == 'REAL' and horario == 'REAL'):
+    elif(loteria == 'REAL' and horario == 'LOTERIA QUIN-PALE-TRIP 1:00 PM'):
         return Obtener_Numeros_DOMINICANOS(Loto_Real_Oficial_todo).devolver_numeros()
 
     else:

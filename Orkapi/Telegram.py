@@ -96,11 +96,11 @@ def New_York_PM(update, context):
     New_York_Numeros_PM = ORKAPI('New York', "PM")
     logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros FLORIDA PM')
     context.bot.sendMessage(chat_id= user_id, text=New_York_Numeros_PM)
-    
+
 def LOTO_REAL(update, context):
     user_id = update.effective_user['id']
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
-    New_York_Numeros_PM = ORKAPI('REAL', "REAL")
+    New_York_Numeros_PM = ORKAPI('REAL', "LOTERIA QUIN-PALE-TRIP 1:00 PM")
     logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros FLORIDA PM')
     context.bot.sendMessage(chat_id= user_id, text=New_York_Numeros_PM)
 
