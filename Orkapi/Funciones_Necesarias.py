@@ -15,7 +15,8 @@ def Validar_Fecha_Hoy(fecha_comprobar):
         fecha('%A, %b %d, %Y'),
         fecha('%A %B %dth %Y'),
         fecha('%a %m/%d/%y'),
-        fecha('%A, %B %d, %Y')
+        fecha('%A, %B %d, %Y'),
+        fecha('%d-%m-%Y')
         ]
     if fecha_comprobar in Todas_las_Fechas:
         return True
@@ -34,3 +35,9 @@ def Imprimir_Comandos(arreglo):
     for i in arreglo:
         ok+=f"\n\n{i}"
     return ok
+
+def solo_undigito(numero):
+    if(len(numero) == 1):
+        return f'0{numero}'
+    else:
+        return numero

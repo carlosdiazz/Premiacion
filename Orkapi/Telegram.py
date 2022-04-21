@@ -25,6 +25,7 @@ Comandos_Premios =[
     "/Premiar_Florida_PM",
     "/Premiar_New_York_AM",
     "/Premiar_New_York_PM",
+    "/Premiar_Real"
 ]
 
 Comandos_Resultados = [
@@ -95,6 +96,14 @@ def New_York_PM(update, context):
     New_York_Numeros_PM = ORKAPI('New York', "PM")
     logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros FLORIDA PM')
     context.bot.sendMessage(chat_id= user_id, text=New_York_Numeros_PM)
+    
+def LOTO_REAL(update, context):
+    user_id = update.effective_user['id']
+    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
+    New_York_Numeros_PM = ORKAPI('REAL', "REAL")
+    logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros FLORIDA PM')
+    context.bot.sendMessage(chat_id= user_id, text=New_York_Numeros_PM)
+
 #?---------------------------------------------------------------------------------------
 def Obtener_florida_AM(update, context):
     user_id = update.effective_user['id']
@@ -143,6 +152,7 @@ dp.add_handler(CommandHandler('Premiar_Florida_AM',florida_AM))
 dp.add_handler(CommandHandler('Premiar_Florida_PM',florida_PM))
 dp.add_handler(CommandHandler('Premiar_New_York_AM',New_York_AM))
 dp.add_handler(CommandHandler('Premiar_New_York_PM',New_York_PM))
+dp.add_handler(CommandHandler('Premiar_Real',LOTO_REAL))
 #?----------------------------------------------------------------
 dp.add_handler(CommandHandler('Obtener_Premiar_Florida_AM',Obtener_florida_AM))
 dp.add_handler(CommandHandler('Obtener_Premiar_Florida_PM',Obtener_florida_PM))
