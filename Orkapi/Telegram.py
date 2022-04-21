@@ -152,7 +152,7 @@ dp.add_handler(CommandHandler('Premiar_Florida_AM',florida_AM))
 dp.add_handler(CommandHandler('Premiar_Florida_PM',florida_PM))
 dp.add_handler(CommandHandler('Premiar_New_York_AM',New_York_AM))
 dp.add_handler(CommandHandler('Premiar_New_York_PM',New_York_PM))
-dp.add_handler(CommandHandler('Premiar_Real',Premiar_Loterias,'REAL','LOTERIA QUIN-PALE-TRIP 1:00 PM'))
+dp.add_handler(CommandHandler('Premiar_Real',Premiar_Loterias('REAL','LOTERIA QUIN-PALE-TRIP 1:00 PM')))
 #?----------------------------------------------------------------
 dp.add_handler(CommandHandler('Obtener_Premiar_Florida_AM',Obtener_florida_AM))
 dp.add_handler(CommandHandler('Obtener_Premiar_Florida_PM',Obtener_florida_PM))
