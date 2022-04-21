@@ -28,3 +28,9 @@ def borrarPantalla():
         os.system ("clear")
     elif os.name == "ce" or os.name == "nt" or os.name == "dos":
         os.system ("cls")
+
+def Imprimir_Comandos(arreglo):
+    ok = ''
+    for i in arreglo:
+        ok+=f"\n\n{i}"
+    return ok
