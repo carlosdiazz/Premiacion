@@ -1,6 +1,3 @@
-
-from tokenize import Token
-from turtle import update
 import telegram
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
