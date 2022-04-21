@@ -4,6 +4,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from ORKAPI import ORKAPI
 from PROCESO import PROCESO
 from Funciones_Necesarias import Imprimir_Comandos
+from saber_loteria import saberloteriaBOT
 #Configurar Logging
 logging.basicConfig(
     level = logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -29,10 +30,10 @@ Comandos_Premios =[
 ]
 
 Comandos_Resultados = [
-    '/Obtener_Premiar_Florida_AM',
-    '/Obtener_Premiar_Florida_PM',
-    '/Obtener_Premiar_New_York_AM',
-    '/Obtener_Premiar_New_York_PM'
+    '/Obtener_Florida_AM',
+    '/Obtener_Florida_PM',
+    '/Obtener_New_York_AM',
+    '/Obtener_New_York_PM'
 ]
 
 def start(update,context):
@@ -69,69 +70,30 @@ def echo(update, context):
     )
 
 
-def florida_AM(update, context):
+def Premiar_Loterias(update, context):
+    loteria_selecionada = update.message.text
+    loterias = saberloteriaBOT(loteria_selecionada)
+    loteria=loterias[0]
+    horario=loterias[1]
     user_id = update.effective_user['id']
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
-    florida_am_Numeros = ORKAPI('Florida', "AM")
-    logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros FLORIDA AM')
-    context.bot.sendMessage(chat_id= user_id, text=florida_am_Numeros)
-
-def florida_PM(update, context):
-    user_id = update.effective_user['id']
-    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
-    florida_am_Numeros = ORKAPI('Florida', "PM")
-    logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros FLORIDA PM')
-    context.bot.sendMessage(chat_id= user_id, text=florida_am_Numeros)
-
-def New_York_AM(update, context):
-    user_id = update.effective_user['id']
-    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
-    New_York_numeros_am = ORKAPI('New York', "AM")
-    logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros New York AM')
-    context.bot.sendMessage(chat_id= user_id, text=New_York_numeros_am)
-
-def New_York_PM(update, context):
-    user_id = update.effective_user['id']
-    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
-    New_York_Numeros_PM = ORKAPI('New York', "PM")
-    logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros FLORIDA PM')
-    context.bot.sendMessage(chat_id= user_id, text=New_York_Numeros_PM)
-
-def Premiar_Loterias(update, context,loteria,horario):
-    user_id = update.effective_user['id']
-    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
-    New_York_Numeros_PM = ORKAPI(loteria, horario)
+    Numeros = ORKAPI(loteria, horario)
     logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros')
-    context.bot.sendMessage(chat_id= user_id, text=New_York_Numeros_PM)
+    context.bot.sendMessage(chat_id= user_id, text=Numeros)
+
+def Obtener_numeros(update, context):
+    loteria_selecionada = update.message.text
+    loterias = saberloteriaBOT(loteria_selecionada)
+    loteria=loterias[0]
+    horario=loterias[1]
+    user_id = update.effective_user['id']
+    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Buscar el Resultado')
+    numeros = PROCESO(loteria,horario)
+    logger.info(f'El usuario {user_id}, ha mandado a ver los numeros ')
+    context.bot.sendMessage(chat_id= user_id, text=numeros)
 
 #?---------------------------------------------------------------------------------------
-def Obtener_florida_AM(update, context):
-    user_id = update.effective_user['id']
-    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Buscar el Resultado')
-    florida_am_Numeros = PROCESO('Florida', "AM")
-    logger.info(f'El usuario {user_id}, ha mandado a ver los numeros FLORIDA AM')
-    context.bot.sendMessage(chat_id= user_id, text=florida_am_Numeros)
 
-def Obtener_florida_PM(update, context):
-    user_id = update.effective_user['id']
-    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Buscar el Resultado')
-    florida_am_Numeros = PROCESO('Florida', "PM")
-    logger.info(f'El usuario {user_id}, ha mandado a ver los numeros FLORIDA PM')
-    context.bot.sendMessage(chat_id= user_id, text=florida_am_Numeros)
-
-def Obtener_New_York_AM(update, context):
-    user_id = update.effective_user['id']
-    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Buscar el Resultado')
-    New_York_numeros_am = PROCESO('New York', "AM")
-    logger.info(f'El usuario {user_id}, ha mandado a ver los numeros New York AM')
-    context.bot.sendMessage(chat_id= user_id, text=New_York_numeros_am)
-
-def Obtener_New_York_PM(update, context):
-    user_id = update.effective_user['id']
-    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Buscar el Resultado')
-    New_York_Numeros_PM = PROCESO('New York', "PM")
-    logger.info(f'El usuario {user_id}, ha mandado a ver los numeros FLORIDA PM')
-    context.bot.sendMessage(chat_id= user_id, text=New_York_Numeros_PM)
 
 if __name__ == "__main__":
     my_bot = telegram.Bot(TOKEN)
@@ -148,16 +110,16 @@ dp.add_handler(CommandHandler('Info',info))
 dp.add_handler(CommandHandler('Premiar',Comandos_Premiar))
 dp.add_handler(CommandHandler('Ver_Resultados',Comandos_Resul))
 #?---------------------------------------------------------------
-dp.add_handler(CommandHandler('Premiar_Florida_AM',florida_AM))
-dp.add_handler(CommandHandler('Premiar_Florida_PM',florida_PM))
-dp.add_handler(CommandHandler('Premiar_New_York_AM',New_York_AM))
-dp.add_handler(CommandHandler('Premiar_New_York_PM',New_York_PM))
-dp.add_handler(CommandHandler('Premiar_Real',Premiar_Loterias('REAL','LOTERIA QUIN-PALE-TRIP 1:00 PM')))
+dp.add_handler(CommandHandler('Premiar_Florida_AM',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Florida_PM',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_New_York_AM',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_New_York_PM',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Real',Premiar_Loterias))
 #?----------------------------------------------------------------
-dp.add_handler(CommandHandler('Obtener_Premiar_Florida_AM',Obtener_florida_AM))
-dp.add_handler(CommandHandler('Obtener_Premiar_Florida_PM',Obtener_florida_PM))
-dp.add_handler(CommandHandler('Obtener_Premiar_New_York_AM',Obtener_New_York_AM))
-dp.add_handler(CommandHandler('Obtener_Premiar_New_York_PM',Obtener_New_York_PM))
+dp.add_handler(CommandHandler('Obtener_Florida_AM',Obtener_numeros))
+dp.add_handler(CommandHandler('Obtener_Florida_PM',Obtener_numeros))
+dp.add_handler(CommandHandler('Obtener_New_York_AM',Obtener_numeros))
+dp.add_handler(CommandHandler('Obtener_New_York_PM',Obtener_numeros))
 #?----------------------------------------------------------------
 dp.add_handler(MessageHandler(Filters.text,echo))
 

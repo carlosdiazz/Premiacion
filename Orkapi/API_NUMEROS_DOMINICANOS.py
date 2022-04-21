@@ -41,7 +41,7 @@ class Obtener_Numeros_DOMINICANOS():
         time.sleep(1)
         fecha = driver.find_element_by_xpath(datos['FECHA'][0]).text
         #!----------------------------- Validar_Fecha_Hoy(fecha)
-        if('20-04-2022' == fecha):
+        if(Validar_Fecha_Hoy(fecha) == fecha):
             return True
         else:
             return False
