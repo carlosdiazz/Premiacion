@@ -48,11 +48,11 @@ class Colocar_Numeros_Plataforma():
 
         inputLoteria = driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div[1]/div[2]/div/table/thead/tr[2]/th[1]/div/input')
         inputLoteria.send_keys(LOTERIA)
-        time.sleep(2)
+        time.sleep(3)
 
         inputLoteriaHora = driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div[1]/div[2]/div/table/thead/tr[2]/th[4]/div/input')
         inputLoteriaHora.send_keys(HORARIO)
-
+        time.sleep(3)
         seleccionar = driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div[1]/div[2]/div/table/tbody/tr/td[1]')
         seleccionar.click()
         time.sleep(2)
@@ -61,10 +61,13 @@ class Colocar_Numeros_Plataforma():
         if(comprobarPremiado):
             Primer_Premio = driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[2]/div/table/tbody/tr[1]/td[2]/div/input')
             Primer_Premio.send_keys(PREMIO[0])
+            time.sleep(1)
             Segundo_premio = driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[2]/div/table/tbody/tr[2]/td[2]/div/input')
             Segundo_premio.send_keys(PREMIO[1])
+            time.sleep(1)
             Tercer_Premio = driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[2]/div/table/tbody/tr[3]/td[2]/div/input')
             Tercer_Premio.send_keys(PREMIO[2])
+            time.sleep(1)
             boton_premiar = driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[2]/div/button[2]')
             boton_premiar.click()
             time.sleep(2)

@@ -1,7 +1,6 @@
 from API_Numeros_Americanos import Obtener_Numeros_USA
 
 def comprobar_iguales(Lista_de_pagina):
-    print("dsdsds")
     URL1= Obtener_Numeros_USA(Lista_de_pagina[0]).devolver_numeros()
     URL2= Obtener_Numeros_USA(Lista_de_pagina[1]).devolver_numeros()
 
