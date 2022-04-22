@@ -1,8 +1,12 @@
 import os, time
 from datetime import datetime
 import platform
-
-
+#!----------------------------------------------------------------------
+from DATOS_LOTERIAS.Datos_FL_NOCHES import FLORIDA_NOCHE_TODO
+from DATOS_LOTERIAS.Datos_FL_TARDE import FLORIDA_TARDE_TODO
+from DATOS_LOTERIAS.Datos_NY_NOCHE import NEW_TORK_NOCHE_TODO
+from DATOS_LOTERIAS.Datos_NY_TARDE import NEW_YORK_TARDE_TODO
+#!----------------------------------------------------------------------
 def comprobar_sistema():
     return platform.system()
 
@@ -41,3 +45,27 @@ def solo_undigito(numero):
         return f'0{numero}'
     else:
         return numero
+
+def saberLoteria(lote):
+    if(lote == 'New York AM'):
+        return NEW_YORK_TARDE_TODO
+    elif(lote == 'New York PM'):
+        return NEW_TORK_NOCHE_TODO
+    elif(lote == 'Florida AM'):
+        return FLORIDA_TARDE_TODO
+    elif(lote == 'FLorida PM'):
+        return FLORIDA_NOCHE_TODO
+    else:
+        return False
+
+def saberNombreLoteria(lote):
+    if(lote == '/Obtener_New_York_AM' or lote == '/Premiar_New_York_AM'):
+        return 'New York AM'
+    elif(lote == '/Obtener_New_York_PM' or lote == '/Premiar_New_York_PM'):
+        return 'New York PM'
+    elif(lote == '/Obtener_Florida_AM' or lote == '/Premiar_Florida_AM'):
+        return 'Florida AM'
+    elif(lote == '/Obtener_Florida_PM' or lote == '/Premiar_Florida_PM'):
+        return 'FLorida PM'
+    else:
+        return False

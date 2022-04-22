@@ -1,4 +1,0 @@
-from  API_Numeros_Americanos import Obtener_Numeros_USA
-from DATOS_LOTERIAS.Datos_NY_TARDE import NEW_YORk_TARDE_OFICIAL_NUMBERS
-
-print(Obtener_Numeros_USA(NEW_YORk_TARDE_OFICIAL_NUMBERS).devolver_numeros())

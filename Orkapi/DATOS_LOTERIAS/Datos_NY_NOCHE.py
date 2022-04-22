@@ -64,4 +64,4 @@ NEW_YORk_OFICIAL = {
 #! --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-NEW_TORK_NOCHE_TODO = [NEW_YORK_LOTTERY, NEW_YORK_LOTTERYUSA, NEW_YORk_OFICIAL]
+NEW_TORK_NOCHE_TODO = [NEW_YORk_OFICIAL, NEW_YORK_LOTTERYUSA]

@@ -12,7 +12,7 @@ class Colocar_Numeros_Plataforma():
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        self.chrome_options.add_argument("--headless")
+        #self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         except:
@@ -69,8 +69,9 @@ class Colocar_Numeros_Plataforma():
             Tercer_Premio.send_keys(PREMIO[2])
             time.sleep(1)
             boton_premiar = driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[2]/div/button[2]')
+            time.sleep(1)
             boton_premiar.click()
-            time.sleep(2)
+            time.sleep(5)
             self.resultado = True
         else:
             self.resultado = False

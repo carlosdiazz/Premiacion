@@ -5,7 +5,6 @@ from ORKAPI import ORKAPI
 from Funciones_Necesarias import Imprimir_Comandos
 from saber_loteria_Plataforma import Saber_loteria_Plataforma
 from Doble_Check import comprobar_iguales
-from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 #Configurar Logging
 logging.basicConfig(
     level = logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -15,17 +14,40 @@ logger = logging.getLogger()
 from Funciones_Necesarias import fecha, saberLoteria, saberNombreLoteria
 #Solicitar Token
 #TOKEN PRODUCION
-TOKEN = '5348496240:AAHvkD64i5AveuGv3v_5K1y5AyPn74MOqVg'
+#TOKEN = '5348496240:AAHvkD64i5AveuGv3v_5K1y5AyPn74MOqVg'
 
 #? TOKEN DESARRROLLO
-#TOKEN = '5327411630:AAFTQA5RBvOBz4Bv_t7Flv__j_sMfSizRrA'
+TOKEN = '5327411630:AAFTQA5RBvOBz4Bv_t7Flv__j_sMfSizRrA'
 Premios_HOY = {
 }
+
+COMANDOS = [
+    '/Start',
+    "/Info",
+    "/Premiar",
+    "/Ver_Resultados"
+]
+
+Comandos_Premios =[
+    '/Premiar_Florida_AM',
+    "/Premiar_Florida_PM",
+    "/Premiar_New_York_AM",
+    "/Premiar_New_York_PM",
+    "/Premiar_Real"
+]
+
+Comandos_Resultados = [
+    '/Obtener_Florida_AM',
+    '/Obtener_Florida_PM',
+    '/Obtener_New_York_AM',
+    '/Obtener_New_York_PM'
+]
 
 Premios_HOY = {
     "22-04-2022" :
         {}
 }
+
 
 def obtener_Premio(loteria):
     fechaHOY = fecha('%d-%m-%Y')
@@ -70,7 +92,7 @@ def info(update, context):
     message=Imprimir_Comandos(COMANDOS)
     context.bot.sendMessage(chat_id= user_id, text=message)
 
-def VERTODO(update, context):
+def info2(update, context):
     user_id = update.effective_user['id']
     logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
     message=Premios_HOY
@@ -97,6 +119,7 @@ def echo(update, context):
         text = f'Escribiste: _{text}_'
     )
 
+
 def Premiar_Loterias(update, context):
     user_id = update.effective_user['id']
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
@@ -114,6 +137,7 @@ def Premiar_Loterias(update, context):
         logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros')
         logger.info(f'NO SE PREMIO PORQUE LOS RESULTADOS NO ESTAN')
         context.bot.sendMessage(chat_id= user_id, text='NO SE PREMIO PORQUE LOS RESULTADOS NO ESTAN')
+
 
 def Obtener_numeros_loteria(update, context):
     user_id = update.effective_user['id']
@@ -136,8 +160,7 @@ dp = updater.dispatcher
 
 #crear los manejadores
 dp.add_handler(CommandHandler('Start',start))
-dp.add_handler(CommandHandler('Info',info))
-dp.add_handler(CommandHandler('TODO',VERTODO))
+dp.add_handler(CommandHandler('Info',info2))
 dp.add_handler(CommandHandler('Premiar',Comandos_Premiar))
 dp.add_handler(CommandHandler('Ver_Resultados',Comandos_Resul))
 #?---------------------------------------------------------------
@@ -145,7 +168,7 @@ dp.add_handler(CommandHandler('Premiar_Florida_AM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Florida_PM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_New_York_AM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_New_York_PM',Premiar_Loterias))
-#dp.add_handler(CommandHandler('Premiar_Real',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Real',Premiar_Loterias))
 #?----------------------------------------------------------------
 dp.add_handler(CommandHandler('Obtener_Florida_AM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Florida_PM',Obtener_numeros_loteria))
