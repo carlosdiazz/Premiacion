@@ -8,11 +8,10 @@ password = 1234
 
 def ORKAPI(loteria, horario, numeros_a_publicar):
 
-    borrarPantalla()
     print("Los numeros han sido confirmados y son Correctos")
     print("Los numeros que se van a publicar son")
     print(numeros_a_publicar)
-    time.sleep(1)
+
     comprobar=Colocar_Numeros_Plataforma(url, username, password, loteria,horario, numeros_a_publicar).resultado_final()
     if(comprobar):
         print('Numero Publicado')

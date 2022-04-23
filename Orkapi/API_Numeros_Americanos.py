@@ -20,7 +20,7 @@ class Obtener_Numeros_USA():
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         except:
             print("Esto es Ubuntu")
-        borrarPantalla()
+        #borrarPantalla()
 
     def iniciar_Ubuntu(self):
         self.driver_location = "/snap/bin/chromium.chromedriver"
@@ -29,7 +29,7 @@ class Obtener_Numeros_USA():
         self.options.binary_location = self.binary_location
         self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
-        borrarPantalla()
+        #borrarPantalla()
 
     def americana_tres(self, datos):
         driver = self.driver
@@ -47,11 +47,11 @@ class Obtener_Numeros_USA():
 
                 finally:
                     self.tres+=element.text
-                    borrarPantalla()
+                    #borrarPantalla()
 
         else:
             self.tres
-        borrarPantalla()
+        #borrarPantalla()
 
     def americana_cuatro(self, datos):
         driver = self.driver
@@ -69,11 +69,11 @@ class Obtener_Numeros_USA():
 
                 finally:
                     self.cuatro+=element.text
-                    borrarPantalla()
+                    #borrarPantalla()
 
         else:
             self.cuatro
-        borrarPantalla()
+        #borrarPantalla()
 
     def devolver_numeros(self):
         if(self.tres and self.cuatro):

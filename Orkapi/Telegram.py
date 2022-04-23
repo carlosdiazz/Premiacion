@@ -2,8 +2,7 @@ import telegram
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from ORKAPI import ORKAPI
-from Funciones_Necesarias import Imprimir_Comandos
-from saber_loteria_Plataforma import Saber_loteria_Plataforma
+from Funciones_Necesarias import Imprimir_Comandos, Saber_loteria_Plataforma
 from Doble_Check import comprobar_iguales
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 #Configurar Logging
@@ -19,8 +18,7 @@ TOKEN = '5348496240:AAHvkD64i5AveuGv3v_5K1y5AyPn74MOqVg'
 
 #? TOKEN DESARRROLLO
 #TOKEN = '5327411630:AAFTQA5RBvOBz4Bv_t7Flv__j_sMfSizRrA'
-Premios_HOY = {
-}
+
 
 Premios_HOY = {
     "22-04-2022" :

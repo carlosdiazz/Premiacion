@@ -17,7 +17,7 @@ class Colocar_Numeros_Plataforma():
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         except:
             print("Esto es Ubuntu")
-        borrarPantalla()
+        #borrarPantalla()
 
     def iniciar_Ubuntu(self):
         self.driver_location = "/snap/bin/chromium.chromedriver"
@@ -26,7 +26,7 @@ class Colocar_Numeros_Plataforma():
         self.options.binary_location = self.binary_location
         self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
-        borrarPantalla()
+        #borrarPantalla()
 
     def iniciar_seccion(self, URL, USERNAME, PASSWORD):
         driver = self.driver

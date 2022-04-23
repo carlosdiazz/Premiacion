@@ -69,3 +69,17 @@ def saberNombreLoteria(lote):
         return 'FLorida PM'
     else:
         return False
+
+def Saber_loteria_Plataforma(message):
+
+    if(message == 'New York PM' ):
+        return ['New York', 'NEW YORK PM ']
+
+    elif(message == 'New York AM' ):
+        return ['New York', 'NEW YORK AM ']
+
+    elif(message == 'FLorida PM' ):
+        return ['Florida', 'FLORIDA PM ']
+
+    elif(message == 'Florida AM' ):
+        return ['Florida', 'FLORIDA AM ']
