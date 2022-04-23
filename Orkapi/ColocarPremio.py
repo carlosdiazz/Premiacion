@@ -12,7 +12,7 @@ class Colocar_Numeros_Plataforma():
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        #self.chrome_options.add_argument("--headless")
+        self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         except:
