@@ -40,6 +40,7 @@ class Obtener_Numeros_DOMINICANOS():
         driver.get(datos['URL'][1])
         time.sleep(1)
         fecha = driver.find_element_by_xpath(datos['FECHA'][0]).text
+        time.sleep(1)
         if(Validar_Fecha_Hoy(fecha)):
             return True
         else:
@@ -50,10 +51,11 @@ class Obtener_Numeros_DOMINICANOS():
         datos = self.datos
         driver.get(datos['URL'][0])
         driver.get(datos['URL'][1])
-        time.sleep(1)
+        time.sleep(2)
         numero_1 = driver.find_element_by_xpath(datos['NUMEROS'][0]).text
         numero_2 = driver.find_element_by_xpath(datos['NUMEROS'][1]).text
         numero_3 = driver.find_element_by_xpath(datos['NUMEROS'][2]).text
+        time.sleep(2)
         if(numero_1 and numero_2 and numero_3):
             return [
                 solo_undigito(numero_1),

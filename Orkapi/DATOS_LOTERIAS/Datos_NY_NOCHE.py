@@ -63,5 +63,5 @@ NEW_YORk_OFICIAL = {
 
 #! --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-NEW_TORK_NOCHE_TODO = [NEW_YORk_OFICIAL, NEW_YORK_LOTTERYUSA]
+#?Significa QUE ES AMERICANA SI ES TRUE
+NEW_TORK_NOCHE_TODO = [NEW_YORk_OFICIAL, NEW_YORK_LOTTERYUSA, True]

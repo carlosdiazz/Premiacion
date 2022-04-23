@@ -6,6 +6,8 @@ from DATOS_LOTERIAS.Datos_FL_NOCHES import FLORIDA_NOCHE_TODO
 from DATOS_LOTERIAS.Datos_FL_TARDE import FLORIDA_TARDE_TODO
 from DATOS_LOTERIAS.Datos_NY_NOCHE import NEW_TORK_NOCHE_TODO
 from DATOS_LOTERIAS.Datos_NY_TARDE import NEW_YORK_TARDE_TODO
+
+from DATOS_LOTERIAS.Datos_Real import LOTO_REAL_TODO
 #!----------------------------------------------------------------------
 def comprobar_sistema():
     return platform.system()
@@ -55,6 +57,8 @@ def saberLoteria(lote):
         return FLORIDA_TARDE_TODO
     elif(lote == 'FLorida PM'):
         return FLORIDA_NOCHE_TODO
+    elif(lote == 'Loteria REAL'):
+        return LOTO_REAL_TODO
     else:
         return False
 
@@ -67,6 +71,8 @@ def saberNombreLoteria(lote):
         return 'Florida AM'
     elif(lote == '/Obtener_Florida_PM' or lote == '/Premiar_Florida_PM'):
         return 'FLorida PM'
+    elif(lote == '/Obtener_Loteria_Real' or lote == '/Premiar_Loteria_Real'):
+        return 'Loteria REAL'
     else:
         return False
 
@@ -83,3 +89,6 @@ def Saber_loteria_Plataforma(message):
 
     elif(message == 'Florida AM' ):
         return ['Florida', 'FLORIDA AM ']
+
+    elif(message == 'Loteria REAL'):
+        return ['REAL', 'LOTERIA QUIN-PALE-TRIP 1:00 PM ']

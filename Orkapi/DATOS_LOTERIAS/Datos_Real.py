@@ -11,5 +11,5 @@ Loto_Real_Oficial_todo = {
     'FECHA' : [Loto_Real_Oficial_Fecha ],
     'NUMEROS' : [Loto_Real_Oficial_Numero1, Loto_Real_Oficial_Numero2, Loto_Real_Oficial_Numero3 ]
 }
-
-LOTO_REAL_TODO = [Loto_Real_Oficial_todo,Loto_Real_Oficial_todo]
+#?Significa QUE ES Dominicana SI ES False
+LOTO_REAL_TODO = [Loto_Real_Oficial_todo,Loto_Real_Oficial_todo, False]

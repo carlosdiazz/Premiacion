@@ -14,10 +14,10 @@ logger = logging.getLogger()
 from Funciones_Necesarias import fecha, saberLoteria, saberNombreLoteria
 #Solicitar Token
 #TOKEN PRODUCION
-TOKEN = '5348496240:AAHvkD64i5AveuGv3v_5K1y5AyPn74MOqVg'
+#TOKEN = '5348496240:AAHvkD64i5AveuGv3v_5K1y5AyPn74MOqVg'
 
 #? TOKEN DESARRROLLO
-#TOKEN = '5327411630:AAFTQA5RBvOBz4Bv_t7Flv__j_sMfSizRrA'
+TOKEN = '5327411630:AAFTQA5RBvOBz4Bv_t7Flv__j_sMfSizRrA'
 
 
 Premios_HOY = {
@@ -54,7 +54,13 @@ def obtener_Numero(loteria):
 
     else:
         #TEngo aqui que agregar la nueva fecha para seguir el proceso
-        return False
+        loteriaARREGLO = saberLoteria(loteria)
+        numeros = comprobar_iguales(loteriaARREGLO)
+        #numeros = ['12','12','12']
+        if(numeros):
+            Premios_HOY[fechaHOY]={loteria:numeros}
+            return numeros
+        return 'LOS NUMEROS AUN NO HAN SIDOS PUBLICADOS EN LA PAGINA OFICIAL'
 
 def start(update,context):
     logger.info(f"El usuario {update.effective_user['username']}, ha iniciado una conversacion")
@@ -143,12 +149,13 @@ dp.add_handler(CommandHandler('Premiar_Florida_AM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Florida_PM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_New_York_AM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_New_York_PM',Premiar_Loterias))
-#dp.add_handler(CommandHandler('Premiar_Real',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Loteria_Real',Premiar_Loterias))
 #?----------------------------------------------------------------
 dp.add_handler(CommandHandler('Obtener_Florida_AM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Florida_PM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_New_York_AM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_New_York_PM',Obtener_numeros_loteria))
+dp.add_handler(CommandHandler('Obtener_Loteria_Real',Obtener_numeros_loteria))
 #?----------------------------------------------------------------
 dp.add_handler(MessageHandler(Filters.text,echo))
 
