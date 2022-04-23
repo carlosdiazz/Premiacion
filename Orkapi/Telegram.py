@@ -13,12 +13,7 @@ logger = logging.getLogger()
 
 from Funciones_Necesarias import fecha, saberLoteria, saberNombreLoteria
 #Solicitar Token
-#TOKEN PRODUCION
-#TOKEN = '5348496240:AAHvkD64i5AveuGv3v_5K1y5AyPn74MOqVg'
-
-#? TOKEN DESARRROLLO
-TOKEN = '5327411630:AAFTQA5RBvOBz4Bv_t7Flv__j_sMfSizRrA'
-
+from TOKEN_API_ import TOKEN
 
 Premios_HOY = {
     "22-04-2022" :
