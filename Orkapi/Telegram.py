@@ -13,7 +13,7 @@ logger = logging.getLogger()
 
 from Funciones_Necesarias import fecha, saberLoteria, saberNombreLoteria
 #Solicitar Token
-from TOKEN_API_ import TOKEN
+from TOKEN_API_PRO_DE import TOKEN
 
 Premios_HOY = {
     "22-04-2022" :
