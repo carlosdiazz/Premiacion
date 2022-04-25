@@ -162,6 +162,7 @@ dp.add_handler(CommandHandler('Obtener_Loteria_Real',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Loteria_Ganamas',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Loteria_Nacional',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Loteria_Loteka',Obtener_numeros_loteria))
+dp.add_handler(CommandHandler('Obtener_Loteria_Leidsa',Obtener_numeros_loteria))
 #! ------------------------------------------------------------------------------
 # dp.add_handler(CommandHandler('Obtener_Anguila_AM',Obtener_numeros_loteria))
 # dp.add_handler(CommandHandler('Obtener_Anguila_MD',Obtener_numeros_loteria))

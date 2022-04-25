@@ -11,7 +11,24 @@ from DATOS_LOTERIAS.Datos_Real import LOTO_REAL_TODO
 from DATOS_LOTERIAS.Datos_Ganamas import LOTTERY_GANAMAS_TODO
 from DATOS_LOTERIAS.Datos_Nacional_Noche import LOTTERY_NACIONAL_TODO
 from DATOS_LOTERIAS.Datos_Loteka import LOTTERY_LOTEKA_TODO
+from DATOS_LOTERIAS.Datos_Leidsa import LOTTERY_LEIDSA_TODO
 #!----------------------------------------------------------------------
+mesesDic = {
+    "01":'Enero',
+    "02":'Febrero',
+    "03":'Marzo',
+    "04":'Abril',
+    "05":'Mayo',
+    "06":'Junio',
+    "07":'Julio',
+    "08":'Agosto',
+    "09":'Septiembre',
+    "10":'Octubre',
+    "11":'Noviembre',
+    "12":'Diciembre'
+}
+
+
 def comprobar_sistema():
     return platform.system()
 
@@ -24,7 +41,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
     ANGUILA_MEDIO_DIA = 'Draw 1:00PM. '+fecha('%d/%m/%Y')
     ANGUILA_TARDE = 'Draw 6:00PM. '+fecha('%d/%m/%Y')
     ANGUILA_NOCHE = 'Draw 9:00PM. '+fecha('%d/%m/%Y')
-
+    mes_espanol=mesesDic[fecha('%m')]
 
     Todas_las_Fechas = [
         fecha('%A, %b %d, %Y'),
@@ -33,6 +50,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
         fecha('%A, %B %d, %Y'),
         fecha('%d-%m-%Y'),
         fecha('%d/%m/%Y'),
+        fecha(f'Sorteo: %d de {mes_espanol} del %Y.'),
         ANGUILA_MANANA,
         ANGUILA_MEDIO_DIA,
         ANGUILA_TARDE,
@@ -93,6 +111,8 @@ def saberLoteria(lote):
         return LOTTERY_NACIONAL_TODO
     elif(lote =='Loteka'):
         return LOTTERY_LOTEKA_TODO
+    elif(lote == 'Leidsa'):
+        return LOTTERY_LEIDSA_TODO
     elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila PM'):
         return ANGUILA_LOTTERY_TODO
     else:
@@ -115,6 +135,8 @@ def saberNombreLoteria(lote):
         return 'Nacional'
     elif(lote == '/Obtener_Loteria_Loteka'):
         return 'Loteka'
+    elif(lote == '/Obtener_Loteria_Leidsa'):
+        return 'Leidsa'
     elif(lote == '/Obtener_Anguila_AM'):
         return 'Anguila AM'
     elif(lote == '/Obtener_Anguila_MD' ):

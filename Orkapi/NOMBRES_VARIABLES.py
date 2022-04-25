@@ -22,6 +22,7 @@ Comandos_Resultados = [
     '/Obtener_Loteria_Ganamas',
     '/Obtener_Loteria_Nacional',
     '/Obtener_Loteria_Loteka',
+    '/Obtener_Loteria_Leidsa',
     #'/Obtener_Anguila_AM',
     #'/Obtener_Anguila_MD',
     #'/Obtener_Anguila_Tarde',
