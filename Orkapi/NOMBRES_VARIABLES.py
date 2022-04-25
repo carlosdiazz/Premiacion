@@ -10,7 +10,8 @@ Comandos_Premios =[
     "/Premiar_Florida_PM",
     "/Premiar_New_York_AM",
     "/Premiar_New_York_PM",
-    '/Premiar_Loteria_Real'
+    '/Premiar_Loteria_Real',
+    '/Premiar_Loteria_La_Suerte'
 ]
 
 Comandos_Resultados = [
@@ -23,6 +24,7 @@ Comandos_Resultados = [
     '/Obtener_Loteria_Nacional',
     '/Obtener_Loteria_Loteka',
     '/Obtener_Loteria_Leidsa',
+    '/Obtener_Loteria_La_Suerte',
     #'/Obtener_Anguila_AM',
     #'/Obtener_Anguila_MD',
     #'/Obtener_Anguila_Tarde',

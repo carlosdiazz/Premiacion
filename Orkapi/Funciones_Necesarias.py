@@ -12,6 +12,7 @@ from DATOS_LOTERIAS.Datos_Ganamas import LOTTERY_GANAMAS_TODO
 from DATOS_LOTERIAS.Datos_Nacional_Noche import LOTTERY_NACIONAL_TODO
 from DATOS_LOTERIAS.Datos_Loteka import LOTTERY_LOTEKA_TODO
 from DATOS_LOTERIAS.Datos_Leidsa import LOTTERY_LEIDSA_TODO
+from DATOS_LOTERIAS.Datos_La_suerte import LOTTERY_LA_SUERTE_TODO
 #!----------------------------------------------------------------------
 mesesDic = {
     "01":'Enero',
@@ -51,6 +52,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
         fecha('%d-%m-%Y'),
         fecha('%d/%m/%Y'),
         fecha(f'Sorteo: %d de {mes_espanol} del %Y.'),
+        fecha('Resultados %d/%m/%Y'),
         ANGUILA_MANANA,
         ANGUILA_MEDIO_DIA,
         ANGUILA_TARDE,
@@ -86,7 +88,6 @@ def solo_Numero(numero):
     else:
         return numero
 
-
 def solo_undigito(numero):
     numero=solo_Numero(numero)
     if(len(numero) == 1):
@@ -113,6 +114,8 @@ def saberLoteria(lote):
         return LOTTERY_LOTEKA_TODO
     elif(lote == 'Leidsa'):
         return LOTTERY_LEIDSA_TODO
+    elif(lote == 'La Suerte'):
+        return LOTTERY_LA_SUERTE_TODO
     elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila PM'):
         return ANGUILA_LOTTERY_TODO
     else:
@@ -137,6 +140,8 @@ def saberNombreLoteria(lote):
         return 'Loteka'
     elif(lote == '/Obtener_Loteria_Leidsa'):
         return 'Leidsa'
+    elif(lote == '/Obtener_Loteria_La_Suerte' or lote == '/Premiar_Loteria_La_Suerte'):
+        return 'La Suerte'
     elif(lote == '/Obtener_Anguila_AM'):
         return 'Anguila AM'
     elif(lote == '/Obtener_Anguila_MD' ):
@@ -165,6 +170,9 @@ def Saber_loteria_Plataforma(message):
 
     elif(message == 'Loteria REAL'):
         return ['REAL', 'LOTERIA QUIN-PALE-TRIP 1:00 PM ']
+
+    elif(message == 'La Suerte'):
+        return ['La Suerte','La Suerte']
 
 def saber_si_loteria_es_anguila(numeros):
     fecha_de_hoy = fecha('%d/%m/%Y')

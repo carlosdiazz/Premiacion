@@ -77,9 +77,12 @@ class Colocar_Numeros_Plataforma():
             self.resultado = False
 
     def resultado_final(self):
-        if(self.resultado):
-            return True
-        else:
+        try:
+            if(self.resultado):
+                return True
+            else:
+                return False
+        except:
             return False
     def __init__(self, URL, USERNAME, PASSWORD, LOTERIA, HORARIO, PREMIOS ) :
         if(comprobar_sistema() == 'Darwin' or comprobar_sistema() == 'Windows'):

@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Funciones_Necesarias import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema, solo_undigito
 import time
-
+from DATOS_LOTERIAS.Datos_La_suerte import La_suerte_Todo
 try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
@@ -23,7 +23,6 @@ class Obtener_Numeros_DOMINICANOS():
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         except:
             print("Esto es Ubuntu")
-        #borrarPantalla()
 
     def iniciar_Ubuntu(self):
         self.driver_location = "/snap/bin/chromium.chromedriver"
@@ -32,13 +31,19 @@ class Obtener_Numeros_DOMINICANOS():
         self.options.binary_location = self.binary_location
         self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
-        #borrarPantalla()
 
     def obtener_Fecha(self):
         driver = self.driver
         datos = self.datos
-        driver.get(datos['URL'][0])
-        driver.get(datos['URL'][1])
+        if(len(datos['URL']) == 3):
+            driver.get(datos['URL'][0])
+            time.sleep(5)
+            cerrar = driver.find_element_by_xpath(datos['URL'][2])
+            time.sleep(5)
+            cerrar.click()
+        else:
+            driver.get(datos['URL'][0])
+            driver.get(datos['URL'][1])
         try:
             element = WebDriverWait(driver,10).until(
                 EC.presence_of_element_located((By.XPATH, datos['FECHA'][0]))
@@ -55,8 +60,12 @@ class Obtener_Numeros_DOMINICANOS():
     def obtener_numeros(self):
         driver = self.driver
         datos = self.datos
-        driver.get(datos['URL'][0])
-        driver.get(datos['URL'][1])
+
+        if(len(datos['URL']) == 3):
+                time.sleep(1)
+        else:
+            driver.get(datos['URL'][0])
+            driver.get(datos['URL'][1])
         time.sleep(2)
         numero_1 = driver.find_element_by_xpath(datos['NUMEROS'][0]).text
         numero_2 = driver.find_element_by_xpath(datos['NUMEROS'][1]).text
