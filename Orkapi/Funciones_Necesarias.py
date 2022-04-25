@@ -42,7 +42,6 @@ def Validar_Fecha_Hoy(fecha_comprobar):
 
 def borrarPantalla():
     if os.name == "posix":
-        time.sleep(1)
         os.system ("clear")
     elif os.name == "ce" or os.name == "nt" or os.name == "dos":
         os.system ("cls")
