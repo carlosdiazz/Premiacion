@@ -1,3 +1,24 @@
+NY_LOTTERY = 'https://www.nylottery.org/'
+NY_LOTETERY_NUMBERS = 'https://www.nylottery.org/numbers/evening'
+NY_LOTTERY_WIND4 = 'https://www.nylottery.org/win-4/evening'
+
+NY_LOTTERY_NUMBERS_fecha = '/html/body/div/div/table/tbody/tr[2]/td[1]/a'
+NY_LOTTERY_NUMBERS_NU1 = '/html/body/div/div/table/tbody/tr[2]/td[2]/span[2]'
+NY_LOTTERY_NUMBERS_NU2 = '/html/body/div/div/table/tbody/tr[2]/td[2]/span[3]'
+
+NY_LOTTERY_WIND4_fecha ='/html/body/div/div/table/tbody/tr[2]/td[1]/a'
+NY_LOTTERY_WIND4_NU3 = '/html/body/div/div/table/tbody/tr[2]/td[2]/span[1]'
+NY_LOTTERY_WIND4_NU4 = '/html/body/div/div/table/tbody/tr[2]/td[2]/span[2]'
+NY_LOTTERY_WIND4_NU5 = '/html/body/div/div/table/tbody/tr[2]/td[2]/span[3]'
+NY_LOTTERY_WIND4_NU6 = '/html/body/div/div/table/tbody/tr[2]/td[2]/span[4]'
+
+NEW_YORK_LOTTERY = {
+    'URL'     : [NY_LOTTERY, NY_LOTETERY_NUMBERS,NY_LOTTERY_WIND4],
+    "TRES"    : [NY_LOTTERY_NUMBERS_fecha, NY_LOTTERY_NUMBERS_NU1, NY_LOTTERY_NUMBERS_NU2],
+    "CUATRO"  : [NY_LOTTERY_WIND4_fecha,NY_LOTTERY_WIND4_NU3,NY_LOTTERY_WIND4_NU4,NY_LOTTERY_WIND4_NU5,NY_LOTTERY_WIND4_NU6]
+}
+#! --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 NY_LOTTERYUSA = 'https://www.lotteryusa.com/'
 NY_LOTTERYUSA_NUMBERS = 'https://www.lotteryusa.com/new-york/numbers/'
 NY_LOTTERYUSA_WIND4 = 'https://www.lotteryusa.com/new-york/win-4/'
@@ -43,4 +64,4 @@ NEW_YORk_OFICIAL = {
 #! --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #?Significa QUE ES AMERICANA SI ES TRUE
-NEW_TORK_NOCHE_TODO = [NEW_YORk_OFICIAL, NEW_YORK_LOTTERYUSA, True]
+NEW_TORK_NOCHE_TODO = [NEW_YORK_LOTTERY, NEW_YORK_LOTTERYUSA, True]
