@@ -5,7 +5,7 @@ from ORKAPI import ORKAPI
 from Funciones_Necesarias import Imprimir_Comandos, Saber_loteria_Plataforma
 from Doble_Check import Doble_Check
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
-
+from Funciones_Necesarias import borrarPantalla
 #Configurar Logging
 logging.basicConfig(
     level = logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -58,24 +58,28 @@ def obtener_Numero(loteria):
         return 'LOS NUMEROS AUN NO HAN SIDOS PUBLICADOS EN LA PAGINA OFICIAL'
 
 def start(update,context):
+    borrarPantalla()
     logger.info(f"El usuario {update.effective_user['username']}, ha iniciado una conversacion")
     name = update.effective_user['first_name']
     update.message.reply_text(f"Hola {name} soy tu Bot, para mas informacion \n/Info")
     print(update)
 
 def info(update, context):
+    borrarPantalla()
     user_id = update.effective_user['id']
     logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
     message=Imprimir_Comandos(COMANDOS)
     context.bot.sendMessage(chat_id= user_id, text=message)
 
 def VERTODO(update, context):
+    borrarPantalla()
     user_id = update.effective_user['id']
     logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
     message=Premios_HOY
     context.bot.sendMessage(chat_id= user_id, text=message)
 
 def Comandos_Resul(update, context):
+    borrarPantalla()
     user_id = update.effective_user['id']
     logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
     message=Imprimir_Comandos(Comandos_Resultados)
@@ -97,6 +101,8 @@ def echo(update, context):
     )
 
 def Premiar_Loterias(update, context):
+    borrarPantalla()
+    logger.info('Inicio el proceso de Premiacion')
     user_id = update.effective_user['id']
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
     loteria_selecionada = update.message.text
@@ -115,6 +121,8 @@ def Premiar_Loterias(update, context):
         context.bot.sendMessage(chat_id= user_id, text='NO SE PREMIO PORQUE LOS RESULTADOS NO ESTAN')
 
 def Obtener_numeros_loteria(update, context):
+    borrarPantalla()
+    logger.info('Inicio el proceso de Buscar Numeros')
     user_id = update.effective_user['id']
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Buscar el Resultado')
     loteria_selecionada = update.message.text
