@@ -88,5 +88,3 @@ class Obtener_Numeros_DOMINICANOS():
         else:
             self.iniciar_Ubuntu()
         self.datos=datos
-
-print(Obtener_Numeros_DOMINICANOS(Loteka_Todo).devolver_numeros())
