@@ -38,7 +38,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
         return True
     else:
         #! AQUI TENGO QUE DEVOLVER FALSO ES UNA PRUEBA
-        return True
+        return False
 
 def borrarPantalla():
     if os.name == "posix":
