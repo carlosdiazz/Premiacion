@@ -3,21 +3,21 @@ import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from ORKAPI import ORKAPI
 from Funciones_Necesarias import Imprimir_Comandos, Saber_loteria_Plataforma
-from Doble_Check import comprobar_iguales
+from Doble_Check import Doble_Check
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
+
 #Configurar Logging
 logging.basicConfig(
     level = logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger()
 
-from Funciones_Necesarias import fecha, saberLoteria, saberNombreLoteria
+from Funciones_Necesarias import fecha, saberLoteria, saberNombreLoteria, saber_si_loteria_es_anguila
 #Solicitar Token
 from TOKEN_API_PRO_DE import TOKEN
 
 Premios_HOY = {
-    "22-04-2022" :
-        {}
+    
 }
 
 def obtener_Premio(loteria):
@@ -33,13 +33,14 @@ def obtener_Premio(loteria):
 
 def obtener_Numero(loteria):
     fechaHOY = fecha('%d-%m-%Y')
+    #?AQUI ENTRA SI LA FECHA YA ESTA PUBLICADA
     if fechaHOY in Premios_HOY.keys():
         if loteria in Premios_HOY[fechaHOY]:
             #SI la loteria exsite y es la fecha de hoy devuelve los numeros
                 return Premios_HOY[fechaHOY][loteria]
         else:
             loteriaARREGLO = saberLoteria(loteria)
-            numeros = comprobar_iguales(loteriaARREGLO)
+            numeros = Doble_Check(loteriaARREGLO)
 
             if(numeros):
                 Premios_HOY[fechaHOY][loteria]=numeros
@@ -48,10 +49,9 @@ def obtener_Numero(loteria):
                 return 'LOS NUMEROS AUN NO HAN SIDOS PUBLICADOS EN LA PAGINA OFICIAL'
 
     else:
-        #TEngo aqui que agregar la nueva fecha para seguir el proceso
+        #? TEngo aqui que agregar la nueva fecha para seguir el proceso
         loteriaARREGLO = saberLoteria(loteria)
-        numeros = comprobar_iguales(loteriaARREGLO)
-        #numeros = ['12','12','12']
+        numeros = Doble_Check(loteriaARREGLO )
         if(numeros):
             Premios_HOY[fechaHOY]={loteria:numeros}
             return numeros
@@ -151,6 +151,11 @@ dp.add_handler(CommandHandler('Obtener_Florida_PM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_New_York_AM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_New_York_PM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Loteria_Real',Obtener_numeros_loteria))
+#! ------------------------------------------------------------------------------
+# dp.add_handler(CommandHandler('Obtener_Anguila_AM',Obtener_numeros_loteria))
+# dp.add_handler(CommandHandler('Obtener_Anguila_MD',Obtener_numeros_loteria))
+# dp.add_handler(CommandHandler('Obtener_Anguila_Tarde',Obtener_numeros_loteria))
+# dp.add_handler(CommandHandler('Obtener_Anguila_PM',Obtener_numeros_loteria))
 #?----------------------------------------------------------------
 dp.add_handler(MessageHandler(Filters.text,echo))
 

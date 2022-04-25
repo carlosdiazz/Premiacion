@@ -33,53 +33,58 @@ class Obtener_Numeros_USA():
 
     def americana_tres(self, datos):
         driver = self.driver
-        driver.get(datos['URL'][0])
-        driver.get(datos['URL'][1])
-        time.sleep(1)
-        fecha_tres = driver.find_element_by_xpath(datos['TRES'][0]).text
-        self.tres=''
-        if(Validar_Fecha_Hoy(fecha_tres)):
-            for i in range (1,3):
-                try:
-                    element = WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH,datos['TRES'][i]) )
-                    )
+        try:
+            driver.get(datos['URL'][0])
+            driver.get(datos['URL'][1])
+            time.sleep(1)
+            self.fecha_tres = driver.find_element_by_xpath(datos['TRES'][0]).text
+            self.tres=''
 
-                finally:
-                    self.tres+=element.text
-                    #borrarPantalla()
+            if(Validar_Fecha_Hoy(self.fecha_tres)):
+                for i in range (1,3):
+                    try:
+                        element = WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.XPATH,datos['TRES'][i]) )
+                        )
 
-        else:
-            self.tres
-        #borrarPantalla()
+                    finally:
+                        self.tres+=element.text
+            else:
+                self.tres=False
+        except :
+            self.tres=False
 
     def americana_cuatro(self, datos):
         driver = self.driver
-        driver.get(datos['URL'][0])
-        driver.get(datos['URL'][2])
-        time.sleep(1)
-        self.cuatro=''
-        fecha_cuatro = driver.find_element_by_xpath(datos['CUATRO'][0]).text
-        if(Validar_Fecha_Hoy(fecha_cuatro)):
-            for i in range (1,5):
-                try:
-                    element = WebDriverWait(driver, 10).until(
-                    EC.visibility_of_element_located((By.XPATH,datos['CUATRO'][i]) )
-                    )
+        try:
+            driver.get(datos['URL'][0])
+            driver.get(datos['URL'][2])
+            time.sleep(1)
+            self.fecha_cuatro = driver.find_element_by_xpath(datos['CUATRO'][0]).text
+            self.cuatro=''
 
-                finally:
-                    self.cuatro+=element.text
-                    #borrarPantalla()
-
-        else:
-            self.cuatro
-        #borrarPantalla()
+            if(Validar_Fecha_Hoy(self.fecha_cuatro)):
+                for i in range (1,5):
+                    try:
+                        element = WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.XPATH,datos['CUATRO'][i]) )
+                        )
+                    finally:
+                        self.cuatro+=element.text
+            else:
+                self.cuatro=False
+        except:
+            self.cuatro=False
 
     def devolver_numeros(self):
         if(self.tres and self.cuatro):
-            return [self.tres, self.cuatro[0:2], self.cuatro[2:4]]
+            #! ----------------------------------------------------------------------------------------------- self.fecha_cuatro == self.fecha_tres
+            if(self.fecha_cuatro == self.fecha_tres):
+                return [self.fecha_cuatro,self.tres, self.cuatro[0:2], self.cuatro[2:4]]
+            else:
+                return False
         else:
-            return ""
+            return False
 
     def __init__(self, datos) :
         if(comprobar_sistema() == 'Darwin' or comprobar_sistema() == 'Windows'):

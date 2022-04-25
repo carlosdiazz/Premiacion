@@ -6,7 +6,7 @@ from DATOS_LOTERIAS.Datos_FL_NOCHES import FLORIDA_NOCHE_TODO
 from DATOS_LOTERIAS.Datos_FL_TARDE import FLORIDA_TARDE_TODO
 from DATOS_LOTERIAS.Datos_NY_NOCHE import NEW_TORK_NOCHE_TODO
 from DATOS_LOTERIAS.Datos_NY_TARDE import NEW_YORK_TARDE_TODO
-
+from DATOS_LOTERIAS.DATOS_ANGUILA import ANGUILA_LOTTERY_TODO
 from DATOS_LOTERIAS.Datos_Real import LOTO_REAL_TODO
 #!----------------------------------------------------------------------
 def comprobar_sistema():
@@ -17,17 +17,28 @@ def fecha(tipo_fecha):
 
 def Validar_Fecha_Hoy(fecha_comprobar):
 
+    ANGUILA_MANANA = 'Draw 10:00AM. '+fecha('%d/%m/%Y')
+    ANGUILA_MEDIO_DIA = 'Draw 1:00PM. '+fecha('%d/%m/%Y')
+    ANGUILA_TARDE = 'Draw 6:00PM. '+fecha('%d/%m/%Y')
+    ANGUILA_NOCHE = 'Draw 9:00PM. '+fecha('%d/%m/%Y')
+
+
     Todas_las_Fechas = [
         fecha('%A, %b %d, %Y'),
         fecha('%A %B %dth %Y'),
         fecha('%a %m/%d/%y'),
         fecha('%A, %B %d, %Y'),
-        fecha('%d-%m-%Y')
+        fecha('%d-%m-%Y'),
+        ANGUILA_MANANA,
+        ANGUILA_MEDIO_DIA,
+        ANGUILA_TARDE,
+        ANGUILA_NOCHE
         ]
     if fecha_comprobar in Todas_las_Fechas:
         return True
     else:
-        return False
+        #! AQUI TENGO QUE DEVOLVER FALSO ES UNA PRUEBA
+        return True
 
 def borrarPantalla():
     if os.name == "posix":
@@ -42,7 +53,17 @@ def Imprimir_Comandos(arreglo):
         ok+=f"\n\n{i}"
     return ok
 
+def solo_Numero(numero):
+    caracteres = ['1','2','3','4','5','6','7','8','9','0']
+    newNumero = ""
+    for i in numero:
+        if(i in caracteres):
+            newNumero+=i
+    return newNumero
+
+
 def solo_undigito(numero):
+    numero=solo_Numero(numero)
     if(len(numero) == 1):
         return f'0{numero}'
     else:
@@ -59,6 +80,8 @@ def saberLoteria(lote):
         return FLORIDA_NOCHE_TODO
     elif(lote == 'Loteria REAL'):
         return LOTO_REAL_TODO
+    elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila PM'):
+        return ANGUILA_LOTTERY_TODO
     else:
         return False
 
@@ -73,6 +96,15 @@ def saberNombreLoteria(lote):
         return 'FLorida PM'
     elif(lote == '/Obtener_Loteria_Real' or lote == '/Premiar_Loteria_Real'):
         return 'Loteria REAL'
+    elif(lote == '/Obtener_Anguila_AM'):
+        return 'Anguila AM'
+    elif(lote == '/Obtener_Anguila_MD' ):
+        return 'Anguila MD'
+    elif('/Obtener_Anguila_Tarde'):
+        return 'Anguila Tarde'
+    elif('/Obtener_Anguila_PM'):
+        return 'Anguila PM'
+
     else:
         return False
 
@@ -92,3 +124,16 @@ def Saber_loteria_Plataforma(message):
 
     elif(message == 'Loteria REAL'):
         return ['REAL', 'LOTERIA QUIN-PALE-TRIP 1:00 PM ']
+
+def saber_si_loteria_es_anguila(numeros):
+    fecha_de_hoy = fecha('%d/%m/%Y')
+    if(numeros[0] == 'Draw 10:00AM. '+fecha_de_hoy):
+        return 'Anguila AM'
+    elif(numeros[0] == 'Draw 1:00PM. '+fecha_de_hoy):
+        return 'Anguila MD'
+    elif(numeros[0] == 'Draw 5:00PM. '+fecha_de_hoy):
+        return 'Anguila Tarde'
+    elif(numeros[0] == 'Draw 9:00PM. '+fecha_de_hoy):
+        return 'Anguila PM'
+    else:
+        return False

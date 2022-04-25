@@ -18,5 +18,9 @@ Comandos_Resultados = [
     '/Obtener_Florida_PM',
     '/Obtener_New_York_AM',
     '/Obtener_New_York_PM',
-    '/Obtener_Loteria_Real'
+    '/Obtener_Loteria_Real',
+    #'/Obtener_Anguila_AM',
+    #'/Obtener_Anguila_MD',
+    #'/Obtener_Anguila_Tarde',
+    #'/Obtener_Anguila_PM'
 ]

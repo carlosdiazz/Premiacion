@@ -41,7 +41,9 @@ class Obtener_Numeros_DOMINICANOS():
         time.sleep(1)
         fecha = driver.find_element_by_xpath(datos['FECHA'][0]).text
         time.sleep(1)
+
         if(Validar_Fecha_Hoy(fecha)):
+            self.fecha_elemento = fecha
             return True
         else:
             return False
@@ -56,8 +58,10 @@ class Obtener_Numeros_DOMINICANOS():
         numero_2 = driver.find_element_by_xpath(datos['NUMEROS'][1]).text
         numero_3 = driver.find_element_by_xpath(datos['NUMEROS'][2]).text
         time.sleep(2)
+
         if(numero_1 and numero_2 and numero_3):
             return [
+                self.fecha_elemento,
                 solo_undigito(numero_1),
                 solo_undigito(numero_2),
                 solo_undigito(numero_3)
@@ -66,9 +70,12 @@ class Obtener_Numeros_DOMINICANOS():
             return False
 
     def devolver_numeros(self):
-        if(self.obtener_Fecha()):
-            return self.obtener_numeros()
-        else:
+        try:
+            if(self.obtener_Fecha()):
+                return self.obtener_numeros()
+            else:
+                return False
+        except:
             return False
 
     def __init__(self, datos) :
