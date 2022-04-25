@@ -8,6 +8,9 @@ from DATOS_LOTERIAS.Datos_NY_NOCHE import NEW_TORK_NOCHE_TODO
 from DATOS_LOTERIAS.Datos_NY_TARDE import NEW_YORK_TARDE_TODO
 from DATOS_LOTERIAS.DATOS_ANGUILA import ANGUILA_LOTTERY_TODO
 from DATOS_LOTERIAS.Datos_Real import LOTO_REAL_TODO
+from DATOS_LOTERIAS.Datos_Ganamas import LOTTERY_GANAMAS_TODO
+from DATOS_LOTERIAS.Datos_Nacional_Noche import LOTTERY_NACIONAL_TODO
+from DATOS_LOTERIAS.Datos_Loteka import LOTTERY_LOTEKA_TODO
 #!----------------------------------------------------------------------
 def comprobar_sistema():
     return platform.system()
@@ -29,6 +32,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
         fecha('%a %m/%d/%y'),
         fecha('%A, %B %d, %Y'),
         fecha('%d-%m-%Y'),
+        fecha('%d/%m/%Y'),
         ANGUILA_MANANA,
         ANGUILA_MEDIO_DIA,
         ANGUILA_TARDE,
@@ -53,12 +57,16 @@ def Imprimir_Comandos(arreglo):
     return ok
 
 def solo_Numero(numero):
-    caracteres = ['1','2','3','4','5','6','7','8','9','0']
-    newNumero = ""
-    for i in numero:
-        if(i in caracteres):
-            newNumero+=i
-    return newNumero
+    if(len(numero)>=2):
+        numero=numero[len(numero)-2:]
+        caracteres = ['1','2','3','4','5','6','7','8','9','0']
+        newNumero = ""
+        for i in numero:
+            if(i in caracteres):
+                newNumero+=i
+        return newNumero
+    else:
+        return numero
 
 
 def solo_undigito(numero):
@@ -79,6 +87,12 @@ def saberLoteria(lote):
         return FLORIDA_NOCHE_TODO
     elif(lote == 'Loteria REAL'):
         return LOTO_REAL_TODO
+    elif(lote == 'Ganamas'):
+        return LOTTERY_GANAMAS_TODO
+    elif(lote == 'Nacional'):
+        return LOTTERY_NACIONAL_TODO
+    elif(lote =='Loteka'):
+        return LOTTERY_LOTEKA_TODO
     elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila PM'):
         return ANGUILA_LOTTERY_TODO
     else:
@@ -95,6 +109,12 @@ def saberNombreLoteria(lote):
         return 'FLorida PM'
     elif(lote == '/Obtener_Loteria_Real' or lote == '/Premiar_Loteria_Real'):
         return 'Loteria REAL'
+    elif(lote == '/Obtener_Loteria_Ganamas'):
+        return 'Ganamas'
+    elif(lote == '/Obtener_Loteria_Nacional'):
+        return 'Nacional'
+    elif(lote == '/Obtener_Loteria_Loteka'):
+        return 'Loteka'
     elif(lote == '/Obtener_Anguila_AM'):
         return 'Anguila AM'
     elif(lote == '/Obtener_Anguila_MD' ):

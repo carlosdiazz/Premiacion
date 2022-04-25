@@ -11,6 +11,7 @@ try:
 except:
     print("ChromeDriverManager no Existe")
 
+from DATOS_LOTERIAS.Datos_Loteka import Loteka_Todo
 
 class Obtener_Numeros_DOMINICANOS():
 
@@ -29,7 +30,7 @@ class Obtener_Numeros_DOMINICANOS():
         self.binary_location = '/usr/bin/chromium-browser'
         self.options = webdriver.ChromeOptions()
         self.options.binary_location = self.binary_location
-        self.options.add_argument("--headless")
+        #self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
         #borrarPantalla()
 
@@ -38,12 +39,15 @@ class Obtener_Numeros_DOMINICANOS():
         datos = self.datos
         driver.get(datos['URL'][0])
         driver.get(datos['URL'][1])
-        time.sleep(1)
-        fecha = driver.find_element_by_xpath(datos['FECHA'][0]).text
-        time.sleep(1)
+        try:
+            element = WebDriverWait(driver,10).until(
+                EC.presence_of_element_located((By.XPATH, datos['FECHA'][0]))
+            )
+        finally:
+            self.fecha = element.text
 
-        if(Validar_Fecha_Hoy(fecha)):
-            self.fecha_elemento = fecha
+        if(Validar_Fecha_Hoy(self.fecha)):
+            self.fecha_elemento = self.fecha
             return True
         else:
             return False
@@ -84,3 +88,5 @@ class Obtener_Numeros_DOMINICANOS():
         else:
             self.iniciar_Ubuntu()
         self.datos=datos
+
+print(Obtener_Numeros_DOMINICANOS(Loteka_Todo).devolver_numeros())
