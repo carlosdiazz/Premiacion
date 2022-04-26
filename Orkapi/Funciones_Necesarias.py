@@ -29,7 +29,6 @@ mesesDic = {
     "12":'Diciembre'
 }
 
-
 def comprobar_sistema():
     return platform.system()
 
@@ -132,11 +131,11 @@ def saberNombreLoteria(lote):
         return 'FLorida PM'
     elif(lote == '/Obtener_Loteria_Real' or lote == '/Premiar_Loteria_Real'):
         return 'Loteria REAL'
-    elif(lote == '/Obtener_Loteria_Ganamas'):
+    elif(lote == '/Obtener_Loteria_Ganamas' or lote == '/Premiar_Loteria_Ganamas'):
         return 'Ganamas'
     elif(lote == '/Obtener_Loteria_Nacional' or lote == '/Premiar_Loteria_Nacional'):
         return 'Loteria Nacional'
-    elif(lote == '/Obtener_Loteria_Loteka'):
+    elif(lote == '/Obtener_Loteria_Loteka' or lote == '/Premiar_Loteria_Loteka'):
         return 'Loteka'
     elif(lote == '/Obtener_Loteria_Leidsa' or lote == '/Premiar_Loteria_Leidsa'):
         return 'Leidsa'
@@ -179,6 +178,12 @@ def Saber_loteria_Plataforma(message):
 
     elif(message == 'Loteria Nacional'):
         return ['NACIONAL','LOTERIA NACIONAL']
+
+    elif(message == 'Ganamas'):
+        return ['GANAMAS', 'GANAMAS']
+
+    elif(message == 'Loteka'):
+        return ['LOTERIA 7 PM', 'LOTEKA']
 
 def saber_si_loteria_es_anguila(numeros):
     fecha_de_hoy = fecha('%d/%m/%Y')

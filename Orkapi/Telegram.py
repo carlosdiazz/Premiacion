@@ -17,7 +17,7 @@ from Funciones_Necesarias import fecha, saberLoteria, saberNombreLoteria, saber_
 from TOKEN_API_PRO_DE import TOKEN
 
 Premios_HOY = {
-    
+
 }
 
 def obtener_Premio(loteria):
@@ -108,6 +108,7 @@ def Premiar_Loterias(update, context):
     loteria_selecionada = update.message.text
     nombre_loteria = saberNombreLoteria(loteria_selecionada)
     loterias = Saber_loteria_Plataforma(nombre_loteria)
+    print(loterias)
     loteria = loterias[0]
     horario = loterias[1]
     premios = obtener_Premio(nombre_loteria)
@@ -156,6 +157,8 @@ dp.add_handler(CommandHandler('Premiar_Loteria_Real',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Loteria_La_Suerte',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Loteria_Leidsa',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Loteria_Nacional',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Loteria_Ganamas',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Loteria_Loteka',Premiar_Loterias))
 #?----------------------------------------------------------------
 dp.add_handler(CommandHandler('Obtener_Florida_AM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Florida_PM',Obtener_numeros_loteria))
