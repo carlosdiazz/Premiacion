@@ -5,14 +5,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Funciones_Necesarias import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema, solo_undigito
 import time
-from DATOS_LOTERIAS.Datos_La_suerte import La_suerte_Todo
 try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
     print("ChromeDriverManager no Existe")
-
-from DATOS_LOTERIAS.Datos_Loteka import Loteka_Todo
-
 class Obtener_Numeros_DOMINICANOS():
 
     def iniciar_Mac_Windows(self):
@@ -48,6 +44,8 @@ class Obtener_Numeros_DOMINICANOS():
             element = WebDriverWait(driver,10).until(
                 EC.presence_of_element_located((By.XPATH, datos['FECHA'][0]))
             )
+        except:
+            self.fecha = False
         finally:
             self.fecha = element.text
 
@@ -67,17 +65,25 @@ class Obtener_Numeros_DOMINICANOS():
             driver.get(datos['URL'][0])
             driver.get(datos['URL'][1])
         time.sleep(2)
-        numero_1 = driver.find_element_by_xpath(datos['NUMEROS'][0]).text
-        numero_2 = driver.find_element_by_xpath(datos['NUMEROS'][1]).text
-        numero_3 = driver.find_element_by_xpath(datos['NUMEROS'][2]).text
-        time.sleep(2)
+        numero=[]
+        for i in range(3):
+            try:
+                numero_actual=WebDriverWait(driver,10).until(
+                    EC.presence_of_element_located((By.XPATH, datos['NUMEROS'][i]))
+                )
+            except:
+                break
+            finally:
+                if(numero_actual.text != ""):
+                    numero.append(numero_actual.text)
 
-        if(numero_1 and numero_2 and numero_3):
+        time.sleep(2)
+        if(len(numero)==3):
             return [
                 self.fecha_elemento,
-                solo_undigito(numero_1),
-                solo_undigito(numero_2),
-                solo_undigito(numero_3)
+                solo_undigito(numero[0]),
+                solo_undigito(numero[1]),
+                solo_undigito(numero[2])
             ]
         else:
             return False

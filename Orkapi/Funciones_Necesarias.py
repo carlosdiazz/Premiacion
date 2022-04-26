@@ -50,6 +50,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
         fecha('%A, %B %d, %Y'),
         fecha('%d-%m-%Y'),
         fecha('%d/%m/%Y'),
+        fecha('%Y-%m-%d'),
         fecha(f'Sorteo: %d de {mes_espanol} del %Y.'),
         fecha('Resultados %d/%m/%Y'),
         ANGUILA_MANANA,
