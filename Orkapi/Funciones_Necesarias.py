@@ -108,7 +108,7 @@ def saberLoteria(lote):
         return LOTO_REAL_TODO
     elif(lote == 'Ganamas'):
         return LOTTERY_GANAMAS_TODO
-    elif(lote == 'Nacional'):
+    elif(lote == 'Loteria Nacional'):
         return LOTTERY_NACIONAL_TODO
     elif(lote =='Loteka'):
         return LOTTERY_LOTEKA_TODO
@@ -134,11 +134,11 @@ def saberNombreLoteria(lote):
         return 'Loteria REAL'
     elif(lote == '/Obtener_Loteria_Ganamas'):
         return 'Ganamas'
-    elif(lote == '/Obtener_Loteria_Nacional'):
-        return 'Nacional'
+    elif(lote == '/Obtener_Loteria_Nacional' or lote == '/Premiar_Loteria_Nacional'):
+        return 'Loteria Nacional'
     elif(lote == '/Obtener_Loteria_Loteka'):
         return 'Loteka'
-    elif(lote == '/Obtener_Loteria_Leidsa'):
+    elif(lote == '/Obtener_Loteria_Leidsa' or lote == '/Premiar_Loteria_Leidsa'):
         return 'Leidsa'
     elif(lote == '/Obtener_Loteria_La_Suerte' or lote == '/Premiar_Loteria_La_Suerte'):
         return 'La Suerte'
@@ -173,6 +173,12 @@ def Saber_loteria_Plataforma(message):
 
     elif(message == 'La Suerte'):
         return ['La Suerte','La Suerte']
+
+    elif (message == 'Leidsa'):
+        return ['LOTERIA 9 PM', 'QTP-9PM']
+
+    elif(message == 'Loteria Nacional'):
+        return ['NACIONAL','LOTERIA NACIONAL']
 
 def saber_si_loteria_es_anguila(numeros):
     fecha_de_hoy = fecha('%d/%m/%Y')

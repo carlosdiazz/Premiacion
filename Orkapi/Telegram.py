@@ -154,6 +154,8 @@ dp.add_handler(CommandHandler('Premiar_New_York_AM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_New_York_PM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Loteria_Real',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Loteria_La_Suerte',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Loteria_Leidsa',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Loteria_Nacional',Premiar_Loterias))
 #?----------------------------------------------------------------
 dp.add_handler(CommandHandler('Obtener_Florida_AM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Florida_PM',Obtener_numeros_loteria))
