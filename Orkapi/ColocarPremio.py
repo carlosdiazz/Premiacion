@@ -1,5 +1,5 @@
 from selenium import webdriver
-from Funciones_Necesarias import comprobar_sistema
+from Funciones_Necesarias import comprobar_sistema, Saber_Loteria_Seleccionada
 from time import sleep
 from DATOS_LOTERIAS.PLATAFORMA import PLATAFORMA_TODO
 
@@ -56,7 +56,10 @@ class Colocar_Numeros_Plataforma():
             sleep(3)
             selecionarLo = driver.find_element_by_xpath(PLATAFORMA_TODO[7]).click()
             sleep(2)
-            return True
+            Loteria_seleccinanda = driver.find_element_by_xpath(PLATAFORMA_TODO[12]).text
+            sleep(2)
+            if(Saber_Loteria_Seleccionada(Loteria_seleccinanda, SORTEO)):
+                return True
         except:
             self.resultado= f'No se encontro esta Loteria: {LOTERIA} o este Sorteo: {SORTEO}'
 
@@ -91,7 +94,7 @@ class Colocar_Numeros_Plataforma():
             return self.resultado
 
     def __init__(self,URL,USER,PASSWORD,LOTERIA,SORTEO,PREMIOS ) :
-        self.resultado = 'no se mod'
+        self.resultado = 'No se logro completar la Premiacion'
         if(comprobar_sistema() == 'Darwin' or comprobar_sistema() == 'Windows'):
             self.iniciar_Mac_Windows()
         else:

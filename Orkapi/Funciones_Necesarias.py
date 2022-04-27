@@ -167,19 +167,19 @@ def saberNombreLoteria(lote):
 def Saber_loteria_Plataforma(message):
 
     if(message == 'New York PM' ):
-        return ['New York', 'NEW YORK PM ']
+        return ['New York', 'NEW YORK PM']
 
     elif(message == 'New York AM' ):
-        return ['New York', 'NEW YORK AM ']
+        return ['New York', 'NEW YORK AM']
 
     elif(message == 'FLorida PM' ):
-        return ['Florida', 'FLORIDA PM ']
+        return ['Florida', 'FLORIDA PM']
 
     elif(message == 'Florida AM' ):
-        return ['Florida', 'FLORIDA AM ']
+        return ['Florida', 'FLORIDA AM']
 
     elif(message == 'Loteria REAL'):
-        return ['REAL', 'LOTERIA QUIN-PALE-TRIP 1:00 PM ']
+        return ['REAL', 'LOTERIA QUIN-PALE-TRIP 1:00 PM']
 
     elif(message == 'La Suerte'):
         return ['La Suerte','La Suerte']
@@ -214,3 +214,6 @@ def saber_si_loteria_es_anguila(numeros):
         return 'Anguila PM'
     else:
         return False
+
+def Saber_Loteria_Seleccionada(input,sorteo):
+    return input.endswith(sorteo)

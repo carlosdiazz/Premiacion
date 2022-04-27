@@ -10,6 +10,7 @@ Premio_1 = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/d
 Premio_2 = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[2]/div/table/tbody/tr[2]/td[2]/div/input'
 Premio_3 = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[2]/div/table/tbody/tr[3]/td[2]/div/input'
 Boton_Premiar = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[2]/div/button[2]'
+Loteria_que_se_selecciono = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[1]/div/h4'
 
 PLATAFORMA_TODO = [
     URL_PLTAFORMA,
@@ -23,5 +24,6 @@ PLATAFORMA_TODO = [
     Premio_1,
     Premio_2,
     Premio_3,
-    Boton_Premiar
+    Boton_Premiar,
+    Loteria_que_se_selecciono
 ]
