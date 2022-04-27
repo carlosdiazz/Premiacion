@@ -8,6 +8,7 @@ from Doble_Check import Doble_Check
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 from Funciones_Necesarias import borrarPantalla
 from os import remove
+#from borrar import mandar
 #Configurar Logging
 logging.basicConfig(
     level = logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -46,6 +47,7 @@ def obtener_Numero(loteria):
 
             if(numeros):
                 Premios_HOY[fechaHOY][loteria]=numeros
+                #mandar(numeros)
                 return numeros
             else:
                 return 'LOS NUMEROS AUN NO HAN SIDOS PUBLICADOS EN LA PAGINA OFICIAL'
