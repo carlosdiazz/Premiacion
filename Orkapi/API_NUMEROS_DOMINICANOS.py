@@ -1,17 +1,14 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from Funciones_Necesarias import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema, solo_undigito
+from Funciones_Necesarias import Validar_Fecha_Hoy, comprobar_sistema, solo_undigito
 import time
-from DATOS_LOTERIAS.Datos_La_suerte import La_suerte_Todo
+
 try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
     print("ChromeDriverManager no Existe")
-
-from DATOS_LOTERIAS.Datos_Loteka import Loteka_Todo
 
 class Obtener_Numeros_DOMINICANOS():
 
