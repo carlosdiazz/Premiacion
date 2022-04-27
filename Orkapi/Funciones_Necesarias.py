@@ -215,5 +215,6 @@ def saber_si_loteria_es_anguila(numeros):
     else:
         return False
 
-def Saber_Loteria_Seleccionada(input,sorteo):
-    return input.endswith(sorteo)
+def Saber_Loteria_Seleccionada(inputLoteria,sorteo):
+    inputLoteria=inputLoteria.lower()
+    return inputLoteria.endswith(sorteo.lower())

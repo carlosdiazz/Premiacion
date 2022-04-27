@@ -1,3 +1,4 @@
+from tkinter import PhotoImage
 import telegram
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -6,6 +7,7 @@ from Funciones_Necesarias import Imprimir_Comandos, Saber_loteria_Plataforma
 from Doble_Check import Doble_Check
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 from Funciones_Necesarias import borrarPantalla
+from os import remove
 #Configurar Logging
 logging.basicConfig(
     level = logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -115,7 +117,12 @@ def Premiar_Loterias(update, context):
     if(premios):
         Numeros = ORKAPI(loteria, horario, premios)
         logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros')
-        context.bot.sendMessage(chat_id= user_id, text=Numeros)
+        if(Numeros[0]):
+            context.bot.sendMessage(chat_id= user_id, text=Numeros[1])
+            context.bot.sendPhoto(chat_id= user_id, photo=open('./premiada.png','rb'))
+            remove('./premiada.png')
+        else:
+            context.bot.sendMessage(chat_id= user_id, text=Numeros[1])
     else:
         logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros')
         logger.info(f'NO SE PREMIO PORQUE LOS RESULTADOS NO ESTAN')

@@ -13,7 +13,7 @@ class Colocar_Numeros_Plataforma():
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        #self.chrome_options.add_argument("--headless")
+        self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
         except:
@@ -57,7 +57,7 @@ class Colocar_Numeros_Plataforma():
             selecionarLo = driver.find_element_by_xpath(PLATAFORMA_TODO[7]).click()
             sleep(2)
             Loteria_seleccinanda = driver.find_element_by_xpath(PLATAFORMA_TODO[12]).text
-            sleep(2)
+
             if(Saber_Loteria_Seleccionada(Loteria_seleccinanda, SORTEO)):
                 return True
         except:
@@ -77,8 +77,9 @@ class Colocar_Numeros_Plataforma():
                 boton_premiar = driver.find_element_by_xpath(PLATAFORMA_TODO[11])
                 sleep(2)
                 boton_premiar.click()
-                sleep(2)
+                sleep(4)
                 self.resultado = True
+                driver.save_screenshot('premiada.png')
             else:
                 self.resultado = 'Esta Loteria esta Premiada'
         except:

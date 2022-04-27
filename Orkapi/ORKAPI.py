@@ -13,7 +13,7 @@ def ORKAPI(loteria, horario, numeros_a_publicar):
     comprobar=Colocar_Numeros_Plataforma(url, username, password, loteria,horario, numeros_a_publicar).Resultadoo()
     if(comprobar == True):
         print('Numero Publicadon Correctamente')
-        return f'Numero Publicado Correctamente \nPara la Loteria: {loteria}\nCon el horario: {horario} \n{numeros_a_publicar}'
+        return [True,f'Numero Publicado Correctamente \nPara la Loteria: {loteria}\nCon el horario: {horario} \n{numeros_a_publicar}']
     else:
         print(comprobar)
-        return comprobar
+        return [False,comprobar]
