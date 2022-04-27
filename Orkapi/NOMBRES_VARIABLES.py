@@ -15,7 +15,9 @@ Comandos_Premios =[
     '/Premiar_Loteria_Leidsa',
     '/Premiar_Loteria_Nacional',
     '/Premiar_Loteria_Ganamas',
-    '/Premiar_Loteria_Loteka'
+    '/Premiar_Loteria_Loteka',
+    '/Premiar_Loteria_La_Primera_AM',
+    '/Premiar_Loteria_La_Primera_PM'
 ]
 
 Comandos_Resultados = [
@@ -29,6 +31,8 @@ Comandos_Resultados = [
     '/Obtener_Loteria_Loteka',
     '/Obtener_Loteria_Leidsa',
     '/Obtener_Loteria_La_Suerte',
+    '/Obtener_Loteria_La_Primera_AM',
+    '/Obtener_Loteria_La_Primera_PM'
     #'/Obtener_Anguila_AM',
     #'/Obtener_Anguila_MD',
     #'/Obtener_Anguila_Tarde',

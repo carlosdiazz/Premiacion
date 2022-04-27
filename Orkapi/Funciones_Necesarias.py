@@ -13,6 +13,8 @@ from DATOS_LOTERIAS.Datos_Nacional_Noche import LOTTERY_NACIONAL_TODO
 from DATOS_LOTERIAS.Datos_Loteka import LOTTERY_LOTEKA_TODO
 from DATOS_LOTERIAS.Datos_Leidsa import LOTTERY_LEIDSA_TODO
 from DATOS_LOTERIAS.Datos_La_suerte import LOTTERY_LA_SUERTE_TODO
+from DATOS_LOTERIAS.Datos_La_Primera_AM import LOTTERY_LA_PRIMERA_AM
+from DATOS_LOTERIAS.Datos_La_Primera_PM import LOTTERY_LA_PRIMERA_PM
 #!----------------------------------------------------------------------
 mesesDic = {
     "01":'Enero',
@@ -116,6 +118,10 @@ def saberLoteria(lote):
         return LOTTERY_LEIDSA_TODO
     elif(lote == 'La Suerte'):
         return LOTTERY_LA_SUERTE_TODO
+    elif(lote == 'La Primera AM'):
+        return LOTTERY_LA_PRIMERA_AM
+    elif(lote == 'La Primera PM'):
+        return LOTTERY_LA_PRIMERA_PM
     elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila PM'):
         return ANGUILA_LOTTERY_TODO
     else:
@@ -142,6 +148,10 @@ def saberNombreLoteria(lote):
         return 'Leidsa'
     elif(lote == '/Obtener_Loteria_La_Suerte' or lote == '/Premiar_Loteria_La_Suerte'):
         return 'La Suerte'
+    elif(lote == '/Obtener_Loteria_La_Primera_AM' or lote == '/Premiar_Loteria_La_Primera_AM' ):
+        return 'La Primera AM'
+    elif (lote == '/Obtener_Loteria_La_Primera_PM' or lote == '/Premiar_Loteria_La_Primera_PM'):
+        return 'La Primera PM'
     elif(lote == '/Obtener_Anguila_AM'):
         return 'Anguila AM'
     elif(lote == '/Obtener_Anguila_MD' ):
@@ -185,6 +195,12 @@ def Saber_loteria_Plataforma(message):
 
     elif(message == 'Loteka'):
         return ['LOTERIA 7 PM', 'LOTEKA']
+
+    elif(message == 'La Primera AM'):
+        return ['12M', '12M AM']
+
+    elif(message == 'La Primera PM'):
+        return ['12M', '12M PM']
 
 def saber_si_loteria_es_anguila(numeros):
     fecha_de_hoy = fecha('%d/%m/%Y')

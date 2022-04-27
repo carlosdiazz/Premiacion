@@ -11,4 +11,4 @@ La_Primera_PM_Todo = {
     'NUMEROS' : [Loto_La_Primera_PM_Numbers_1, Loto_La_Primera_PM_Numbers_2, Loto_La_Primera_PM_Numbers_3 ]
 }
 #?Significa QUE ES Dominicana SI ES False
-LOTTERY_LA_PRIMERA_AM = [La_Primera_PM_Todo,La_Primera_PM_Todo, False]
+LOTTERY_LA_PRIMERA_PM = [La_Primera_PM_Todo,La_Primera_PM_Todo, False]
