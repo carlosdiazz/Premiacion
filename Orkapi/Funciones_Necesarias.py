@@ -100,32 +100,32 @@ def solo_undigito(numero):
         return numero
 
 def saberLoteria(lote):
-    if(lote == 'New York AM'):
+    if(lote == 'NEW YORK AM'):
         return NEW_YORK_TARDE_TODO
-    elif(lote == 'New York PM'):
+    elif(lote == 'NEW YORK PM'):
         return NEW_TORK_NOCHE_TODO
-    elif(lote == 'Florida AM'):
+    elif(lote == 'FLORIDA AM'):
         return FLORIDA_TARDE_TODO
-    elif(lote == 'FLorida PM'):
+    elif(lote == 'FLORIDA PM'):
         return FLORIDA_NOCHE_TODO
-    elif(lote == 'Loteria REAL'):
+    elif(lote == 'LOTERIA QUIN-PALE-TRIP 1:00 PM'):
         return LOTO_REAL_TODO
-    elif(lote == 'Ganamas'):
+    elif(lote == 'GANAMAS'):
         return LOTTERY_GANAMAS_TODO
-    elif(lote == 'Loteria Nacional'):
+    elif(lote == 'LOTERIA NACIONAL'):
         return LOTTERY_NACIONAL_TODO
-    elif(lote =='Loteka'):
+    elif(lote =='LOTEKA'):
         return LOTTERY_LOTEKA_TODO
-    elif(lote == 'Leidsa'):
+    elif(lote == 'QTP-9PM'):
         return LOTTERY_LEIDSA_TODO
     elif(lote == 'La Suerte'):
         return LOTTERY_LA_SUERTE_TODO
-    elif(lote == 'La Primera AM'):
+    elif(lote == '12M AM'):
         return LOTTERY_LA_PRIMERA_AM
-    elif(lote == 'La Primera PM'):
+    elif(lote == '12M PM'):
         return LOTTERY_LA_PRIMERA_PM
-    elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila PM'):
-        return ANGUILA_LOTTERY_TODO
+    #elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila PM'):
+    #    return ANGUILA_LOTTERY_TODO
     else:
         return False
 
@@ -166,14 +166,14 @@ def saber_Nombre_Loteria_Sorteo(lote):
     elif (lote == '/Obtener_Loteria_La_Primera_PM' or lote == '/Premiar_Loteria_La_Primera_PM'):
         return ['12M', '12M PM']
 
-    elif(lote == '/Obtener_Anguila_AM'):
-        return 'Anguila AM'
-    elif(lote == '/Obtener_Anguila_MD' ):
-        return 'Anguila MD'
-    elif('/Obtener_Anguila_Tarde'):
-        return 'Anguila Tarde'
-    elif('/Obtener_Anguila_PM'):
-        return 'Anguila PM'
+    #elif(lote == '/Obtener_Anguila_AM'):
+    #    return 'Anguila AM'
+    #elif(lote == '/Obtener_Anguila_MD' ):
+    #    return 'Anguila MD'
+    #elif('/Obtener_Anguila_Tarde'):
+    #    return 'Anguila Tarde'
+    #elif('/Obtener_Anguila_PM'):
+    #    return 'Anguila PM'
 
     else:
         return False
