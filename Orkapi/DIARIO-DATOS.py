@@ -4,6 +4,8 @@ from Doble_Check import Doble_Check
 from Funciones_Necesarias import saberLoteria, fecha, saber_Nombre_Loteria_Sorteo
 import requests
 import json
+from Enviar_Correo import Enviar_Corre
+from os import remove
 
 def Peticion_POST(Loteria):
     try:
@@ -37,6 +39,8 @@ class Buscar():
                 fecha('%d-%m-%Y')
             ]
             Peticion_POST(loteria)
+            Enviar_Corre(loteria)
+            remove('./LOTERIA_PAGES.png')
 
         else:
             self.Buscar_Loteria()

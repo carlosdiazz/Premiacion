@@ -80,6 +80,7 @@ class Obtener_Numeros_USA():
         if(self.tres and self.cuatro):
             #! ----------------------------------------------------------------------------------------------- self.fecha_cuatro == self.fecha_tres
             if(self.fecha_cuatro == self.fecha_tres):
+                self.driver.save_screenshot('LOTERIA_PAGES.png')
                 return [self.fecha_cuatro,self.tres, self.cuatro[0:2], self.cuatro[2:4]]
             else:
                 return False

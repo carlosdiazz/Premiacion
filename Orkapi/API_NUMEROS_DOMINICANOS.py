@@ -78,6 +78,7 @@ class Obtener_Numeros_DOMINICANOS():
 
         time.sleep(2)
         if(len(numero)==3):
+            driver.save_screenshot('LOTERIA_PAGES.png')
             return [
                 self.fecha_elemento,
                 solo_undigito(numero[0]),
