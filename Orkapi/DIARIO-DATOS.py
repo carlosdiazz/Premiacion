@@ -8,7 +8,7 @@ import json
 def Peticion_POST(Loteria):
     try:
         headers = { 'Content-Type': 'application/json'}
-        url = 'http://localhost:9000/api/loterias'
+        url = 'http://localhost:9000/api/sorteo'
         body2= json.dumps({
             "loteria": Loteria[0],
             "sorteo":Loteria[1],
