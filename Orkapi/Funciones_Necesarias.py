@@ -197,7 +197,7 @@ def Saber_Loteria_Seleccionada(inputLoteria,sorteo):
 
 def Peticion_GET(sorteo,fecha):
     try:
-        url = f'http://localhost:9000/api/loterias/{sorteo}/{fecha}'
+        url = f'http://localhost:9000/api/sorteo/{sorteo}/{fecha}'
         r=requests.get(url)
         if(r.status_code == 200):
             if(r.text != 'null'):
