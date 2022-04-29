@@ -62,16 +62,16 @@ Florida_PM = Buscar('/Obtener_Florida_PM').Buscar_Loteria
 #! ---------------------------------------------------------
 
 schedule.every().day.at("12:10:00").do(La_Primera_AM)
-schedule.every().day.at("12:40:00").do(La_Suerte)
-schedule.every().day.at("13:15:00").do(Real)
-schedule.every().day.at("13:55:00").do(Florida_AM)
-schedule.every().day.at("14:55:00").do(New_York_AM)
-schedule.every().day.at("15:15:00").do(Ganamas)
+schedule.every().day.at("12:30:00").do(La_Suerte)
+schedule.every().day.at("13:10:00").do(Real)
+schedule.every().day.at("14:00:00").do(Florida_AM)
+schedule.every().day.at("14:50:00").do(New_York_AM)
+schedule.every().day.at("15:10:00").do(Ganamas)
 schedule.every().day.at("20:10:00").do(Loteka)
-schedule.every().day.at("20:15:00").do(La_Primera_PM)
-schedule.every().day.at("21:15:00").do(Leidsa)
-schedule.every().day.at("21:20:00").do(Loteria_Nacional)
-schedule.every().day.at("21:55:00").do(Florida_PM)
+schedule.every().day.at("20:10:00").do(La_Primera_PM)
+schedule.every().day.at("21:10:00").do(Leidsa)
+schedule.every().day.at("21:10:00").do(Loteria_Nacional)
+schedule.every().day.at("22:10:00").do(Florida_PM)
 schedule.every().day.at("22:50:00").do(New_York_PM)
 
 
