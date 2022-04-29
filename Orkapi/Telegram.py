@@ -3,10 +3,8 @@ import telegram
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from ORKAPI import ORKAPI
-from Funciones_Necesarias import Imprimir_Comandos, Saber_loteria_Plataforma
-from Doble_Check import Doble_Check
+from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimir_resultados
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
-from Funciones_Necesarias import borrarPantalla
 from os import remove
 #from borrar import mandar
 #Configurar Logging
@@ -15,51 +13,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger()
 
-from Funciones_Necesarias import fecha, saberLoteria, saberNombreLoteria, saber_si_loteria_es_anguila
+from Funciones_Necesarias import fecha,  saber_Nombre_Loteria_Sorteo
 #Solicitar Token
 from TOKEN_API_PRO_DE import TOKEN
-
-Premios_HOY = {
-
-}
-
-def obtener_Premio(loteria):
-    fechaHOY = fecha('%d-%m-%Y')
-    if fechaHOY in Premios_HOY.keys():
-        if loteria in Premios_HOY[fechaHOY]:
-            #SI la loteria exsite y es la fecha de hoy devuelve los numeros
-                return Premios_HOY[fechaHOY][loteria]
-        else:
-            return False
-    else:
-        return False
-
-def obtener_Numero(loteria):
-    fechaHOY = fecha('%d-%m-%Y')
-    #?AQUI ENTRA SI LA FECHA YA ESTA PUBLICADA
-    if fechaHOY in Premios_HOY.keys():
-        if loteria in Premios_HOY[fechaHOY]:
-            #SI la loteria exsite y es la fecha de hoy devuelve los numeros
-                return Premios_HOY[fechaHOY][loteria]
-        else:
-            loteriaARREGLO = saberLoteria(loteria)
-            numeros = Doble_Check(loteriaARREGLO)
-
-            if(numeros):
-                Premios_HOY[fechaHOY][loteria]=numeros
-                #mandar(numeros)
-                return numeros
-            else:
-                return 'LOS NUMEROS AUN NO HAN SIDOS PUBLICADOS EN LA PAGINA OFICIAL'
-
-    else:
-        #? TEngo aqui que agregar la nueva fecha para seguir el proceso
-        loteriaARREGLO = saberLoteria(loteria)
-        numeros = Doble_Check(loteriaARREGLO )
-        if(numeros):
-            Premios_HOY[fechaHOY]={loteria:numeros}
-            return numeros
-        return 'LOS NUMEROS AUN NO HAN SIDOS PUBLICADOS EN LA PAGINA OFICIAL'
 
 def start(update,context):
     #borrarPantalla()
@@ -83,7 +39,6 @@ def VERTODO(update, context):
     context.bot.sendMessage(chat_id= user_id, text=message)
 
 def Comandos_Resul(update, context):
-    #borrarPantalla()
     user_id = update.effective_user['id']
     logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
     message=Imprimir_Comandos(Comandos_Resultados)
@@ -105,41 +60,43 @@ def echo(update, context):
     )
 
 def Premiar_Loterias(update, context):
-    #borrarPantalla()
-    logger.info('Inicio el proceso de Premiacion')
     user_id = update.effective_user['id']
+    logger.info('Inicio el proceso de Premiacion')
+    logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros')
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
     loteria_selecionada = update.message.text
-    nombre_loteria = saberNombreLoteria(loteria_selecionada)
-    loterias = Saber_loteria_Plataforma(nombre_loteria)
-    print(loterias)
-    loteria = loterias[0]
-    horario = loterias[1]
-    premios = obtener_Premio(nombre_loteria)
-    if(premios):
-        Numeros = ORKAPI(loteria, horario, premios)
-        logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros')
-        if(Numeros[0]):
-            context.bot.sendMessage(chat_id= user_id, text=Numeros[1])
+    Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteria_selecionada)
+    loteria = Nombre_loteria_sorteo[0]
+    sorteo = Nombre_loteria_sorteo[1]
+    fecha_AHORA = fecha('%d-%m-%Y')
+    peticion_GET = Peticion_GET(sorteo,'28-04-2022')
+
+    if(type(peticion_GET)==dict):
+
+        numeros_a_publicar = peticion_GET['numeros_ganadores']
+        result = ORKAPI(loteria,sorteo,numeros_a_publicar)
+        if(result[0]):
+            context.bot.sendMessage(chat_id= user_id, text=result[1])
             context.bot.sendPhoto(chat_id= user_id, photo=open('./premiada.png','rb'))
             remove('./premiada.png')
         else:
-            context.bot.sendMessage(chat_id= user_id, text=Numeros[1])
+            context.bot.sendMessage(chat_id= user_id, text=result[1])
     else:
-        logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros')
-        logger.info(f'NO SE PREMIO PORQUE LOS RESULTADOS NO ESTAN')
-        context.bot.sendMessage(chat_id= user_id, text='NO SE PREMIO PORQUE LOS RESULTADOS NO ESTAN')
+        print(peticion_GET)
+        logger.info(peticion_GET)
+        context.bot.sendMessage(chat_id= user_id, text=peticion_GET)
 
 def Obtener_numeros_loteria(update, context):
-    #borrarPantalla()
-    logger.info('Inicio el proceso de Buscar Numeros')
     user_id = update.effective_user['id']
+    logger.info(f'El usuario {user_id}, ha mandado a ver los numeros ')
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Buscar el Resultado')
     loteria_selecionada = update.message.text
-    saber_loteria = saberNombreLoteria(loteria_selecionada)
-    NUMEROS_CORRECTOS = obtener_Numero(saber_loteria)
-    logger.info(f'El usuario {user_id}, ha mandado a ver los numeros ')
-    context.bot.sendMessage(chat_id= user_id, text=NUMEROS_CORRECTOS)
+    Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteria_selecionada)
+    sorteo = Nombre_loteria_sorteo[1]
+    fecha_AHORA = fecha('%d-%m-%Y')
+    peticion_GET = Peticion_GET(sorteo,fecha_AHORA)
+    resultado = imprimir_resultados(peticion_GET)
+    context.bot.sendMessage(chat_id= user_id, text=resultado)
 #?---------------------------------------------------------------------------------------
 
 if __name__ == "__main__":

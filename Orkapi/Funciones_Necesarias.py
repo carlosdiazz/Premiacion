@@ -1,6 +1,8 @@
 import os
 from datetime import datetime
 import platform
+import requests
+
 #!----------------------------------------------------------------------
 from DATOS_LOTERIAS.Datos_FL_NOCHES import FLORIDA_NOCHE_TODO
 from DATOS_LOTERIAS.Datos_FL_TARDE import FLORIDA_TARDE_TODO
@@ -127,31 +129,43 @@ def saberLoteria(lote):
     else:
         return False
 
-def saberNombreLoteria(lote):
+def saber_Nombre_Loteria_Sorteo(lote):
     if(lote == '/Obtener_New_York_AM' or lote == '/Premiar_New_York_AM'):
-        return 'New York AM'
+        return ['New York', 'NEW YORK AM']
+
     elif(lote == '/Obtener_New_York_PM' or lote == '/Premiar_New_York_PM'):
-        return 'New York PM'
+        return ['New York', 'NEW YORK PM']
+
     elif(lote == '/Obtener_Florida_AM' or lote == '/Premiar_Florida_AM'):
-        return 'Florida AM'
+        return ['Florida', 'FLORIDA AM']
+
     elif(lote == '/Obtener_Florida_PM' or lote == '/Premiar_Florida_PM'):
-        return 'FLorida PM'
+        return ['Florida', 'FLORIDA PM']
+
     elif(lote == '/Obtener_Loteria_Real' or lote == '/Premiar_Loteria_Real'):
-        return 'Loteria REAL'
+        return ['REAL', 'LOTERIA QUIN-PALE-TRIP 1:00 PM']
+
     elif(lote == '/Obtener_Loteria_Ganamas' or lote == '/Premiar_Loteria_Ganamas'):
-        return 'Ganamas'
+        return ['GANAMAS', 'GANAMAS']
+
     elif(lote == '/Obtener_Loteria_Nacional' or lote == '/Premiar_Loteria_Nacional'):
-        return 'Loteria Nacional'
+        return ['NACIONAL','LOTERIA NACIONAL']
+
     elif(lote == '/Obtener_Loteria_Loteka' or lote == '/Premiar_Loteria_Loteka'):
-        return 'Loteka'
+        return ['LOTERIA 7 PM', 'LOTEKA']
+
     elif(lote == '/Obtener_Loteria_Leidsa' or lote == '/Premiar_Loteria_Leidsa'):
-        return 'Leidsa'
+        return ['LOTERIA 9 PM', 'QTP-9PM']
+
     elif(lote == '/Obtener_Loteria_La_Suerte' or lote == '/Premiar_Loteria_La_Suerte'):
-        return 'La Suerte'
+        return ['La Suerte','La Suerte']
+
     elif(lote == '/Obtener_Loteria_La_Primera_AM' or lote == '/Premiar_Loteria_La_Primera_AM' ):
-        return 'La Primera AM'
+        return ['12M', '12M AM']
+
     elif (lote == '/Obtener_Loteria_La_Primera_PM' or lote == '/Premiar_Loteria_La_Primera_PM'):
-        return 'La Primera PM'
+        return ['12M', '12M PM']
+
     elif(lote == '/Obtener_Anguila_AM'):
         return 'Anguila AM'
     elif(lote == '/Obtener_Anguila_MD' ):
@@ -163,44 +177,6 @@ def saberNombreLoteria(lote):
 
     else:
         return False
-
-def Saber_loteria_Plataforma(message):
-
-    if(message == 'New York PM' ):
-        return ['New York', 'NEW YORK PM']
-
-    elif(message == 'New York AM' ):
-        return ['New York', 'NEW YORK AM']
-
-    elif(message == 'FLorida PM' ):
-        return ['Florida', 'FLORIDA PM']
-
-    elif(message == 'Florida AM' ):
-        return ['Florida', 'FLORIDA AM']
-
-    elif(message == 'Loteria REAL'):
-        return ['REAL', 'LOTERIA QUIN-PALE-TRIP 1:00 PM']
-
-    elif(message == 'La Suerte'):
-        return ['La Suerte','La Suerte']
-
-    elif (message == 'Leidsa'):
-        return ['LOTERIA 9 PM', 'QTP-9PM']
-
-    elif(message == 'Loteria Nacional'):
-        return ['NACIONAL','LOTERIA NACIONAL']
-
-    elif(message == 'Ganamas'):
-        return ['GANAMAS', 'GANAMAS']
-
-    elif(message == 'Loteka'):
-        return ['LOTERIA 7 PM', 'LOTEKA']
-
-    elif(message == 'La Primera AM'):
-        return ['12M', '12M AM']
-
-    elif(message == 'La Primera PM'):
-        return ['12M', '12M PM']
 
 def saber_si_loteria_es_anguila(numeros):
     fecha_de_hoy = fecha('%d/%m/%Y')
@@ -218,3 +194,29 @@ def saber_si_loteria_es_anguila(numeros):
 def Saber_Loteria_Seleccionada(inputLoteria,sorteo):
     inputLoteria=inputLoteria.lower()
     return inputLoteria.endswith(sorteo.lower())
+
+def Peticion_GET(sorteo,fecha):
+    try:
+        url = f'http://localhost:9000/api/loterias/{sorteo}/{fecha}'
+        r=requests.get(url)
+        if(r.status_code == 200):
+            if(r.text != 'null'):
+                return r.json()
+            else:
+                return 'Los numeros no fueron encontrados en La Base de Datos'
+        else:
+            return 'El SERVIDOR no respondio'
+    except:
+        return('HUBO UN ERRORRRRRRR al Momento de la Petcion GET' )
+
+def imprimir_resultados(json):
+    if(type(json)==dict):
+        loteria = json['loteria']
+        sorteo = json['sorteo']
+        mumeros_ganadores=json['numeros_ganadores']
+        if(loteria and sorteo and len(mumeros_ganadores) == 3):
+            return  f'Loteria: {loteria}\nSorteo: {sorteo}\nNumeros Ganadores: {mumeros_ganadores}\n'
+        else:
+            json
+    else:
+        return json
