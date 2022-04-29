@@ -31,13 +31,6 @@ def info(update, context):
     message=Imprimir_Comandos(COMANDOS)
     context.bot.sendMessage(chat_id= user_id, text=message)
 
-def VERTODO(update, context):
-    #borrarPantalla()
-    user_id = update.effective_user['id']
-    logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
-    message=Premios_HOY
-    context.bot.sendMessage(chat_id= user_id, text=message)
-
 def Comandos_Resul(update, context):
     user_id = update.effective_user['id']
     logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
@@ -69,7 +62,7 @@ def Premiar_Loterias(update, context):
     loteria = Nombre_loteria_sorteo[0]
     sorteo = Nombre_loteria_sorteo[1]
     fecha_AHORA = fecha('%d-%m-%Y')
-    peticion_GET = Peticion_GET(sorteo,'28-04-2022')
+    peticion_GET = Peticion_GET(sorteo,fecha_AHORA)
 
     if(type(peticion_GET)==dict):
 
@@ -111,7 +104,6 @@ dp = updater.dispatcher
 #crear los manejadores
 dp.add_handler(CommandHandler('Start',start))
 dp.add_handler(CommandHandler('Info',info))
-dp.add_handler(CommandHandler('TODO',VERTODO))
 dp.add_handler(CommandHandler('Premiar',Comandos_Premiar))
 dp.add_handler(CommandHandler('Ver_Resultados',Comandos_Resul))
 #?---------------------------------------------------------------
