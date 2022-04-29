@@ -18,5 +18,7 @@ def Doble_Check(Lista_de_pagina):
             URL1= Obtener_Numeros_DOMINICANOS(Lista_de_pagina[0]).devolver_numeros()
             if(URL1):
                 return URL1[1:]
+            else:
+                return False
     else:
         return False

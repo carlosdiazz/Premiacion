@@ -1,4 +1,4 @@
-import os, time
+import os
 from datetime import datetime
 import platform
 #!----------------------------------------------------------------------
