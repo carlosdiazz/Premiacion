@@ -84,4 +84,4 @@ while True:
     fecha_actual = fecha('%d-%m-%Y %H:%M:%S')
     print(f"---------- {fecha_actual} ----------")
     schedule.run_pending()
-    time.sleep(1)
+    time.sleep(600)
