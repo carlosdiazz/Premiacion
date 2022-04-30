@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from Funciones_Necesarias import Validar_Fecha_Hoy, borrarPantalla, comprobar_sistema
+from Funciones_Necesarias import Validar_Fecha_Hoy, comprobar_sistema
 import time
 
 try:
@@ -15,21 +15,21 @@ class Obtener_Numeros_USA():
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        self.chrome_options.add_argument("--headless")
+        #self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
+            self.driver.maximize_window()
         except:
             print("Esto es Ubuntu")
-        #borrarPantalla()
 
     def iniciar_Ubuntu(self):
         self.driver_location = "/snap/bin/chromium.chromedriver"
         self.binary_location = '/usr/bin/chromium-browser'
         self.options = webdriver.ChromeOptions()
         self.options.binary_location = self.binary_location
-        self.options.add_argument("--headless")
+        #self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
-        #borrarPantalla()
+        self.driver.maximize_window()
 
     def americana_tres(self, datos):
         driver = self.driver

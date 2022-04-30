@@ -13,9 +13,10 @@ class Obtener_Numeros_DOMINICANOS():
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        self.chrome_options.add_argument("--headless")
+        #self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
+            self.driver.maximize_window()
         except:
             print("Esto es Ubuntu")
 
@@ -24,8 +25,9 @@ class Obtener_Numeros_DOMINICANOS():
         self.binary_location = '/usr/bin/chromium-browser'
         self.options = webdriver.ChromeOptions()
         self.options.binary_location = self.binary_location
-        self.options.add_argument("--headless")
+        #self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
+        self.driver.maximize_window()
 
     def obtener_Fecha(self):
         driver = self.driver
