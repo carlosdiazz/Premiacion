@@ -215,7 +215,10 @@ def imprimir_resultados(json):
         sorteo = json['sorteo']
         mumeros_ganadores=json['numeros_ganadores']
         if(loteria and sorteo and len(mumeros_ganadores) == 3):
-            return  f'Loteria: {loteria}\nSorteo: {sorteo}\nNumeros Ganadores: {mumeros_ganadores}\n'
+            numero_1 = mumeros_ganadores[0]
+            numero_2 = mumeros_ganadores[1]
+            numero_3 = mumeros_ganadores[2]
+            return  f'Loteria: {loteria}\nSorteo: {sorteo}\nNumeros Ganadores: {numero_1}-{numero_2}-{numero_3}\n'
         else:
             json
     else:
