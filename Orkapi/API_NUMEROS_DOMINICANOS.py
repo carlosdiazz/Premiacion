@@ -8,12 +8,13 @@ try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
     print("ChromeDriverManager no Existe")
+
 class Obtener_Numeros_DOMINICANOS():
 
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        #self.chrome_options.add_argument("--headless")
+        self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
             self.driver.maximize_window()
@@ -25,7 +26,7 @@ class Obtener_Numeros_DOMINICANOS():
         self.binary_location = '/usr/bin/chromium-browser'
         self.options = webdriver.ChromeOptions()
         self.options.binary_location = self.binary_location
-        #self.options.add_argument("--headless")
+        self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
         self.driver.maximize_window()
 
@@ -52,6 +53,7 @@ class Obtener_Numeros_DOMINICANOS():
 
         if(Validar_Fecha_Hoy(self.fecha)):
             self.fecha_elemento = self.fecha
+            element.location_once_scrolled_into_view
             return True
         else:
             return False
@@ -76,11 +78,11 @@ class Obtener_Numeros_DOMINICANOS():
                 break
             finally:
                 if(numero_actual.text != ""):
+                    driver.save_screenshot('LOTERIA_PAGES.png')
                     numero.append(numero_actual.text)
 
         time.sleep(2)
         if(len(numero)==3):
-            driver.save_screenshot('LOTERIA_PAGES.png')
             return [
                 self.fecha_elemento,
                 solo_undigito(numero[0]),
