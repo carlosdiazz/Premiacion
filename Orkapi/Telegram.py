@@ -62,6 +62,7 @@ def Premiar_Loterias(update, context):
     loteria = Nombre_loteria_sorteo[0]
     sorteo = Nombre_loteria_sorteo[1]
     fecha_AHORA = fecha('%d-%m-%Y')
+    #! --------
     peticion_GET = Peticion_GET(sorteo,fecha_AHORA)
 
     if(type(peticion_GET)==dict):
@@ -87,6 +88,7 @@ def Obtener_numeros_loteria(update, context):
     Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteria_selecionada)
     sorteo = Nombre_loteria_sorteo[1]
     fecha_AHORA = fecha('%d-%m-%Y')
+    #! -----
     peticion_GET = Peticion_GET(sorteo,fecha_AHORA)
     resultado = imprimir_resultados(peticion_GET)
     context.bot.sendMessage(chat_id= user_id, text=resultado)
