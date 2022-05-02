@@ -22,6 +22,10 @@ def Peticion_POST(Loteria):
         print(f'NO SE PREMIO ESTA LOTERIA: {Loteria[0]} CON ESTE SORTEO {Loteria[1]}' )
 
 class Buscar():
+
+    def __init__(self,lotery):
+        self.lotery=lotery
+
     def Buscar_Loteria(self):
         lotery = self.lotery
         Loteria_Y_Sorteo = saber_Nombre_Loteria_Sorteo(lotery)
@@ -38,17 +42,16 @@ class Buscar():
                 numeros_Ganadores,
                 fecha('%d-%m-%Y')
             ]
+            #! CONTROLAR EL ERROR SI NO SE ENVIA EL CORREO
             Peticion_POST(loteria)
             Enviar_Corre(loteria)
             remove('./LOTERIA_PAGES.png')
 
         else:
-            self.Buscar_Loteria()
             time.sleep(300)
+            self.Buscar_Loteria()
 
-    def __init__(self,lotery):
-        self.lotery=lotery
-        pass
+
 
 #! ----------------------------------------------------------
 La_Primera_AM = Buscar('/Obtener_Loteria_La_Primera_AM').Buscar_Loteria

@@ -27,7 +27,7 @@ class Obtener_Numeros_USA():
         self.binary_location = '/usr/bin/chromium-browser'
         self.options = webdriver.ChromeOptions()
         self.options.binary_location = self.binary_location
-        #self.options.add_argument("--headless")
+        self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
         self.driver.maximize_window()
 
@@ -38,21 +38,26 @@ class Obtener_Numeros_USA():
             driver.get(datos['URL'][1])
             time.sleep(1)
             self.fecha_tres = driver.find_element_by_xpath(datos['TRES'][0]).text
-            self.tres=''
-
             if(Validar_Fecha_Hoy(self.fecha_tres)):
                 for i in range (1,3):
                     try:
                         element = WebDriverWait(driver, 10).until(
                         EC.visibility_of_element_located((By.XPATH,datos['TRES'][i]) )
                         )
-
+                    except:
+                        self.tres=False
+                        return  False
                     finally:
                         self.tres+=element.text
+                return True
+
             else:
                 self.tres=False
+                return False
+
         except :
             self.tres=False
+            return False
 
     def americana_cuatro(self, datos):
         driver = self.driver
@@ -61,7 +66,6 @@ class Obtener_Numeros_USA():
             driver.get(datos['URL'][2])
             time.sleep(1)
             self.fecha_cuatro = driver.find_element_by_xpath(datos['CUATRO'][0]).text
-            self.cuatro=''
 
             if(Validar_Fecha_Hoy(self.fecha_cuatro)):
                 for i in range (1,5):
@@ -69,6 +73,8 @@ class Obtener_Numeros_USA():
                         element = WebDriverWait(driver, 10).until(
                         EC.visibility_of_element_located((By.XPATH,datos['CUATRO'][i]) )
                         )
+                    except:
+                        self.cuatro=False
                     finally:
                         self.cuatro+=element.text
             else:
@@ -77,14 +83,17 @@ class Obtener_Numeros_USA():
             self.cuatro=False
 
     def devolver_numeros(self):
-        if(self.tres and self.cuatro):
-            #! ----------------------------------------------------------------------------------------------- self.fecha_cuatro == self.fecha_tres
-            if(self.fecha_cuatro == self.fecha_tres):
-                self.driver.save_screenshot('LOTERIA_PAGES.png')
-                return [self.fecha_cuatro,self.tres, self.cuatro[0:2], self.cuatro[2:4]]
+        try:
+            if(self.tres and self.cuatro):
+                #! ----------------------------------------------------------------------------------------------- self.fecha_cuatro == self.fecha_tres
+                if(self.fecha_cuatro == self.fecha_tres):
+                    self.driver.save_screenshot('LOTERIA_PAGES.png')
+                    return [self.fecha_cuatro,self.tres, self.cuatro[0:2], self.cuatro[2:4]]
+                else:
+                    return False
             else:
                 return False
-        else:
+        except:
             return False
 
     def __init__(self, datos) :
@@ -92,6 +101,7 @@ class Obtener_Numeros_USA():
             self.iniciar_Mac_Windows()
         else:
             self.iniciar_Ubuntu()
-
-        self.americana_tres(datos)
-        self.americana_cuatro(datos)
+        self.tres = ''
+        self.cuatro = ''
+        if(self.americana_tres(datos)):
+            self.americana_cuatro(datos)
