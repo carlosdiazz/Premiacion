@@ -2,7 +2,8 @@ import os
 from datetime import datetime
 import platform
 import requests
-
+import json
+from TOKEN_API_PRO_DE import API_KEY_MONGO_DB
 #!----------------------------------------------------------------------
 from DATOS_LOTERIAS.Datos_FL_NOCHES import FLORIDA_NOCHE_TODO
 from DATOS_LOTERIAS.Datos_FL_TARDE import FLORIDA_TARDE_TODO
@@ -231,3 +232,84 @@ def imprimir_resultados(json):
             json
     else:
         return json
+
+def Obtener_User_MONGO_NOTIFICACIONES():
+    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/beta/action/find"
+    payload = json.dumps({
+        "collection": "Usuarios_Notificaciones",
+        "database": "myFirstDatabase",
+        "dataSource": "LoteriasCluster",
+        "projection": {
+
+        }
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': API_KEY_MONGO_DB
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    arr=response.json()
+
+    New_Arr = []
+    for user in arr['documents']:
+        usuarios = user['user_id']
+        New_Arr.append(usuarios)
+    return New_Arr
+
+def Nuevos_Usuarios_Mongo_DB(user):
+    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/beta/action/findone"
+    payload = json.dumps({
+        "collection": "Usuarios_Notificaciones",
+        "database": "myFirstDatabase",
+        "dataSource": "LoteriasCluster",
+        "projection": {
+            'user_id': user
+        }
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': API_KEY_MONGO_DB
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    arr=response.json()
+
+def Verificar_si_un_usuario_existe(user):
+    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/beta/action/findOne"
+    payload = json.dumps({
+        "collection": "Usuarios_Notificaciones",
+        "database": "myFirstDatabase",
+        "dataSource": "LoteriasCluster",
+        "filter": { 'user_id': user}
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': API_KEY_MONGO_DB
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    respuesta=(response.json())
+    if(respuesta['document']==None):
+        print("\n\n\nAgregando nuevo Usuaio a la BD\n\n\n")
+        return True
+    else:
+        print("\n\n\nEste Usuario ya existe en la Base de Dato\n\n\n")
+        return False
+
+def Agregar_Nuevo_Usuario_MONGODB(user):
+    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/beta/action/insertOne"
+    payload = json.dumps({
+        "collection": "Usuarios_Notificaciones",
+        "database": "myFirstDatabase",
+        "dataSource": "LoteriasCluster",
+        "document": { 'user_id': user}
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': API_KEY_MONGO_DB
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    respuesta=(response.json())
+    return respuesta

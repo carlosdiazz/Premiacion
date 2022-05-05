@@ -1,13 +1,12 @@
 import schedule
 import time
 from Doble_Check import Doble_Check
-from Funciones_Necesarias import saberLoteria, fecha, saber_Nombre_Loteria_Sorteo
+from Funciones_Necesarias import saberLoteria, fecha, saber_Nombre_Loteria_Sorteo, Obtener_User_MONGO_NOTIFICACIONES
 import requests
 import json
 from Enviar_Correo import Enviar_Corre
 from os import remove
 from TOKEN_API_PRO_DE import TOKEN_NOTIFICACION
-userID = 898083122
 
 def sendNotification(VALIDAR,message ):
     try:
@@ -19,15 +18,13 @@ def sendNotification(VALIDAR,message ):
         else:
             mess = message
         bot_token = TOKEN_NOTIFICACION
-        bot_chatID = str(userID)
-
-        User=[bot_chatID]
+        User=Obtener_User_MONGO_NOTIFICACIONES()
         for usuarios in User:
-            send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + mess
+            send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + usuarios + '&parse_mode=Markdown&text=' + mess
             requests.get(send_text)
             requests.post(f'https://api.telegram.org/bot{bot_token}/sendPhoto',
                 files={'photo': ('./LOTERIA_PAGES.png', open('./LOTERIA_PAGES.png', 'rb'))},
-                data={'chat_id': bot_chatID, 'caption': 'Loteria'})
+                data={'chat_id': usuarios, 'caption': 'Loteria'})
     except:
         print('-----------------------------------------------')
         print("NO SE PUEDO ENVIAR LA NOTIFICACION DE TELEGRAM")

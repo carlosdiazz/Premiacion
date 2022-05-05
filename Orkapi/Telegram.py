@@ -3,7 +3,7 @@ import telegram
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from ORKAPI import ORKAPI
-from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimir_resultados
+from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimir_resultados, Verificar_si_un_usuario_existe, Agregar_Nuevo_Usuario_MONGODB
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 from os import remove
 
@@ -20,6 +20,9 @@ from TOKEN_API_PRO_DE import TOKEN
 def start(update,context):
     logger.info(f"El usuario {update.effective_user['username']}, ha iniciado una conversacion")
     user_id = update.effective_user['id']
+    Validar=Verificar_si_un_usuario_existe(str(user_id))
+    if(Validar == True):
+        Agregar_Nuevo_Usuario_MONGODB(str(user_id))
     name = update.effective_user['first_name']
     update.message.reply_text(f"Hola {name} soy tu Bot para premiar, para mas informacion \n/Info \n\n\nBot de NOTIFICACIONES:\n\nhttp://t.me/Notificacion_premio_bot ")
     print(update)

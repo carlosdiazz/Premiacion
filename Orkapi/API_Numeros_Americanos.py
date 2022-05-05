@@ -76,6 +76,7 @@ class Obtener_Numeros_USA():
                     except:
                         self.cuatro=False
                     finally:
+                        element.location_once_scrolled_into_view
                         self.cuatro+=element.text
             else:
                 self.cuatro=False
