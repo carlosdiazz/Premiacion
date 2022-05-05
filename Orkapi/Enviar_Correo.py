@@ -47,3 +47,4 @@ def Enviar_Corre(loteria_Datos):
         mailServer.close()
     except:
         print("No se pudo Enviar el correo")
+        #return('No se pudo Enviar el correo')

@@ -6,7 +6,7 @@ from ORKAPI import ORKAPI
 from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimir_resultados
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 from os import remove
-#from borrar import mandar
+
 #Configurar Logging
 logging.basicConfig(
     level = logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
