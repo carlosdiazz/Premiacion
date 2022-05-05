@@ -18,14 +18,13 @@ from Funciones_Necesarias import fecha,  saber_Nombre_Loteria_Sorteo
 from TOKEN_API_PRO_DE import TOKEN
 
 def start(update,context):
-    #borrarPantalla()
     logger.info(f"El usuario {update.effective_user['username']}, ha iniciado una conversacion")
+    user_id = update.effective_user['id']
     name = update.effective_user['first_name']
-    update.message.reply_text(f"Hola {name} soy tu Bot, para mas informacion \n/Info")
+    update.message.reply_text(f"Hola {name} soy tu Bot para premiar, para mas informacion \n/Info \n\n\nBot de NOTIFICACIONES:\n\nhttp://t.me/Notificacion_premio_bot ")
     print(update)
 
 def info(update, context):
-    #borrarPantalla()
     user_id = update.effective_user['id']
     logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
     message=Imprimir_Comandos(COMANDOS)

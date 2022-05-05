@@ -20,11 +20,14 @@ def sendNotification(VALIDAR,message ):
             mess = message
         bot_token = TOKEN_NOTIFICACION
         bot_chatID = str(userID)
-        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + mess
-        requests.get(send_text)
-        requests.post(f'https://api.telegram.org/bot{bot_token}/sendPhoto',
-            files={'photo': ('./LOTERIA_PAGES.png', open('./LOTERIA_PAGES.png', 'rb'))},
-            data={'chat_id': bot_chatID, 'caption': 'Loteria'})
+
+        User=[bot_chatID]
+        for usuarios in User:
+            send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + mess
+            requests.get(send_text)
+            requests.post(f'https://api.telegram.org/bot{bot_token}/sendPhoto',
+                files={'photo': ('./LOTERIA_PAGES.png', open('./LOTERIA_PAGES.png', 'rb'))},
+                data={'chat_id': bot_chatID, 'caption': 'Loteria'})
     except:
         print('-----------------------------------------------')
         print("NO SE PUEDO ENVIAR LA NOTIFICACION DE TELEGRAM")
@@ -47,7 +50,7 @@ def Peticion_POST(Loteria):
         else:
             return False
     except:
-        print(f'NO SE PREMIO ESTA LOTERIA: {Loteria[0]} CON ESTE SORTEO {Loteria[1]} ------- El SERVIDOR EXPRES NO RESPONDE' )
+        print(f'\n\n\nNO SE PREMIO ESTA LOTERIA: {Loteria[0]} CON ESTE SORTEO {Loteria[1]} ------- El SERVIDOR EXPRES NO RESPONDE' )
         return False
 
 
@@ -77,6 +80,7 @@ class Buscar():
                 sendNotification(True,loteria)
                 Enviar_Corre(loteria)
                 remove('./LOTERIA_PAGES.png')
+                return True
             else:
                 sendNotification(False,f'NO SE PREMIO ESTA LOTERIA: {loteria} CON ESTE SORTEO {sorteo} ------- El SERVIDOR EXPRES NO RESPONDE')
                 return False
@@ -85,13 +89,14 @@ class Buscar():
             self.intentos = self.intentos+1
             intentos = self.intentos
             if(self.intentos <= 4):
-                print(f"No se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
+                print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
+                time.sleep(300)
                 self.Buscar_Loteria()
                 #! ------------- PONER TIEMPO DE ESPERA PARA VOLVER A INTENTAR
-                time.sleep(300)
+
             else:
                 sendNotification(False,f'No se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces')
-                print(f'No se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces ')
+                print(f'\n\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces ')
                 return False
 
 #! ----------------------------------------------------------
