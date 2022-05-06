@@ -78,7 +78,7 @@ class Buscar():
 
         if(numeros_Ganadores):
 
-            print(f'-------------------------------> {numeros_Ganadores}')
+            print(f'-------------------------------> {numeros_Ganadores} \n\n')
             Arreglo_loteria=[
                 loteria,
                 sorteo,
@@ -86,12 +86,14 @@ class Buscar():
                 fecha('%d-%m-%Y')
             ]
             if(Peticion_POST(Arreglo_loteria) == True):
+                print(f'\n\nSe Publico esta loteria: {loteria} con este sorteo: {sorteo} en la base de Datos. \n\n')
                 sendNotification(True,Arreglo_loteria)
                 Enviar_Corre(Arreglo_loteria)
                 remove('./LOTERIA_PAGES.png')
                 return True
             else:
-                sendNotification(False,f'No se premio esta Loteria: {loteria}, con este sorteo: {sorteo} -------> El SERVIDOR EXPRES NO RESPONDE')
+                print(f'\n\nNo se publico esta Loteria: {loteria}, con este sorteo: {sorteo} en la base de Datos -------> El SERVIDOR EXPRES NO RESPONDE\n\n')
+                sendNotification(False,f'No se publico esta Loteria: {loteria}, con este sorteo: {sorteo}  en la base de Datos-------> El SERVIDOR EXPRES NO RESPONDE')
                 return False
 
         else:
@@ -106,7 +108,7 @@ class Buscar():
             else:
                 sendNotification(False,f'No se publico esta loteria: {loteria} con este sorteo: {sorteo}, en la Base De Datos \n\nSe intento {intentos} veces')
                 remove('./LOTERIA_PAGES.png')
-                print(f'\n\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces ')
+                print(f'\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces \n\n')
                 return False
 
 #! ----------------------------------------------------------
