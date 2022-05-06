@@ -1,7 +1,7 @@
 import schedule
 import time
 from Doble_Check import Doble_Check
-from Funciones_Necesarias import saberLoteria, fecha, saber_Nombre_Loteria_Sorteo, Obtener_User_MONGO_NOTIFICACIONES
+from Funciones_Necesarias import saberLoteria, fecha, saber_Nombre_Loteria_Sorteo, Obtener_User_MONGO_NOTIFICACIONES, borrarPantalla
 import requests
 import json
 from Enviar_Correo import Enviar_Corre
@@ -150,6 +150,7 @@ schedule.every().day.at("22:50:00").do(New_York_PM)
 
 
 while True:
+    borrarPantalla()
     fecha_actual = fecha('%d-%m-%Y || %H:%M:%S')
     print(f"|----------> {fecha_actual} <----------|")
     saber = schedule.run_pending()

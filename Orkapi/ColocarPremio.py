@@ -6,7 +6,7 @@ from DATOS_LOTERIAS.PLATAFORMA import PLATAFORMA_TODO
 try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
-    print("ChromeDriverManager no Existe")
+    print("")
 
 class Colocar_Numeros_Plataforma():
 

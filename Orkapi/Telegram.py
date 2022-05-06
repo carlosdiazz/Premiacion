@@ -3,7 +3,7 @@ import telegram
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from ORKAPI import ORKAPI
-from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimir_resultados, Verificar_si_un_usuario_existe, Agregar_Nuevo_Usuario_MONGODB
+from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimir_resultados, Verificar_si_un_usuario_existe, Agregar_Nuevo_Usuario_MONGODB, borrarPantalla
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 from os import remove
 
@@ -150,5 +150,6 @@ dp.add_handler(CommandHandler('Obtener_Anguila_PM',Obtener_numeros_loteria))
 dp.add_handler(MessageHandler(Filters.text,echo))
 
 updater.start_polling()
+borrarPantalla()
 print("EL bot se Cargo Correctamente")
 updater.idle()
