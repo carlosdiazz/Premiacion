@@ -14,7 +14,7 @@ class Obtener_Numeros_DOMINICANOS():
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        self.chrome_options.add_argument("--headless")
+        #self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
             self.driver.maximize_window()
@@ -41,7 +41,9 @@ class Obtener_Numeros_DOMINICANOS():
             cerrar.click()
         else:
             driver.get(datos['URL'][0])
+            time.sleep(5)
             driver.get(datos['URL'][1])
+            time.sleep(10)
         try:
             element = WebDriverWait(driver,10).until(
                 EC.presence_of_element_located((By.XPATH, datos['FECHA'][0]))
@@ -83,6 +85,9 @@ class Obtener_Numeros_DOMINICANOS():
 
         time.sleep(2)
         if(len(numero)==3):
+            #! FUNCION CON NUMERO 00 ANGUILA
+            #if(numero[0] == 0 and numero[1] == 0)
+            
             return [
                 self.fecha_elemento,
                 solo_undigito(numero[0]),

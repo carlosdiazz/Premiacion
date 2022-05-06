@@ -137,10 +137,10 @@ dp.add_handler(CommandHandler('Obtener_Loteria_La_Suerte',Obtener_numeros_loteri
 dp.add_handler(CommandHandler('Obtener_Loteria_La_Primera_AM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Loteria_La_Primera_PM',Obtener_numeros_loteria))
 #! ------------------------------------------------------------------------------
-# dp.add_handler(CommandHandler('Obtener_Anguila_AM',Obtener_numeros_loteria))
-# dp.add_handler(CommandHandler('Obtener_Anguila_MD',Obtener_numeros_loteria))
-# dp.add_handler(CommandHandler('Obtener_Anguila_Tarde',Obtener_numeros_loteria))
-# dp.add_handler(CommandHandler('Obtener_Anguila_PM',Obtener_numeros_loteria))
+dp.add_handler(CommandHandler('Obtener_Anguila_AM',Obtener_numeros_loteria))
+dp.add_handler(CommandHandler('Obtener_Anguila_MD',Obtener_numeros_loteria))
+dp.add_handler(CommandHandler('Obtener_Anguila_Tarde',Obtener_numeros_loteria))
+dp.add_handler(CommandHandler('Obtener_Anguila_PM',Obtener_numeros_loteria))
 #?----------------------------------------------------------------
 dp.add_handler(MessageHandler(Filters.text,echo))
 

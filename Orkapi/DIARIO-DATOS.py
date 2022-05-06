@@ -47,7 +47,7 @@ def Peticion_POST(Loteria):
         else:
             return False
     except:
-        print(f'\n\n\nNO SE PREMIO ESTA LOTERIA: {Loteria[0]} CON ESTE SORTEO {Loteria[1]} ------- El SERVIDOR EXPRES NO RESPONDE' )
+        print(f'\n\n\nNO SE PREMIO ESTA LOTERIA: {Loteria[0]} CON ESTE SORTEO {Loteria[1]} -------> El SERVIDOR EXPRES NO RESPONDE' )
         return False
 
 
@@ -66,20 +66,27 @@ class Buscar():
         lotery_ARREGLO = saberLoteria(sorteo)
         numeros_Ganadores = Doble_Check(lotery_ARREGLO)
         if(numeros_Ganadores):
+
+            if(numeros_Ganadores[0].startswith('Anguila')):
+                if(numeros_Ganadores[0]==sorteo):
+                    numeros_Ganadores=numeros_Ganadores[1:]
+                else:
+                    return False
+
             print(f'-------------------------------> {numeros_Ganadores}')
-            loteria=[
+            Arreglo_loteria=[
                 loteria,
                 sorteo,
                 numeros_Ganadores,
                 fecha('%d-%m-%Y')
             ]
-            if(Peticion_POST(loteria) == True):
-                sendNotification(True,loteria)
-                Enviar_Corre(loteria)
+            if(Peticion_POST(Arreglo_loteria) == True):
+                sendNotification(True,Arreglo_loteria)
+                Enviar_Corre(Arreglo_loteria)
                 remove('./LOTERIA_PAGES.png')
                 return True
             else:
-                sendNotification(False,f'NO SE PREMIO ESTA LOTERIA: {loteria} CON ESTE SORTEO {sorteo} ------- El SERVIDOR EXPRES NO RESPONDE')
+                sendNotification(False,f'No se premio esta Loteria: {loteria}, con este sorteo: {sorteo} -------> El SERVIDOR EXPRES NO RESPONDE')
                 return False
 
         else:
@@ -89,10 +96,10 @@ class Buscar():
                 print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
                 time.sleep(300)
                 self.Buscar_Loteria()
-                #! ------------- PONER TIEMPO DE ESPERA PARA VOLVER A INTENTAR
+
 
             else:
-                sendNotification(False,f'No se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces')
+                sendNotification(False,f'No se publico esta loteria: {loteria} con este sorteo: {sorteo}, en la Base De Datos \n\nSe intento {intentos} veces')
                 print(f'\n\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces ')
                 return False
 
@@ -109,18 +116,26 @@ Leidsa = Buscar('/Obtener_Loteria_Leidsa').Buscar_Loteria
 Loteria_Nacional = Buscar('/Obtener_Loteria_Nacional').Buscar_Loteria
 New_York_PM = Buscar('/Obtener_New_York_PM').Buscar_Loteria
 Florida_PM = Buscar('/Obtener_Florida_PM').Buscar_Loteria
+#? ---------------------------------------------------------
+Anguila_AM = Buscar('/Obtener_Anguila_AM').Buscar_Loteria
+Anguila_MD = Buscar('/Obtener_Anguila_MD').Buscar_Loteria
+Anguila_TARDE = Buscar('/Obtener_Anguila_Tarde').Buscar_Loteria
+Anguila_PM = Buscar('/Obtener_Anguila_PM').Buscar_Loteria
 #! ---------------------------------------------------------
-
+schedule.every().day.at("10:25:00").do(Anguila_AM)
 schedule.every().day.at("12:00:00").do(La_Primera_AM)
 schedule.every().day.at("12:35:00").do(La_Suerte)
 schedule.every().day.at("13:05:00").do(Real)
+schedule.every().day.at("13:30:00").do(Anguila_MD)
 schedule.every().day.at("14:05:00").do(Florida_AM)
 schedule.every().day.at("14:45:00").do(New_York_AM)
 schedule.every().day.at("15:05:00").do(Ganamas)
+schedule.every().day.at("17:20:00").do(Anguila_TARDE)
 schedule.every().day.at("20:05:00").do(Loteka)
 schedule.every().day.at("20:05:00").do(La_Primera_PM)
 schedule.every().day.at("21:05:00").do(Leidsa)
-schedule.every().day.at("21:05:00").do(Loteria_Nacional)
+schedule.every().day.at("21:10:00").do(Loteria_Nacional)
+schedule.every().day.at("21:20:00").do(Anguila_PM)
 schedule.every().day.at("22:10:00").do(Florida_PM)
 schedule.every().day.at("22:50:00").do(New_York_PM)
 
@@ -134,5 +149,5 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(300)
+    time.sleep(600)
 

@@ -32,9 +32,9 @@ Comandos_Resultados = [
     '/Obtener_Loteria_Leidsa',
     '/Obtener_Loteria_La_Suerte',
     '/Obtener_Loteria_La_Primera_AM',
-    '/Obtener_Loteria_La_Primera_PM'
-    #'/Obtener_Anguila_AM',
-    #'/Obtener_Anguila_MD',
-    #'/Obtener_Anguila_Tarde',
-    #'/Obtener_Anguila_PM'
+    '/Obtener_Loteria_La_Primera_PM',
+    '/Obtener_Anguila_AM',
+    '/Obtener_Anguila_MD',
+    '/Obtener_Anguila_Tarde',
+    '/Obtener_Anguila_PM'
 ]

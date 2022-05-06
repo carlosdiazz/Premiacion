@@ -133,8 +133,8 @@ def saberLoteria(lote):
         return LOTTERY_LA_PRIMERA_AM
     elif(lote == '12M PM'):
         return LOTTERY_LA_PRIMERA_PM
-    #elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila PM'):
-    #    return ANGUILA_LOTTERY_TODO
+    elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila Noche'):
+        return ANGUILA_LOTTERY_TODO
     else:
         return False
 
@@ -175,30 +175,21 @@ def saber_Nombre_Loteria_Sorteo(lote):
     elif (lote == '/Obtener_Loteria_La_Primera_PM' or lote == '/Premiar_Loteria_La_Primera_PM'):
         return ['12M', '12M PM']
 
-    #elif(lote == '/Obtener_Anguila_AM'):
-    #    return 'Anguila AM'
-    #elif(lote == '/Obtener_Anguila_MD' ):
-    #    return 'Anguila MD'
-    #elif('/Obtener_Anguila_Tarde'):
-    #    return 'Anguila Tarde'
-    #elif('/Obtener_Anguila_PM'):
-    #    return 'Anguila PM'
+    elif(lote == '/Obtener_Anguila_AM'):
+        return ['Anguila', 'Anguila AM']
+
+    elif(lote == '/Obtener_Anguila_MD' ):
+        return ['Anguila', 'Anguila MD']
+
+    elif(lote == '/Obtener_Anguila_Tarde'):
+        return ['Anguila', 'Anguila Tarde']
+
+    elif(lote == '/Obtener_Anguila_PM'):
+        return ['Anguila', 'Anguila Noche']
 
     else:
         return False
 
-def saber_si_loteria_es_anguila(numeros):
-    fecha_de_hoy = fecha('%d/%m/%Y')
-    if(numeros[0] == 'Draw 10:00AM. '+fecha_de_hoy):
-        return 'Anguila AM'
-    elif(numeros[0] == 'Draw 1:00PM. '+fecha_de_hoy):
-        return 'Anguila MD'
-    elif(numeros[0] == 'Draw 5:00PM. '+fecha_de_hoy):
-        return 'Anguila Tarde'
-    elif(numeros[0] == 'Draw 9:00PM. '+fecha_de_hoy):
-        return 'Anguila PM'
-    else:
-        return False
 
 def Saber_Loteria_Seleccionada(inputLoteria,sorteo):
     inputLoteria=inputLoteria.lower()
