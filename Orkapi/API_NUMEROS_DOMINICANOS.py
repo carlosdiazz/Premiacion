@@ -7,7 +7,7 @@ import time
 try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
-    print("ChromeDriverManager no Existe")
+    print("")
 
 class Obtener_Numeros_DOMINICANOS():
 

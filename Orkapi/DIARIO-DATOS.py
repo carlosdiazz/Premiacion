@@ -150,8 +150,8 @@ schedule.every().day.at("22:50:00").do(New_York_PM)
 
 
 while True:
-    fecha_actual = fecha('%d-%m-%Y %H:%M:%S')
-    print(f"---------- {fecha_actual} ----------")
+    fecha_actual = fecha('%d-%m-%Y || %H:%M:%S')
+    print(f"|----------> {fecha_actual} <----------|")
     saber = schedule.run_pending()
     if(saber == None):
         pass
