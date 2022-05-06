@@ -66,12 +66,15 @@ class Buscar():
         lotery_ARREGLO = saberLoteria(sorteo)
         numeros_Ganadores = Doble_Check(lotery_ARREGLO)
 
-        if(numeros_Ganadores[0].startswith('Anguila')):
-            if(numeros_Ganadores[0]==sorteo):
-                numeros_Ganadores=numeros_Ganadores[1:]
+        if(numeros_Ganadores):
+            if(numeros_Ganadores[0].startswith('Anguila')):
+                if(numeros_Ganadores[0]==sorteo):
+                    numeros_Ganadores=numeros_Ganadores[1:]
+                else:
+                    numeros_Ganadores=False
+                    remove('./LOTERIA_PAGES.png')
             else:
-                numeros_Ganadores=False
-                remove('./LOTERIA_PAGES.png')
+                pass
 
         if(numeros_Ganadores):
 
