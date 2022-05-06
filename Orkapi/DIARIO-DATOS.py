@@ -148,9 +148,8 @@ schedule.every().day.at("22:10:00").do(Florida_PM)
 schedule.every().day.at("22:50:00").do(New_York_PM)
 
 
-
+borrarPantalla()
 while True:
-    borrarPantalla()
     fecha_actual = fecha('%d-%m-%Y || %H:%M:%S')
     print(f"|----------> {fecha_actual} <----------|")
     saber = schedule.run_pending()
