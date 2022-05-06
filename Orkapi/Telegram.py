@@ -123,6 +123,11 @@ dp.add_handler(CommandHandler('Premiar_Loteria_Ganamas',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Loteria_Loteka',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Loteria_La_Primera_AM',Premiar_Loterias))
 dp.add_handler(CommandHandler('Premiar_Loteria_La_Primera_PM',Premiar_Loterias))
+#!----------------------------------------------------------------
+dp.add_handler(CommandHandler('Premiar_Anguila_AM',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Anguila_MD',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Anguila_TARDE',Premiar_Loterias))
+dp.add_handler(CommandHandler('Premiar_Anguila_NOCHE',Premiar_Loterias))
 #?----------------------------------------------------------------
 dp.add_handler(CommandHandler('Obtener_Florida_AM',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Florida_PM',Obtener_numeros_loteria))

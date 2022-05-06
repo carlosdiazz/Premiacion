@@ -17,7 +17,11 @@ Comandos_Premios =[
     '/Premiar_Loteria_Ganamas',
     '/Premiar_Loteria_Loteka',
     '/Premiar_Loteria_La_Primera_AM',
-    '/Premiar_Loteria_La_Primera_PM'
+    '/Premiar_Loteria_La_Primera_PM',
+    '/Premiar_Anguila_AM',
+    '/Premiar_Anguila_MD',
+    '/Premiar_Anguila_TARDE',
+    '/Premiar_Anguila_NOCHE'
 ]
 
 Comandos_Resultados = [

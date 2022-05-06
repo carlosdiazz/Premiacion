@@ -175,16 +175,16 @@ def saber_Nombre_Loteria_Sorteo(lote):
     elif (lote == '/Obtener_Loteria_La_Primera_PM' or lote == '/Premiar_Loteria_La_Primera_PM'):
         return ['12M', '12M PM']
 
-    elif(lote == '/Obtener_Anguila_AM'):
+    elif(lote == '/Obtener_Anguila_AM' or lote == '/Premiar_Anguila_AM'):
         return ['Anguila', 'Anguila AM']
 
-    elif(lote == '/Obtener_Anguila_MD' ):
+    elif(lote == '/Obtener_Anguila_MD' or lote == '/Premiar_Anguila_MD'):
         return ['Anguila', 'Anguila MD']
 
-    elif(lote == '/Obtener_Anguila_Tarde'):
-        return ['Anguila', 'Anguila Tarde']
+    elif(lote == '/Obtener_Anguila_Tarde' or lote == '/Premiar_Anguila_TARDE'):
+        return ['Anguila', 'Anguila Tarde' ]
 
-    elif(lote == '/Obtener_Anguila_PM'):
+    elif(lote == '/Obtener_Anguila_PM' or lote == '/Premiar_Anguila_NOCHE'):
         return ['Anguila', 'Anguila Noche']
 
     else:
