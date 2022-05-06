@@ -18,7 +18,7 @@ from Funciones_Necesarias import fecha,  saber_Nombre_Loteria_Sorteo
 from TOKEN_API_PRO_DE import TOKEN
 
 def start(update,context):
-    logger.info(f"El usuario {update.effective_user['username']}, ha iniciado una conversacion")
+    logger.info(f"\nEl usuario {update.effective_user['username']}, ha iniciado una conversacion\n")
     user_id = update.effective_user['id']
     Validar=Verificar_si_un_usuario_existe(str(user_id))
     if(Validar == True):
@@ -29,25 +29,25 @@ def start(update,context):
 
 def info(update, context):
     user_id = update.effective_user['id']
-    logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
+    logger.info(f'\nEl usuario {user_id}, ha solicitado ver informacion\n')
     message=Imprimir_Comandos(COMANDOS)
     context.bot.sendMessage(chat_id= user_id, text=message)
 
 def Comandos_Resul(update, context):
     user_id = update.effective_user['id']
-    logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
+    logger.info(f'\nEl usuario {user_id}, ha solicitado ver informacion\n')
     message=Imprimir_Comandos(Comandos_Resultados)
     context.bot.sendMessage(chat_id= user_id, text=message)
 
 def Comandos_Premiar(update, context):
     user_id = update.effective_user['id']
-    logger.info(f'El usuario {user_id}, ha solicitado ver informacion')
+    logger.info(f'\nEl usuario {user_id}, ha solicitado ver informacion\n')
     message=Imprimir_Comandos(Comandos_Premios)
     context.bot.sendMessage(chat_id= user_id, text=message)
 
 def echo(update, context):
     user_id = update.effective_user['id']
-    logger.info(f'El usuario {user_id} ha enviado un mensaje')
+    logger.info(f'\nEl usuario {user_id} ha enviado un mensaje\n')
     text = update.message.text
     context.bot.sendMessage(
         chat_id = user_id,
@@ -56,8 +56,8 @@ def echo(update, context):
 
 def Premiar_Loterias(update, context):
     user_id = update.effective_user['id']
-    logger.info('Inicio el proceso de Premiacion')
-    logger.info(f'El usuario {user_id}, ha mandado a publicar los numeros')
+    logger.info('\nInicio el proceso de Premiacion\n')
+    logger.info(f'\nEl usuario {user_id}, ha mandado a publicar los numeros\n')
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Premiacion')
     loteria_selecionada = update.message.text
     Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteria_selecionada)
@@ -84,7 +84,7 @@ def Premiar_Loterias(update, context):
 
 def Obtener_numeros_loteria(update, context):
     user_id = update.effective_user['id']
-    logger.info(f'El usuario {user_id}, ha mandado a ver los numeros ')
+    logger.info(f'\nEl usuario {user_id}, ha mandado a ver los numeros \n')
     context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso de Buscar el Resultado')
     loteria_selecionada = update.message.text
     Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteria_selecionada)

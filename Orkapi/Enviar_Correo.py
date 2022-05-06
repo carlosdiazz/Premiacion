@@ -8,6 +8,7 @@ from Funciones_Necesarias import fecha
 
 def Enviar_Corre(loteria_Datos):
     try:
+        print(f'\n\nEnviando Correo\n\n')
         loteria = loteria_Datos[0]
         sorteo = loteria_Datos[1]
         numeros_ganadores = loteria_Datos[2]
@@ -45,6 +46,7 @@ def Enviar_Corre(loteria_Datos):
 
         # Cerramos conexión
         mailServer.close()
+        print(f'\nCorreo Enviado Correctacmente\n')
     except:
-        print("No se pudo Enviar el correo")
+        print("\n\nNo se pudo Enviar el correo\n\n")
         #return('No se pudo Enviar el correo')

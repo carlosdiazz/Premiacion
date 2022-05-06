@@ -6,13 +6,13 @@ password = 1234
 
 def ORKAPI(loteria, horario, numeros_a_publicar):
 
-    print("Los numeros han sido confirmados y son Correctos")
-    print("Los numeros que se van a publicar son")
-    print(numeros_a_publicar)
+    print("\n\nLos numeros han sido confirmados y son Correctos\n\n")
+    print("\n\nLos numeros que se van a publicar son\n\n")
+    print(f"---------------> {numeros_a_publicar}\n\n")
 
     comprobar=Colocar_Numeros_Plataforma(url, username, password, loteria,horario, numeros_a_publicar).Resultadoo()
     if(comprobar == True):
-        print('Numero Publicadon Correctamente')
+        print('\n\nNumero Publicadon Correctamente\n\n')
         numero_1 = numeros_a_publicar[0]
         numero_2 = numeros_a_publicar[1]
         numero_3 = numeros_a_publicar[2]
