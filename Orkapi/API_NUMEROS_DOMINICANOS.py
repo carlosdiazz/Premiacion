@@ -85,14 +85,18 @@ class Obtener_Numeros_DOMINICANOS():
 
         time.sleep(2)
         if(len(numero)==3):
-            #! FUNCION CON NUMERO 00 ANGUILA
-            #if(numero[0] == 0 and numero[1] == 0)
-            
+            numero_1 = solo_undigito(numero[0])
+            numero_2 = solo_undigito(numero[1])
+            numero_3 = solo_undigito(numero[2])
+            #! FUNCION para impedir que me publique 00 00 00, es un error de ANGUILA ------------------------------
+            if(numero_1 == '00' and numero_2 == '00' and numero_3 == '00'):
+                return False
+
             return [
                 self.fecha_elemento,
-                solo_undigito(numero[0]),
-                solo_undigito(numero[1]),
-                solo_undigito(numero[2])
+                numero_1,
+                numero_2,
+                numero_3
             ]
         else:
             return False
