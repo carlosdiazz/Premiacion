@@ -101,7 +101,7 @@ class Buscar():
             intentos = self.intentos
             if(self.intentos <= 4):
                 print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
-                time.sleep(300)
+                time.sleep(420)
                 self.Buscar_Loteria()
 
 
@@ -130,18 +130,18 @@ Anguila_MD = Buscar('/Obtener_Anguila_MD').Buscar_Loteria
 Anguila_TARDE = Buscar('/Obtener_Anguila_Tarde').Buscar_Loteria
 Anguila_PM = Buscar('/Obtener_Anguila_PM').Buscar_Loteria
 #! ---------------------------------------------------------
-schedule.every().day.at("10:15:00").do(Anguila_AM)
-schedule.every().day.at("12:05:00").do(La_Primera_AM)
-schedule.every().day.at("12:35:00").do(La_Suerte)
-schedule.every().day.at("13:05:00").do(Real)
+schedule.every().day.at("10:10:00").do(Anguila_AM)
+schedule.every().day.at("12:10:00").do(La_Primera_AM)
+schedule.every().day.at("12:40:00").do(La_Suerte)
+schedule.every().day.at("13:10:00").do(Real)
 schedule.every().day.at("13:15:00").do(Anguila_MD)
-schedule.every().day.at("14:05:00").do(Florida_AM)
-schedule.every().day.at("14:45:00").do(New_York_AM)
-schedule.every().day.at("15:05:00").do(Ganamas)
+schedule.every().day.at("14:00:00").do(Florida_AM)
+schedule.every().day.at("14:40:00").do(New_York_AM)
+schedule.every().day.at("14:46:00").do(Ganamas)
 schedule.every().day.at("17:15:00").do(Anguila_TARDE)
-schedule.every().day.at("20:05:00").do(Loteka)
-schedule.every().day.at("20:05:00").do(La_Primera_PM)
-schedule.every().day.at("21:05:00").do(Leidsa)
+schedule.every().day.at("20:10:00").do(Loteka)
+schedule.every().day.at("20:10:00").do(La_Primera_PM)
+schedule.every().day.at("21:10:00").do(Leidsa)
 schedule.every().day.at("21:10:00").do(Loteria_Nacional)
 schedule.every().day.at("21:15:00").do(Anguila_PM)
 schedule.every().day.at("22:10:00").do(Florida_PM)
@@ -157,5 +157,5 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(600)
+    time.sleep(60)
 
