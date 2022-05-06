@@ -26,9 +26,9 @@ def sendNotification(VALIDAR,message ):
                 files={'photo': ('./LOTERIA_PAGES.png', open('./LOTERIA_PAGES.png', 'rb'))},
                 data={'chat_id': usuarios, 'caption': 'Loteria'})
     except:
-        print('-----------------------------------------------')
-        print("NO SE PUEDO ENVIAR LA NOTIFICACION DE TELEGRAM")
-        print('-----------------------------------------------')
+        print('-----------------------------------------------------------------------')
+        print("NO SE PUEDO ENVIAR LA NOTIFICACION DE TELEGRAM O LA FOTO NO SE ENCONTRO")
+        print('-----------------------------------------------------------------------')
         time.sleep(60)
 
 def Peticion_POST(Loteria):
@@ -107,7 +107,10 @@ class Buscar():
 
             else:
                 sendNotification(False,f'No se publico esta loteria: {loteria} con este sorteo: {sorteo}, en la Base De Datos \n\nSe intento {intentos} veces')
-                remove('./LOTERIA_PAGES.png')
+                try:
+                    remove('./LOTERIA_PAGES.png')
+                except:
+                    pass
                 print(f'\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces \n\n')
                 return False
 
