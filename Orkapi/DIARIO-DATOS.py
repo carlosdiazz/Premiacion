@@ -71,7 +71,20 @@ class Buscar():
                 if(numeros_Ganadores[0]==sorteo):
                     numeros_Ganadores=numeros_Ganadores[1:]
                 else:
-                    return False
+                    self.intentos = self.intentos+1
+                    intentos = self.intentos
+                    if(self.intentos <= 4):
+                        print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
+                        time.sleep(5)
+                        self.Buscar_Loteria()
+
+
+                    else:
+                        sendNotification(False,f'No se publico esta loteria: {loteria} con este sorteo: {sorteo}, en la Base De Datos \n\nSe intento {intentos} veces')
+                        print(f'\n\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces ')
+                        return False
+
+
 
             print(f'-------------------------------> {numeros_Ganadores}')
             Arreglo_loteria=[
@@ -130,7 +143,7 @@ schedule.every().day.at("13:30:00").do(Anguila_MD)
 schedule.every().day.at("14:05:00").do(Florida_AM)
 schedule.every().day.at("14:45:00").do(New_York_AM)
 schedule.every().day.at("15:05:00").do(Ganamas)
-schedule.every().day.at("17:20:00").do(Anguila_TARDE)
+schedule.every().day.at("10:25:00").do(Anguila_TARDE)
 schedule.every().day.at("20:05:00").do(Loteka)
 schedule.every().day.at("20:05:00").do(La_Primera_PM)
 schedule.every().day.at("21:05:00").do(Leidsa)
@@ -149,5 +162,5 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(600)
+    time.sleep(1)
 
