@@ -29,7 +29,7 @@ def sendNotification(VALIDAR,message ):
         print('-----------------------------------------------')
         print("NO SE PUEDO ENVIAR LA NOTIFICACION DE TELEGRAM")
         print('-----------------------------------------------')
-        time.sleep(600)
+        time.sleep(60)
 
 def Peticion_POST(Loteria):
     try:
@@ -99,9 +99,9 @@ class Buscar():
         else:
             self.intentos = self.intentos+1
             intentos = self.intentos
-            if(self.intentos <= 4):
+            if(self.intentos <= 10):
                 print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
-                time.sleep(420)
+                time.sleep(150)
                 self.Buscar_Loteria()
 
 
