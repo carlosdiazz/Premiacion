@@ -71,6 +71,7 @@ class Buscar():
                 numeros_Ganadores=numeros_Ganadores[1:]
             else:
                 numeros_Ganadores=False
+                remove('./LOTERIA_PAGES.png')
 
         if(numeros_Ganadores):
 
@@ -95,12 +96,13 @@ class Buscar():
             intentos = self.intentos
             if(self.intentos <= 4):
                 print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
-                time.sleep(1)
+                time.sleep(300)
                 self.Buscar_Loteria()
 
 
             else:
                 sendNotification(False,f'No se publico esta loteria: {loteria} con este sorteo: {sorteo}, en la Base De Datos \n\nSe intento {intentos} veces')
+                remove('./LOTERIA_PAGES.png')
                 print(f'\n\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces ')
                 return False
 
@@ -123,20 +125,20 @@ Anguila_MD = Buscar('/Obtener_Anguila_MD').Buscar_Loteria
 Anguila_TARDE = Buscar('/Obtener_Anguila_Tarde').Buscar_Loteria
 Anguila_PM = Buscar('/Obtener_Anguila_PM').Buscar_Loteria
 #! ---------------------------------------------------------
-schedule.every().day.at("10:25:00").do(Anguila_AM)
-schedule.every().day.at("12:00:00").do(La_Primera_AM)
+schedule.every().day.at("10:15:00").do(Anguila_AM)
+schedule.every().day.at("12:05:00").do(La_Primera_AM)
 schedule.every().day.at("12:35:00").do(La_Suerte)
 schedule.every().day.at("13:05:00").do(Real)
-schedule.every().day.at("13:30:00").do(Anguila_MD)
+schedule.every().day.at("13:15:00").do(Anguila_MD)
 schedule.every().day.at("14:05:00").do(Florida_AM)
 schedule.every().day.at("14:45:00").do(New_York_AM)
 schedule.every().day.at("15:05:00").do(Ganamas)
-schedule.every().day.at("10:29:00").do(Anguila_TARDE)
+schedule.every().day.at("17:15:00").do(Anguila_TARDE)
 schedule.every().day.at("20:05:00").do(Loteka)
 schedule.every().day.at("20:05:00").do(La_Primera_PM)
 schedule.every().day.at("21:05:00").do(Leidsa)
 schedule.every().day.at("21:10:00").do(Loteria_Nacional)
-schedule.every().day.at("21:20:00").do(Anguila_PM)
+schedule.every().day.at("21:15:00").do(Anguila_PM)
 schedule.every().day.at("22:10:00").do(Florida_PM)
 schedule.every().day.at("22:50:00").do(New_York_PM)
 
@@ -150,5 +152,5 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(1)
+    time.sleep(600)
 
