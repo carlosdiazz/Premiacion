@@ -40,7 +40,7 @@ def Peticion_POST(Loteria):
             "sorteo":Loteria[1],
             'numeros_ganadores':Loteria[2],
             "fecha" : Loteria[3],
-            "agredado_por": Loteria[4]
+            "agregado_por": Loteria[4]
         })
         Peticion_POST=requests.post(url, headers=headers, data= body2)
         if(Peticion_POST.status_code == 200):

@@ -15,7 +15,8 @@ def Enviar_Corre(loteria_Datos):
         numero_1= numeros_ganadores[0]
         numero_2= numeros_ganadores[1]
         numero_3= numeros_ganadores[2]
-        fecha_hoy = fecha('%d-%m-%Y')
+        fecha_hoy = loteria_Datos[3]
+        agregado_por = loteria_Datos[4]
 
         # Creamos objeto Multipart, quien será el recipiente que enviaremos
         msg = MIMEMultipart()
@@ -25,7 +26,7 @@ def Enviar_Corre(loteria_Datos):
         msg['']
 
         #Mensaje
-        mensaje = f'Loteria: {loteria} ,Sorteo {sorteo} Los numeros son {numero_1}-{numero_2}-{numero_3} en la fecha de {fecha_hoy}'
+        mensaje = f'Loteria: {loteria} ,Sorteo {sorteo} Los numeros son {numero_1}-{numero_2}-{numero_3} en la fecha de {fecha_hoy}, agregado por: {agregado_por}'
         msg.attach(MIMEText(mensaje, 'plain'))
 
 
