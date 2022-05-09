@@ -118,6 +118,7 @@ class Buscar():
 La_Primera_AM = Buscar('/Obtener_Loteria_La_Primera_AM').Buscar_Loteria
 La_Suerte = Buscar('/Obtener_Loteria_La_Suerte').Buscar_Loteria
 Real = Buscar('/Obtener_Loteria_Real').Buscar_Loteria
+Lotedom = Buscar('/Obtener_Lotedom').Buscar_Loteria
 Florida_AM = Buscar('/Obtener_Florida_AM').Buscar_Loteria
 New_York_AM = Buscar('/Obtener_New_York_AM').Buscar_Loteria
 Ganamas = Buscar('/Obtener_Loteria_Ganamas').Buscar_Loteria
@@ -139,6 +140,7 @@ schedule.every().day.at("12:40:00").do(La_Suerte)
 schedule.every().day.at("13:10:00").do(Real)
 schedule.every().day.at("13:15:00").do(Anguila_MD)
 schedule.every().day.at("14:00:00").do(Florida_AM)
+schedule.every().day.at("16:33:00").do(Lotedom)
 schedule.every().day.at("14:40:00").do(New_York_AM)
 schedule.every().day.at("14:46:00").do(Ganamas)
 schedule.every().day.at("18:15:00").do(Anguila_TARDE)

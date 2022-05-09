@@ -18,6 +18,7 @@ from DATOS_LOTERIAS.Datos_Leidsa import LOTTERY_LEIDSA_TODO
 from DATOS_LOTERIAS.Datos_La_suerte import LOTTERY_LA_SUERTE_TODO
 from DATOS_LOTERIAS.Datos_La_Primera_AM import LOTTERY_LA_PRIMERA_AM
 from DATOS_LOTERIAS.Datos_La_Primera_PM import LOTTERY_LA_PRIMERA_PM
+from DATOS_LOTERIAS.Datos_Lotedom import LOTTERY_LOTEDOM_TODO
 #!----------------------------------------------------------------------
 mesesDic = {
     "01":'Enero',
@@ -34,6 +35,17 @@ mesesDic = {
     "12":'Diciembre'
 }
 
+diasSemanaEso = {
+    'Monday' : 'LUNES',
+    'Tuesday' : 'MARTES',
+    'Wednesday' : 'MIERCOLES',
+    'Thursday' : 'JUEVES',
+    'Friday' : 'VIERNES',
+    'Saturday' : 'SABADO',
+    'Sunday' : 'DOMINGO'
+}
+
+
 def comprobar_sistema():
     return platform.system()
 
@@ -47,6 +59,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
     ANGUILA_TARDE = 'Draw 6:00PM. '+fecha('%d/%m/%Y')
     ANGUILA_NOCHE = 'Draw 9:00PM. '+fecha('%d/%m/%Y')
     mes_espanol=mesesDic[fecha('%m')]
+    dia_espanol=diasSemanaEso[fecha('%A')]
     fecha_dia_un_digito = fecha('%d')
     fecha_dia_un_digito=fecha_dia_un_digito.lstrip('0')
 
@@ -65,6 +78,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
     fecha('%d/%m/%Y'),
     fecha('%Y-%m-%d'),
     fecha(f'Sorteo: %d de {mes_espanol} del %Y.'),
+    fecha(f'{dia_espanol}, %d-%m-%Y'),
     fecha('Resultados %d/%m/%Y'),
     ANGUILA_MANANA,
     ANGUILA_MEDIO_DIA,
@@ -133,6 +147,8 @@ def saberLoteria(lote):
         return LOTTERY_LA_PRIMERA_AM
     elif(lote == '12M PM'):
         return LOTTERY_LA_PRIMERA_PM
+    elif(lote == 'Lotedom'):
+        return LOTTERY_LOTEDOM_TODO
     elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila Noche'):
         return ANGUILA_LOTTERY_TODO
     else:
@@ -186,6 +202,9 @@ def saber_Nombre_Loteria_Sorteo(lote):
 
     elif(lote == '/Obtener_Anguila_PM' or lote == '/Premiar_Anguila_NOCHE'):
         return ['Anguila', 'Anguila Noche']
+    
+    elif(lote == '/Obtener_Lotedom' or lote == '/Premiar_Lotedom'):
+        return ['Lotedom','Lotedom']
 
     else:
         return False

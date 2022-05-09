@@ -21,7 +21,8 @@ Comandos_Premios =[
     '/Premiar_Anguila_AM',
     '/Premiar_Anguila_MD',
     '/Premiar_Anguila_TARDE',
-    '/Premiar_Anguila_NOCHE'
+    '/Premiar_Anguila_NOCHE',
+    '/Premiar_Lotedom'
 ]
 
 Comandos_Resultados = [
@@ -40,5 +41,6 @@ Comandos_Resultados = [
     '/Obtener_Anguila_AM',
     '/Obtener_Anguila_MD',
     '/Obtener_Anguila_Tarde',
-    '/Obtener_Anguila_PM'
+    '/Obtener_Anguila_PM',
+    '/Obtener_Lotedom'
 ]
