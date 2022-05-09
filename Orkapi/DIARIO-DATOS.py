@@ -39,7 +39,8 @@ def Peticion_POST(Loteria):
             "loteria": Loteria[0],
             "sorteo":Loteria[1],
             'numeros_ganadores':Loteria[2],
-            "fecha" : Loteria[3]
+            "fecha" : Loteria[3],
+            "agregado_por": Loteria[4]
         })
         Peticion_POST=requests.post(url, headers=headers, data= body2)
         if(Peticion_POST.status_code == 200):
@@ -83,7 +84,8 @@ class Buscar():
                 loteria,
                 sorteo,
                 numeros_Ganadores,
-                fecha('%d-%m-%Y')
+                fecha('%d-%m-%Y'),
+                'Bot'
             ]
             if(Peticion_POST(Arreglo_loteria) == True):
                 print(f'\n\nSe Publico esta loteria: {loteria} con este sorteo: {sorteo} en la base de Datos. \n\n')
