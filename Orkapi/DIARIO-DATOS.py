@@ -51,6 +51,19 @@ def Peticion_POST(Loteria):
         print(f'\n\n\nNO SE PREMIO ESTA LOTERIA: {Loteria[0]} CON ESTE SORTEO {Loteria[1]} -------> El SERVIDOR EXPRES NO RESPONDE' )
         return False
 
+def VALIDAR_QUE_NO_EXISTAN(sorteo,fecha):
+    try:
+        url = f'http://localhost:9000/api/sorteo/{sorteo}/{fecha}'
+        r=requests.get(url)
+        if(r.status_code == 200):
+            if(r.text == 'null'):
+                return True
+            else:
+                return 'Los Numeros ya estan Publicado'
+        else:
+            return 'El SERVIDOR no respondio'
+    except:
+        return('HUBO UN ERRORRRRRRR al Momento de la Petcion GET' )
 
 class Buscar():
 
@@ -62,59 +75,68 @@ class Buscar():
         lotery = self.lotery
         Loteria_Y_Sorteo = saber_Nombre_Loteria_Sorteo(lotery)
         loteria = Loteria_Y_Sorteo[0]
-        sorteo =Loteria_Y_Sorteo[1]
-        print(f'\n\nBuscando la loteria: {loteria} con el sorteo: {sorteo} \n\n')
-        lotery_ARREGLO = saberLoteria(sorteo)
-        numeros_Ganadores = Doble_Check(lotery_ARREGLO)
+        sorteo = Loteria_Y_Sorteo[1]
+        fecha_hoy = fecha('%d-%m-%Y')
+        validar = VALIDAR_QUE_NO_EXISTAN(sorteo,fecha_hoy)
+        if(validar==True):
+            print(f'\n\nBuscando la loteria: {loteria} con el sorteo: {sorteo} \n\n')
+            lotery_ARREGLO = saberLoteria(sorteo)
+            numeros_Ganadores = Doble_Check(lotery_ARREGLO)
 
-        if(numeros_Ganadores):
-            if(numeros_Ganadores[0].startswith('Anguila')):
-                if(numeros_Ganadores[0]==sorteo):
-                    numeros_Ganadores=numeros_Ganadores[1:]
+            if(numeros_Ganadores):
+                if(numeros_Ganadores[0].startswith('Anguila')):
+                    if(numeros_Ganadores[0]==sorteo):
+                        numeros_Ganadores=numeros_Ganadores[1:]
+                    else:
+                        numeros_Ganadores=False
+                        remove('./LOTERIA_PAGES.png')
                 else:
-                    numeros_Ganadores=False
-                    remove('./LOTERIA_PAGES.png')
-            else:
-                pass
-
-        if(numeros_Ganadores):
-
-            print(f'-------------------------------> {numeros_Ganadores} \n\n')
-            Arreglo_loteria=[
-                loteria,
-                sorteo,
-                numeros_Ganadores,
-                fecha('%d-%m-%Y'),
-                'Bot'
-            ]
-            if(Peticion_POST(Arreglo_loteria) == True):
-                print(f'\n\nSe Publico esta loteria: {loteria} con este sorteo: {sorteo} en la base de Datos. \n\n')
-                sendNotification(True,Arreglo_loteria)
-                Enviar_Corre(Arreglo_loteria)
-                remove('./LOTERIA_PAGES.png')
-                return True
-            else:
-                print(f'\n\nNo se publico esta Loteria: {loteria}, con este sorteo: {sorteo} en la base de Datos -------> El SERVIDOR EXPRES NO RESPONDE\n\n')
-                sendNotification(False,f'No se publico esta Loteria: {loteria}, con este sorteo: {sorteo}  en la base de Datos-------> El SERVIDOR EXPRES NO RESPONDE')
-                return False
-
-        else:
-            self.intentos = self.intentos+1
-            intentos = self.intentos
-            if(self.intentos <= 10):
-                print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
-                time.sleep(150)
-                self.Buscar_Loteria()
-
-
-            else:
-                sendNotification(False,f'No se publico esta loteria: {loteria} con este sorteo: {sorteo}, en la Base De Datos \n\nSe intento {intentos} veces')
-                try:
-                    remove('./LOTERIA_PAGES.png')
-                except:
                     pass
-                print(f'\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces \n\n')
-                return False
+
+            if(numeros_Ganadores):
+
+                print(f'-------------------------------> {numeros_Ganadores} \n\n')
+                Arreglo_loteria=[
+                    loteria,
+                    sorteo,
+                    numeros_Ganadores,
+                    fecha_hoy,
+                    'Bot'
+                ]
+                if(Peticion_POST(Arreglo_loteria) == True):
+                    print(f'\n\nSe Publico esta loteria: {loteria} con este sorteo: {sorteo} en la base de Datos. \n\n')
+                    sendNotification(True,Arreglo_loteria)
+                    Enviar_Corre(Arreglo_loteria)
+                    remove('./LOTERIA_PAGES.png')
+                    return True
+                else:
+                    print(f'\n\nNo se publico esta Loteria: {loteria}, con este sorteo: {sorteo} en la base de Datos -------> El SERVIDOR EXPRES NO RESPONDE\n\n')
+                    sendNotification(False,f'No se publico esta Loteria: {loteria}, con este sorteo: {sorteo}  en la base de Datos-------> El SERVIDOR EXPRES NO RESPONDE')
+                    return False
+
+            else:
+                self.intentos = self.intentos+1
+                intentos = self.intentos
+                if(self.intentos <= 10):
+                    print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
+                    time.sleep(150)
+                    self.Buscar_Loteria()
+
+
+                else:
+                    sendNotification(False,f'No se publico esta loteria: {loteria} con este sorteo: {sorteo}, en la Base De Datos \n\nSe intento {intentos} veces')
+                    try:
+                        remove('./LOTERIA_PAGES.png')
+                    except:
+                        pass
+                    print(f'\n\nNo se premio esta loteria: {loteria} con este sorteo: {sorteo}, se intento {intentos} veces \n\n')
+                    return False
+        else:
+            print('---------------------------------------------------')
+            print(validar)
+            print(f'Para la loteria: {loteria} con el sorteo: {sorteo}.')
+            print('---------------------------------------------------')
+            sendNotification(False,f'No se publico esta Loteria: {loteria}, con este sorteo: {sorteo} --->  {validar}')
 
 #! ----------------------------------------------------------
 La_Primera_AM = Buscar('/Obtener_Loteria_La_Primera_AM').Buscar_Loteria
@@ -145,7 +167,7 @@ schedule.every().day.at("14:00:00").do(Florida_AM)
 schedule.every().day.at("14:10:00").do(Lotedom)
 schedule.every().day.at("14:40:00").do(New_York_AM)
 schedule.every().day.at("14:46:00").do(Ganamas)
-schedule.every().day.at("18:15:00").do(Anguila_TARDE)
+schedule.every().day.at("17:51:50").do(Anguila_TARDE)
 schedule.every().day.at("20:10:00").do(Loteka)
 schedule.every().day.at("20:10:00").do(La_Primera_PM)
 schedule.every().day.at("21:10:00").do(Leidsa)
@@ -164,5 +186,5 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(60)
+    time.sleep(1)
 
