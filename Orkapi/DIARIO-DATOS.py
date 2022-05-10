@@ -166,8 +166,8 @@ schedule.every().day.at("13:15:00").do(Anguila_MD)
 schedule.every().day.at("14:00:00").do(Florida_AM)
 schedule.every().day.at("14:10:00").do(Lotedom)
 schedule.every().day.at("14:40:00").do(New_York_AM)
-schedule.every().day.at("14:46:00").do(Ganamas)
-schedule.every().day.at("17:51:50").do(Anguila_TARDE)
+schedule.every().day.at("14:50:00").do(Ganamas)
+schedule.every().day.at("18:10:00").do(Anguila_TARDE)
 schedule.every().day.at("20:10:00").do(Loteka)
 schedule.every().day.at("20:10:00").do(La_Primera_PM)
 schedule.every().day.at("21:10:00").do(Leidsa)
@@ -186,5 +186,4 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(1)
-
+    time.sleep(60)
