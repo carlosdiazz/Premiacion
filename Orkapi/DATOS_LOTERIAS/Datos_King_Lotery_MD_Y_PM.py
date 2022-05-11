@@ -7,7 +7,7 @@ Loto_KingLottery_MD_Numbers_3 = '/html/body/main/section/div[1]/div/div[1]/div/d
 
 
 King_Lottery_MD_Todo = {
-    'URL' : [Loto_KingLottery_MD_Pages, Loto_KingLottery_MD_Pages],
+    'URL' : [Loto_KingLottery_MD_Pages, Loto_KingLottery_MD_Resulado],
     'FECHA' : [Loto_KingLottery_MD_Fecha ],
     'NUMEROS' : [Loto_KingLottery_MD_Numbers_1, Loto_KingLottery_MD_Numbers_2, Loto_KingLottery_MD_Numbers_3 ]
 }
@@ -23,7 +23,7 @@ Loto_KingLottery_PM_Numbers_3 = '/html/body/main/section/div[1]/div/div[1]/div/d
 
 
 King_Lottery_PM_Todo = {
-    'URL' : [Loto_KingLottery_PM_Pages, Loto_KingLottery_PM_Pages],
+    'URL' : [Loto_KingLottery_PM_Pages, Loto_KingLottery_PM_Resulado],
     'FECHA' : [Loto_KingLottery_PM_Fecha ],
     'NUMEROS' : [Loto_KingLottery_PM_Numbers_1, Loto_KingLottery_PM_Numbers_2, Loto_KingLottery_PM_Numbers_3 ]
 }
