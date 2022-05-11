@@ -152,6 +152,8 @@ Leidsa = Buscar('/Obtener_Loteria_Leidsa').Buscar_Loteria
 Loteria_Nacional = Buscar('/Obtener_Loteria_Nacional').Buscar_Loteria
 New_York_PM = Buscar('/Obtener_New_York_PM').Buscar_Loteria
 Florida_PM = Buscar('/Obtener_Florida_PM').Buscar_Loteria
+King_Lottery_MD = Buscar('/Obtener_King_Lottery_AM').Buscar_Loteria
+King_Lottery_PM = Buscar('/Obtener_King_Lottery_PM').Buscar_Loteria
 #? ---------------------------------------------------------
 Anguila_AM = Buscar('/Obtener_Anguila_AM').Buscar_Loteria
 Anguila_MD = Buscar('/Obtener_Anguila_MD').Buscar_Loteria
@@ -161,6 +163,7 @@ Anguila_PM = Buscar('/Obtener_Anguila_PM').Buscar_Loteria
 schedule.every().day.at("10:10:00").do(Anguila_AM)
 schedule.every().day.at("12:10:00").do(La_Primera_AM)
 schedule.every().day.at("12:40:00").do(La_Suerte)
+schedule.every().day.at("12:50:00").do(King_Lottery_MD)
 schedule.every().day.at("13:10:00").do(Real)
 schedule.every().day.at("13:15:00").do(Anguila_MD)
 schedule.every().day.at("14:00:00").do(Florida_AM)
@@ -168,6 +171,7 @@ schedule.every().day.at("14:10:00").do(Lotedom)
 schedule.every().day.at("14:40:00").do(New_York_AM)
 schedule.every().day.at("14:50:00").do(Ganamas)
 schedule.every().day.at("18:10:00").do(Anguila_TARDE)
+schedule.every().day.at("19:45:00").do(King_Lottery_PM)
 schedule.every().day.at("20:10:00").do(Loteka)
 schedule.every().day.at("20:10:00").do(La_Primera_PM)
 schedule.every().day.at("21:10:00").do(Leidsa)

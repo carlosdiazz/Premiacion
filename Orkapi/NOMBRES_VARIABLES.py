@@ -43,4 +43,6 @@ Comandos_Resultados = [
     '/Obtener_Anguila_Tarde',
     '/Obtener_Anguila_PM',
     '/Obtener_Lotedom'
+    '/Obtener_King_Lottery_AM',
+    '/Obtener_King_Lottery_PM'
 ]

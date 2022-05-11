@@ -19,6 +19,7 @@ from DATOS_LOTERIAS.Datos_La_suerte import LOTTERY_LA_SUERTE_TODO
 from DATOS_LOTERIAS.Datos_La_Primera_AM import LOTTERY_LA_PRIMERA_AM
 from DATOS_LOTERIAS.Datos_La_Primera_PM import LOTTERY_LA_PRIMERA_PM
 from DATOS_LOTERIAS.Datos_Lotedom import LOTTERY_LOTEDOM_TODO
+from DATOS_LOTERIAS.Datos_King_Lotery_MD_Y_PM import LOTTERY_KING_LOTTERY_MD_TODO, LOTTERY_KING_LOTTERY_PM_TODO
 #!----------------------------------------------------------------------
 mesesDic = {
     "01":'Enero',
@@ -151,6 +152,10 @@ def saberLoteria(lote):
         return LOTTERY_LOTEDOM_TODO
     elif(lote == 'Anguila MD' or lote == 'Anguila AM' or lote == 'Anguila Tarde' or lote == 'Anguila Noche'):
         return ANGUILA_LOTTERY_TODO
+    elif(lote == 'King Lottery Medio Dia'):
+        return LOTTERY_KING_LOTTERY_MD_TODO
+    elif(lote == 'King Lottery Noche'):
+        return LOTTERY_KING_LOTTERY_PM_TODO
     else:
         return False
 
@@ -202,9 +207,15 @@ def saber_Nombre_Loteria_Sorteo(lote):
 
     elif(lote == '/Obtener_Anguila_PM' or lote == '/Premiar_Anguila_NOCHE'):
         return ['Anguila', 'Anguila Noche']
-    
+
     elif(lote == '/Obtener_Lotedom' or lote == '/Premiar_Lotedom'):
         return ['Lotedom','Lotedom']
+
+    elif(lote == '/Obtener_King_Lottery_AM'):
+        return ['King Lottery','King Lottery Medio Dia']
+
+    elif(lote == '/Obtener_King_Lottery_PM'):
+        return ['King Lottery','King Lottery Noche']
 
     else:
         return False
