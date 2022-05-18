@@ -39,10 +39,10 @@ mesesDic = {
 diasSemanaEso = {
     'Monday' : 'LUNES',
     'Tuesday' : 'MARTES',
-    'Wednesday' : 'MIERCOLES',
+    'Wednesday' : 'MIÉRCOLES',
     'Thursday' : 'JUEVES',
     'Friday' : 'VIERNES',
-    'Saturday' : 'SABADO',
+    'Saturday' : 'SÁBADO',
     'Sunday' : 'DOMINGO'
 }
 
