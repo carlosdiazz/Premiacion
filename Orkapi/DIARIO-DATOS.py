@@ -117,9 +117,9 @@ class Buscar():
             else:
                 self.intentos = self.intentos+1
                 intentos = self.intentos
-                if(self.intentos <= 10):
+                if(self.intentos <= 30):
                     print(f"\n\n\nNo se encontro esta loteria {loteria} con este sorteo: {sorteo}---------------------> Intento #{intentos}")
-                    time.sleep(150)
+                    time.sleep(60)
                     self.Buscar_Loteria()
 
 
