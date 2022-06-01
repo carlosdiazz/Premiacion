@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Funciones_Necesarias import Validar_Fecha_Hoy, comprobar_sistema, solo_undigito
 import time
+from selenium.common.exceptions import TimeoutException
 try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
@@ -18,6 +19,8 @@ class Obtener_Numeros_DOMINICANOS():
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
             self.driver.maximize_window()
+            self.driver.delete_all_cookies()
+            self.driver.set_page_load_timeout(20)
         except:
             print("Esto es Ubuntu")
 
@@ -29,6 +32,8 @@ class Obtener_Numeros_DOMINICANOS():
         #self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
         self.driver.maximize_window()
+        self.driver.delete_all_cookies()
+        self.driver.set_page_load_timeout(20)
 
     def obtener_Fecha(self):
         driver = self.driver
@@ -48,6 +53,9 @@ class Obtener_Numeros_DOMINICANOS():
             element = WebDriverWait(driver,10).until(
                 EC.presence_of_element_located((By.XPATH, datos['FECHA'][0]))
             )
+        except TimeoutException:
+            self.fecha = False
+
         except:
             self.fecha = False
         finally:

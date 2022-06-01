@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Funciones_Necesarias import Validar_Fecha_Hoy, comprobar_sistema
 import time
+from selenium.common.exceptions import TimeoutException
 
 try:
     from webdriver_manager.chrome import ChromeDriverManager
@@ -19,6 +20,8 @@ class Obtener_Numeros_USA():
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
             self.driver.maximize_window()
+            self.driver.delete_all_cookies()
+            self.driver.set_page_load_timeout(20)
         except:
             print("Esto es Ubuntu")
 
@@ -30,6 +33,8 @@ class Obtener_Numeros_USA():
         #self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
         self.driver.maximize_window()
+        self.driver.delete_all_cookies()
+        self.driver.set_page_load_timeout(20)
 
     def americana_tres(self, datos):
         driver = self.driver
@@ -44,11 +49,18 @@ class Obtener_Numeros_USA():
                         element = WebDriverWait(driver, 10).until(
                         EC.visibility_of_element_located((By.XPATH,datos['TRES'][i]) )
                         )
+                    except TimeoutException:
+                        driver.delete_all_cookies()
+                        return False
+
                     except:
                         self.tres=False
+                        driver.delete_all_cookies()
                         return  False
+
                     finally:
                         self.tres+=element.text
+                        driver.delete_all_cookies()
                 return True
 
             else:
@@ -73,11 +85,16 @@ class Obtener_Numeros_USA():
                         element = WebDriverWait(driver, 10).until(
                         EC.visibility_of_element_located((By.XPATH,datos['CUATRO'][i]) )
                         )
+                    except TimeoutException:
+                        driver.delete_all_cookies()
+                        return False
                     except:
+                        driver.delete_all_cookies()
                         self.cuatro=False
                     finally:
                         element.location_once_scrolled_into_view
                         self.cuatro+=element.text
+                        driver.delete_all_cookies()
             else:
                 self.cuatro=False
         except:

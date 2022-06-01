@@ -22,9 +22,9 @@ def sendNotification(VALIDAR,message ):
         for usuarios in User:
             send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + usuarios + '&parse_mode=Markdown&text=' + mess
             requests.get(send_text)
-            requests.post(f'https://api.telegram.org/bot{bot_token}/sendPhoto',
-                files={'photo': ('./LOTERIA_PAGES.png', open('./LOTERIA_PAGES.png', 'rb'))},
-                data={'chat_id': usuarios, 'caption': 'Loteria'})
+            #requests.post(f'https://api.telegram.org/bot{bot_token}/sendPhoto',
+            #    files={'photo': ('./LOTERIA_PAGES.png', open('./LOTERIA_PAGES.png', 'rb'))},
+            #    data={'chat_id': usuarios, 'caption': 'Loteria'})
     except:
         print('-----------------------------------------------------------------------')
         print("NO SE PUEDO ENVIAR LA NOTIFICACION DE TELEGRAM O LA FOTO NO SE ENCONTRO")
