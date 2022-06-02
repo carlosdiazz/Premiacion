@@ -32,7 +32,7 @@ class Premiar_Loterias_():
                     print('SE PUBLICO BIEN')
                     return ''
                 else:
-                    print('SOGIUE INTENTANDO NO SE PUBLICO')
+                    print('SIGUE INTENTANDO NO SE PUBLICO')
                     time.sleep(30)
                     self.Premiar_Loterias()
             else:
