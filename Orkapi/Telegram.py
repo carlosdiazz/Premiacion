@@ -7,7 +7,7 @@ from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimi
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 from os import remove
 
-from DIARIO_DATOS import Florida_AM
+#from DIARIO_DATOS import Florida_AM
 
 #Configurar Logging
 logging.basicConfig(
