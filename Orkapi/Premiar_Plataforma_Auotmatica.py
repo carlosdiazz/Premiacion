@@ -1,44 +1,46 @@
-from pickle import FALSE
 import schedule
 from Funciones_Necesarias import fecha, borrarPantalla, saber_Nombre_Loteria_Sorteo, Peticion_GET
 import time
 from ORKAPI import ORKAPI
-#from Funciones_para_buscar_premios import sendNotification
-
+from Funciones_para_buscar_premios import sendNotification
 
 class Premiar_Loterias_():
 
     def __init__(self, loteriaARG):
-        self.loteria = loteriaARG
+        print('Inicio el Proceso de Premiacion')
         self.intentos = 0
+        self.Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteriaARG)
+        self.nombre_loteria = self.Nombre_loteria_sorteo[0]
+        self.nombre_sorteo = self.Nombre_loteria_sorteo[1]
+        self.fecha_AHORA = fecha('%d-%m-%Y')
+        self.respuesta = f'PUBLICANDO EN PLATAFORMA PARA LA LOTERIA: {self.nombre_loteria} CON EL SORTEO {self.nombre_sorteo}'
 
     def Premiar_Loterias(self):
 
+        peticion_GET = Peticion_GET(self.nombre_sorteo,self.fecha_AHORA)
+
         if(self.intentos <= 40) :
             self.intentos = self.intentos + 1
-            print('Inicio el Proceso de Premiacion')
-            loteria_selecionada = self.loteria
-            Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteria_selecionada)
-            self.nombre_loteria = Nombre_loteria_sorteo[0]
-            self.nombre_sorteo = Nombre_loteria_sorteo[1]
-            fecha_AHORA = fecha('%d-%m-%Y')
-            #! ---------------------------------------------------------------------
-            peticion_GET = Peticion_GET(self.nombre_sorteo,fecha_AHORA)
 
-            if(type(peticion_GET)==dict):
+            if(type(peticion_GET) == dict):
                 numeros_a_publicar = peticion_GET['numeros_ganadores']
                 result = ORKAPI(self.nombre_loteria,self.nombre_sorteo,numeros_a_publicar)
                 if(result[0]):
                     print('SE PUBLICO BIEN')
+                    self.respuesta = result[1]
                     return ''
                 else:
                     print('SIGUE INTENTANDO NO SE PUBLICO')
                     time.sleep(30)
+                    self.respuesta = result[1]
                     self.Premiar_Loterias()
             else:
                 print(peticion_GET)
                 time.sleep(30)
+                self.respuesta = peticion_GET
                 self.Premiar_Loterias()
+
+        sendNotification(False,self.respuesta )
 
 
 
@@ -59,7 +61,6 @@ LOTERIA_NACIONAL_PREMIOS = Premiar_Loterias_('/Premiar_Loteria_Nacional').Premia
 LEIDSA_PREMIOS = Premiar_Loterias_('/Premiar_Loteria_Leidsa').Premiar_Loterias
 ANGUILA_NOCHE = Premiar_Loterias_('/Premiar_Anguila_NOCHE').Premiar_Loterias
 FLORIDA_PM_PREMIOS = Premiar_Loterias_('/Premiar_Florida_PM').Premiar_Loterias
-
 New_York_PM_Premios = Premiar_Loterias_('/Premiar_New_York_PM').Premiar_Loterias
 
 
