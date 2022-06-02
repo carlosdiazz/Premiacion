@@ -21,7 +21,7 @@ class Obtener_Numeros_USA():
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
             self.driver.maximize_window()
             self.driver.delete_all_cookies()
-            self.driver.set_page_load_timeout(20)
+            self.driver.set_page_load_timeout(30)
         except:
             print("Esto es Ubuntu")
 
@@ -34,7 +34,7 @@ class Obtener_Numeros_USA():
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
         self.driver.maximize_window()
         self.driver.delete_all_cookies()
-        self.driver.set_page_load_timeout(20)
+        self.driver.set_page_load_timeout(30)
 
     def americana_tres(self, datos):
         driver = self.driver
