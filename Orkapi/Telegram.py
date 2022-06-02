@@ -4,10 +4,9 @@ import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from ORKAPI import ORKAPI
 from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimir_resultados, Verificar_si_un_usuario_existe, Agregar_Nuevo_Usuario_MONGODB, borrarPantalla
-from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
+from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados, Comandos_Forzarr_Premios
 from os import remove
-
-#from DIARIO_DATOS import Florida_AM
+from FUncion_Necesaria_FOrzar_Premio import Saber_Loteria_Forzada_Premio
 
 #Configurar Logging
 logging.basicConfig(
@@ -39,6 +38,12 @@ def Comandos_Resul(update, context):
     user_id = update.effective_user['id']
     logger.info(f'\nEl usuario {user_id}, ha solicitado ver informacion\n')
     message=Imprimir_Comandos(Comandos_Resultados)
+    context.bot.sendMessage(chat_id= user_id, text=message)
+
+def Comandos_Forzar_Premios(update, context):
+    user_id = update.effective_user['id']
+    logger.info(f'\nEl usuario {user_id}, ha solicitado ver informacion\n')
+    message=Imprimir_Comandos(Comandos_Forzarr_Premios)
     context.bot.sendMessage(chat_id= user_id, text=message)
 
 def Comandos_Premiar(update, context):
@@ -96,6 +101,13 @@ def Obtener_numeros_loteria(update, context):
     peticion_GET = Peticion_GET(sorteo,fecha_AHORA)
     resultado = imprimir_resultados(peticion_GET)
     context.bot.sendMessage(chat_id= user_id, text=resultado)
+
+def Forzar_Premios(update, context):
+    user_id = update.effective_user['id']
+    logger.info(f'\nEl usuario {user_id}, ha mandado A forzar la premiacion  \n')
+    context.bot.sendMessage(chat_id= user_id, text='Inicio el Proceso Forzado de Premiacion')
+    Saber_Loteria_Forzada_Premio(update.message.text)
+
 #?---------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
@@ -153,11 +165,23 @@ dp.add_handler(CommandHandler('Obtener_Anguila_MD',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Anguila_Tarde',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Anguila_PM',Obtener_numeros_loteria))
 #?----------------------------------------------------------------
-
-#dp.add_handler(CommandHandler('FORZAR_FLORIDA_AM',Florida_AM))
-
-
-
+dp.add_handler(CommandHandler('FORZAR',Comandos_Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Anguila_AM',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_La_Primera_AM',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Loteria_La_Suerte', Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Loteria_Real',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Anguila_MD',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Florida_AM',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Lotedom',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_New_York_AM',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Anguila_TARDE',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Loteria_Loteka',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_La_Primera_PM',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Loteria_Nacional',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Loteria_Leidsa',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Anguila_NOCHE',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_Florida_PM',Forzar_Premios))
+dp.add_handler(CommandHandler('Forzar_Premiar_New_York_PM',Forzar_Premios))
 
 dp.add_handler(MessageHandler(Filters.text,echo))
 
