@@ -7,6 +7,8 @@ from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimi
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados
 from os import remove
 
+from DIARIO_DATOS import Florida_AM
+
 #Configurar Logging
 logging.basicConfig(
     level = logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -151,6 +153,12 @@ dp.add_handler(CommandHandler('Obtener_Anguila_MD',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Anguila_Tarde',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Anguila_PM',Obtener_numeros_loteria))
 #?----------------------------------------------------------------
+
+dp.add_handler(CommandHandler('FORZAR_FLORIDA_AM',Florida_AM))
+
+
+
+
 dp.add_handler(MessageHandler(Filters.text,echo))
 
 updater.start_polling()
