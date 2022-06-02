@@ -154,7 +154,7 @@ dp.add_handler(CommandHandler('Obtener_Anguila_Tarde',Obtener_numeros_loteria))
 dp.add_handler(CommandHandler('Obtener_Anguila_PM',Obtener_numeros_loteria))
 #?----------------------------------------------------------------
 
-dp.add_handler(CommandHandler('FORZAR_FLORIDA_AM',Florida_AM))
+#dp.add_handler(CommandHandler('FORZAR_FLORIDA_AM',Florida_AM))
 
 
 
