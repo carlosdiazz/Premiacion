@@ -29,7 +29,7 @@ class Obtener_Numeros_DOMINICANOS():
         self.binary_location = '/usr/bin/chromium-browser'
         self.options = webdriver.ChromeOptions()
         self.options.binary_location = self.binary_location
-        #self.options.add_argument("--headless")
+        self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=self.driver_location, chrome_options=self.options)
         self.driver.maximize_window()
         self.driver.delete_all_cookies()
@@ -48,7 +48,7 @@ class Obtener_Numeros_DOMINICANOS():
             driver.get(datos['URL'][0])
             time.sleep(5)
             driver.get(datos['URL'][1])
-            time.sleep(10)
+            time.sleep(30)
         try:
             element = WebDriverWait(driver,10).until(
                 EC.presence_of_element_located((By.XPATH, datos['FECHA'][0]))
@@ -77,7 +77,7 @@ class Obtener_Numeros_DOMINICANOS():
         else:
             driver.get(datos['URL'][0])
             driver.get(datos['URL'][1])
-        time.sleep(2)
+        time.sleep(20)
         numero=[]
         for i in range(3):
             try:
