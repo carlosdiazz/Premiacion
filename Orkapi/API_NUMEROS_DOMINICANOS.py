@@ -40,15 +40,15 @@ class Obtener_Numeros_DOMINICANOS():
         datos = self.datos
         if(len(datos['URL']) == 3):
             driver.get(datos['URL'][0])
-            time.sleep(5)
-            cerrar = driver.find_element_by_xpath(datos['URL'][2])
-            time.sleep(5)
-            cerrar.click()
+            time.sleep(40)
+            #cerrar = driver.find_element_by_xpath(datos['URL'][2])
+            #time.sleep(5)
+            #cerrar.click()
         else:
             driver.get(datos['URL'][0])
             time.sleep(5)
             driver.get(datos['URL'][1])
-            time.sleep(30)
+            time.sleep(5)
         try:
             element = WebDriverWait(driver,10).until(
                 EC.presence_of_element_located((By.XPATH, datos['FECHA'][0]))
@@ -73,11 +73,11 @@ class Obtener_Numeros_DOMINICANOS():
         datos = self.datos
 
         if(len(datos['URL']) == 3):
-                time.sleep(1)
+                time.sleep(10)
         else:
             driver.get(datos['URL'][0])
             driver.get(datos['URL'][1])
-        time.sleep(20)
+        time.sleep(5)
         numero=[]
         for i in range(3):
             try:
