@@ -66,6 +66,7 @@ def Validar_Fecha_Hoy(fecha_comprobar):
 
     Todas_las_Fechas = [
 
+    fecha(f'%A, %B {fecha_dia_un_digito}, %Y'),
     fecha('%A, %b %d, %Y'),
     fecha(f'%A, %b {fecha_dia_un_digito}, %Y'),
     fecha(f'%A %B {fecha_dia_un_digito}th %Y'),
