@@ -19,7 +19,7 @@ class Premiar_Loterias_():
 
         peticion_GET = Peticion_GET(self.nombre_sorteo,self.fecha_AHORA)
 
-        if(self.intentos <= 4) :
+        if(self.intentos <= 60) :
             self.intentos = self.intentos + 1
 
             if(type(peticion_GET) == dict):
@@ -32,12 +32,12 @@ class Premiar_Loterias_():
                     self.Premiar_Loterias()
                 else:
                     print(f'SIGUE INTENTANDO NO SE PUBLICO ----> {result[1]}')
-                    time.sleep(1)
+                    time.sleep(30)
                     self.respuesta = result[1]
                     self.Premiar_Loterias()
             else:
                 print(f'ERROR --> PREMIAR PLATAFORMA --> LOTERIA: {self.nombre_loteria} Sorteo: {self.nombre_sorteo} ---> {peticion_GET}')
-                time.sleep(1)
+                time.sleep(30)
                 self.respuesta = peticion_GET
                 self.Premiar_Loterias()
         else:
