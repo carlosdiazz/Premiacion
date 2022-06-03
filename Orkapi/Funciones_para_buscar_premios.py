@@ -89,7 +89,7 @@ class Buscar():
                         numeros_Ganadores=numeros_Ganadores[1:]
                     else:
                         numeros_Ganadores=False
-                        remove('./LOTERIA_PAGES.png')
+                        #remove('./LOTERIA_PAGES.png')
                 else:
                     pass
 
@@ -107,7 +107,7 @@ class Buscar():
                     print(f'\n\nSe Publico esta loteria: {loteria} con este sorteo: {sorteo} en la base de Datos. \n\n')
                     sendNotification(True,Arreglo_loteria)
                     Enviar_Corre(Arreglo_loteria)
-                    remove('./LOTERIA_PAGES.png')
+                    #remove('./LOTERIA_PAGES.png')
                     return True
                 else:
                     print(f'\n\nNo se publico esta Loteria: {loteria}, con este sorteo: {sorteo} en la base de Datos -------> El SERVIDOR EXPRES NO RESPONDE\n\n')

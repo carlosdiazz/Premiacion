@@ -81,7 +81,7 @@ def Premiar_Loterias(update, context):
         if(result[0]):
             context.bot.sendMessage(chat_id= user_id, text=result[1])
             context.bot.sendPhoto(chat_id= user_id, photo=open('./premiada.png','rb'))
-            remove('./premiada.png')
+            #remove('./premiada.png')
         else:
             context.bot.sendMessage(chat_id= user_id, text=result[1])
     else:
