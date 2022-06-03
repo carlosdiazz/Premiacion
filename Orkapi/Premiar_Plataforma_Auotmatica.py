@@ -26,23 +26,26 @@ class Premiar_Loterias_():
                 numeros_a_publicar = peticion_GET['numeros_ganadores']
                 result = ORKAPI(self.nombre_loteria,self.nombre_sorteo,numeros_a_publicar)
                 if(result[0]):
+                    print(f'INTENTO #{self.intentos}')
                     print(f'SE PUBLICO BIEN ----> {result[1]}')
                     self.respuesta = result[1]
                     self.intentos=100
                     self.Premiar_Loterias()
                 else:
-                    print(f'SIGUE INTENTANDO NO SE PUBLICO ----> {result[1]}')
+                    print(f'\n\nINTENTO #{self.intentos}\n\n')
+                    print(f'\n\nSIGUE INTENTANDO NO SE PUBLICO ----> {result[1]}')
                     time.sleep(20)
                     self.respuesta = result[1]
                     self.Premiar_Loterias()
             else:
-                print(f'ERROR --> PREMIAR PLATAFORMA --> LOTERIA: {self.nombre_loteria} Sorteo: {self.nombre_sorteo} ---> {peticion_GET}')
+                print(f'\n\nINTENTO #{self.intentos}\n\n')
+                print(f'\n\nERROR --> PREMIAR PLATAFORMA --> LOTERIA: {self.nombre_loteria} Sorteo: {self.nombre_sorteo} ---> {peticion_GET}\n\n')
                 time.sleep(20)
                 self.respuesta = peticion_GET
                 self.Premiar_Loterias()
         else:
-            print(f'\nPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {self.nombre_loteria}\n--> Sorteo: {self.nombre_sorteo}\n\n\n--> {self.respuesta}' )
-            sendNotification(False,f'\nPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {self.nombre_loteria}\n--> Sorteo: {self.nombre_sorteo}\n\n\n--> {self.respuesta}' )
+            print(f'\\nnPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {self.nombre_loteria}\n--> Sorteo: {self.nombre_sorteo}\n\n\n--> {self.respuesta}\n\n' )
+            sendNotification(False,f'\n\nPREMIACION PLATAFORMA\n\n\n--> LOTERIA: {self.nombre_loteria}\n--> Sorteo: {self.nombre_sorteo}\n\n\n--> {self.respuesta}' )
 
 
 
