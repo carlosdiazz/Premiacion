@@ -19,7 +19,7 @@ class Premiar_Loterias_():
 
         peticion_GET = Peticion_GET(self.nombre_sorteo,self.fecha_AHORA)
 
-        if(self.intentos <= 60) :
+        if(self.intentos <= 80) :
             self.intentos = self.intentos + 1
 
             if(type(peticion_GET) == dict):
@@ -67,23 +67,23 @@ New_York_PM_Premios = Premiar_Loterias_('/Premiar_New_York_PM').Premiar_Loterias
 
 
 #! ---------------------------------------------------------
-schedule.every().day.at("10:15:00").do(Anguila_AM_PREMIOS)
-schedule.every().day.at("12:20:00").do(PRIMERA_AM_PREMIOS)
-schedule.every().day.at("12:40:00").do(LA_SUERTE_PREMIOS)
-schedule.every().day.at("13:10:00").do(ANGUILA_MD_PREMIOS)
-schedule.every().day.at("13:15:00").do(REAL_PREMIOS)
-schedule.every().day.at("13:55:00").do(FLORIDA_AM_PREMIOS)
-schedule.every().day.at("14:15:00").do(LOTEDOM_PREMIOS)
-schedule.every().day.at("14:45:00").do(NEW_YORK_AM_PREMIOS)
-schedule.every().day.at("14:50:00").do(Ganams_PREMIOS)
-schedule.every().day.at("18:15:00").do(ANGUILA_TARDE_PREMIOS)
-schedule.every().day.at("20:15:00").do(LOTEKA_PREMIOS)
-schedule.every().day.at("20:20:00").do(PRIMERA_PM_PREMIOS)
-schedule.every().day.at("21:16:00").do(LOTERIA_NACIONAL_PREMIOS)
-schedule.every().day.at("21:16:00").do(LEIDSA_PREMIOS)
-schedule.every().day.at("21:15:00").do(ANGUILA_NOCHE)
-schedule.every().day.at("22:00:00").do(FLORIDA_PM_PREMIOS)
-schedule.every().day.at("22:45:00").do(New_York_PM_Premios)
+schedule.every().day.at("10:05:00").do(Anguila_AM_PREMIOS)
+schedule.every().day.at("12:10:00").do(PRIMERA_AM_PREMIOS)
+schedule.every().day.at("12:30:00").do(LA_SUERTE_PREMIOS)
+schedule.every().day.at("13:05:00").do(ANGUILA_MD_PREMIOS)
+schedule.every().day.at("13:10:00").do(REAL_PREMIOS)
+schedule.every().day.at("13:50:00").do(FLORIDA_AM_PREMIOS)
+schedule.every().day.at("14:05:00").do(LOTEDOM_PREMIOS)
+schedule.every().day.at("14:40:00").do(NEW_YORK_AM_PREMIOS)
+schedule.every().day.at("14:45:00").do(Ganams_PREMIOS)
+schedule.every().day.at("18:05:00").do(ANGUILA_TARDE_PREMIOS)
+schedule.every().day.at("20:05:00").do(LOTEKA_PREMIOS)
+schedule.every().day.at("20:10:00").do(PRIMERA_PM_PREMIOS)
+schedule.every().day.at("21:10:00").do(LOTERIA_NACIONAL_PREMIOS)
+schedule.every().day.at("21:10:00").do(LEIDSA_PREMIOS)
+schedule.every().day.at("21:05:00").do(ANGUILA_NOCHE)
+schedule.every().day.at("21:50:00").do(FLORIDA_PM_PREMIOS)
+schedule.every().day.at("22:35:00").do(New_York_PM_Premios)
 
 borrarPantalla()
 while True:
@@ -94,4 +94,4 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(60)
+    time.sleep(30)

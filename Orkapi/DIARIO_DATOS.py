@@ -35,4 +35,4 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(60)
+    time.sleep(30)
