@@ -79,9 +79,9 @@ New_York_PM_Premios = Premiar_Loterias_('/Premiar_New_York_PM').Premiar_Loterias
 #! ---------------------------------------------------------
 schedule.every().day.at("10:05:00").do(run_threaded, Anguila_AM_PREMIOS)
 schedule.every().day.at("12:05:00").do(run_threaded, PRIMERA_AM_PREMIOS)
-schedule.every().day.at("12:30:00").do(run_threaded, LA_SUERTE_PREMIOS)
+schedule.every().day.at("12:35:00").do(run_threaded, LA_SUERTE_PREMIOS)
 schedule.every().day.at("13:05:00").do(run_threaded, ANGUILA_MD_PREMIOS)
-schedule.every().day.at("13:10:00").do(run_threaded, REAL_PREMIOS)
+schedule.every().day.at("13:05:00").do(run_threaded, REAL_PREMIOS)
 schedule.every().day.at("13:50:00").do(run_threaded, FLORIDA_AM_PREMIOS)
 schedule.every().day.at("14:05:00").do(run_threaded, LOTEDOM_PREMIOS)
 schedule.every().day.at("14:35:00").do(run_threaded, NEW_YORK_AM_PREMIOS)
@@ -89,8 +89,8 @@ schedule.every().day.at("14:40:00").do(run_threaded, Ganams_PREMIOS)
 schedule.every().day.at("18:05:00").do(run_threaded, ANGUILA_TARDE_PREMIOS)
 schedule.every().day.at("20:05:00").do(run_threaded, LOTEKA_PREMIOS)
 schedule.every().day.at("20:05:00").do(run_threaded, PRIMERA_PM_PREMIOS)
-schedule.every().day.at("21:10:00").do(run_threaded, LOTERIA_NACIONAL_PREMIOS)
-schedule.every().day.at("21:11:00").do(run_threaded, LEIDSA_PREMIOS)
+schedule.every().day.at("21:05:00").do(run_threaded, LOTERIA_NACIONAL_PREMIOS)
+schedule.every().day.at("21:05:00").do(run_threaded, LEIDSA_PREMIOS)
 schedule.every().day.at("21:05:00").do(run_threaded, ANGUILA_NOCHE)
 schedule.every().day.at("21:50:00").do(run_threaded, FLORIDA_PM_PREMIOS)
 schedule.every().day.at("22:35:00").do(run_threaded, New_York_PM_Premios)
@@ -104,4 +104,4 @@ while True:
         pass
     else:
         print(schedule.run_pending())
-    time.sleep(30)
+    time.sleep(60)
