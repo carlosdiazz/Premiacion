@@ -9,13 +9,14 @@ class Premiar_Loterias_():
     def __init__(self, loteriaARG):
         print('Inicio el Proceso de Premiacion')
         self.Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteriaARG)
+        self.intentos = 0
 
     def Premiar_Loterias(self):
 
         nombre_loteria = self.Nombre_loteria_sorteo[0]
         nombre_Sorteo = self.Nombre_loteria_sorteo[1]
         respuesta = f'PUBLICANDO EN PLATAFORMA PARA LA LOTERIA: {nombre_loteria} CON EL SORTEO {nombre_Sorteo}'
-        intentos = 0
+        intentos = self.intentos
         fecha_ahorAA = fecha('%d-%m-%Y')
         peticion = Peticion_GET(nombre_Sorteo,fecha_ahorAA)
 
