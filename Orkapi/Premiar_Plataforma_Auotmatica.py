@@ -10,43 +10,45 @@ class Premiar_Loterias_():
         print('Inicio el Proceso de Premiacion')
         self.Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteriaARG)
         self.intentos = 0
+        nombre_loteria = self.Nombre_loteria_sorteo[0]
+        nombre_Sorteo = self.Nombre_loteria_sorteo[1]
+        self.respuesta = f'PUBLICANDO EN PLATAFORMA PARA LA LOTERIA: {nombre_loteria} CON EL SORTEO {nombre_Sorteo}'
 
     def Premiar_Loterias(self):
 
         nombre_loteria = self.Nombre_loteria_sorteo[0]
         nombre_Sorteo = self.Nombre_loteria_sorteo[1]
-        respuesta = f'PUBLICANDO EN PLATAFORMA PARA LA LOTERIA: {nombre_loteria} CON EL SORTEO {nombre_Sorteo}'
-        intentos = self.intentos
         fecha_ahorAA = fecha('%d-%m-%Y')
         peticion = Peticion_GET(nombre_Sorteo,fecha_ahorAA)
 
-        if(intentos <= 90) :
-            intentos = intentos + 1
+        if(self.intentos <= 90) :
+            self.intentos = self.intentos + 1
 
             if(type(peticion) == dict):
                 numeros_a_publicar = peticion['numeros_ganadores']
                 result = ORKAPI(nombre_loteria,nombre_Sorteo,numeros_a_publicar)
                 if(result[0]):
-                    print(f'INTENTO #{intentos}')
+                    print(f'INTENTO #{self.intentos}')
                     print(f'SE PUBLICO BIEN ----> {result[1]}')
-                    respuesta = result[1]
-                    intentos=100
+                    self.respuesta = result[1]
+                    self.intentos=100
                     self.Premiar_Loterias()
+
                 else:
-                    print(f'\n\nINTENTO #{intentos}\n\n')
+                    print(f'\n\nINTENTO #{self.intentos}\n\n')
                     print(f'\n\nSIGUE INTENTANDO NO SE PUBLICO ----> {result[1]}')
                     time.sleep(20)
-                    respuesta = result[1]
+                    self.respuesta = result[1]
                     self.Premiar_Loterias()
             else:
-                print(f'\n\nINTENTO #{intentos}\n\n')
+                print(f'\n\nINTENTO #{self.intentos}\n\n')
                 print(f'\n\nERROR --> PREMIAR PLATAFORMA --> LOTERIA: {nombre_loteria} Sorteo: {nombre_Sorteo} ---> {peticion}\n\n')
                 time.sleep(20)
                 self.respuesta = peticion
                 self.Premiar_Loterias()
         else:
-            print(f'\n\nPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {respuesta}\n\n' )
-            sendNotification(False,f'\n\nPREMIACION PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {respuesta}' )
+            print(f'\n\nPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {self.respuesta}\n\n' )
+            sendNotification(False,f'\n\nPREMIACION PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {self.respuesta}' )
 
 
 
