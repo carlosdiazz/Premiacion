@@ -106,12 +106,14 @@ class Buscar():
                 if(Peticion_POST(Arreglo_loteria) == True):
                     print(f'\n\nSe Publico esta loteria: {loteria} con este sorteo: {sorteo} en la base de Datos. \n\n')
                     sendNotification(True,Arreglo_loteria)
+                    self.intentos=0
                     Enviar_Corre(Arreglo_loteria)
                     #remove('./LOTERIA_PAGES.png')
                     return True
                 else:
                     print(f'\n\nNo se publico esta Loteria: {loteria}, con este sorteo: {sorteo} en la base de Datos -------> El SERVIDOR EXPRES NO RESPONDE\n\n')
                     sendNotification(False,f'No se publico esta Loteria: {loteria}, con este sorteo: {sorteo}  en la base de Datos-------> El SERVIDOR EXPRES NO RESPONDE')
+                    self.intentos=0
                     return False
 
             else:
@@ -125,6 +127,7 @@ class Buscar():
 
                 else:
                     sendNotification(False,f'No se publico esta loteria: {loteria} con este sorteo: {sorteo}, en la Base De Datos \n\nSe intento {intentos} veces')
+                    self.intentos=0
                     try:
                         remove('./LOTERIA_PAGES.png')
                     except:
@@ -137,7 +140,7 @@ class Buscar():
             print(f'Para la loteria: {loteria} con el sorteo: {sorteo}.')
             print('---------------------------------------------------')
             sendNotification(False,f'No se publico esta Loteria: {loteria}, con este sorteo: {sorteo} --->  {validar}')
-
+            self.intentos=0
 #! ----------------------------------------------------------
 La_Primera_AM = Buscar('/Obtener_Loteria_La_Primera_AM').Buscar_Loteria
 La_Suerte = Buscar('/Obtener_Loteria_La_Suerte').Buscar_Loteria

@@ -12,7 +12,7 @@ class Premiar_Loterias_():
         self.intentos = 0
         nombre_loteria = self.Nombre_loteria_sorteo[0]
         nombre_Sorteo = self.Nombre_loteria_sorteo[1]
-        self.respuesta = f'PUBLICANDO EN PLATAFORMA PARA LA LOTERIA: {nombre_loteria} CON EL SORTEO {nombre_Sorteo}'
+        self.respuesta = f'\n\nCOMENZO EL PROCESO PARA PREMIAR EN PLATAFORMA PARA LA LOTERIA: {nombre_loteria} CON EL SORTEO {nombre_Sorteo}\n\n'
 
     def Premiar_Loterias(self):
 
@@ -49,7 +49,7 @@ class Premiar_Loterias_():
         else:
             print(f'\n\nPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {self.respuesta}\n\n' )
             sendNotification(False,f'\n\nPREMIACION PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {self.respuesta}' )
-
+            self.intentos=0
 
 
 
