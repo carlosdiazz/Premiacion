@@ -1,5 +1,5 @@
-from Funciones_para_buscar_premios import Anguila_AM, La_Primera_AM, La_Suerte, Real, Anguila_MD, Florida_AM, Lotedom, New_York_AM, Ganamas
-from Funciones_para_buscar_premios import Anguila_TARDE, Loteka, La_Primera_PM, Loteria_Nacional, Leidsa, Anguila_PM, Florida_PM, New_York_PM
+from Funciones_para_buscar_premios import Anguila_AM, La_Primera_AM, La_Suerte, Real, Anguila_MD, Florida_AM, Lotedom, New_York_AM, Ganamas, King_Lottery_MD
+from Funciones_para_buscar_premios import Anguila_TARDE, Loteka, La_Primera_PM, Loteria_Nacional, Leidsa, Anguila_PM, Florida_PM, New_York_PM, King_Lottery_PM
 #! ---------------------------------------------------------------------
 
 def Saber_Loteria_Forzada_Premio (loteria):
@@ -54,6 +54,12 @@ def Saber_Loteria_Forzada_Premio (loteria):
 
     elif(loteria == '/Forzar_Premiar_New_York_PM'):
         return New_York_PM()
+
+    elif(loteria == '/Forzar_Premiar_King_LT_MD'):
+        return King_Lottery_MD()
+
+    elif(loteria == '/Forzar_Premiar_King_LT_PM'):
+        return King_Lottery_PM()
 
     else:
         print('Probando')
