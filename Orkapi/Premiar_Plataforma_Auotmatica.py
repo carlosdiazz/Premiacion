@@ -8,14 +8,13 @@ class Premiar_Loterias_():
 
     def __init__(self, loteriaARG):
         print('Inicio el Proceso de Premiacion')
-        self.intentos = 0
         self.Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteriaARG)
         self.respuesta = f'PUBLICANDO EN PLATAFORMA PARA LA LOTERIA: {self.Nombre_loteria_sorteo[0]} CON EL SORTEO {self.Nombre_loteria_sorteo[1]}'
 
     def Premiar_Loterias(self):
         nombre_loteria = self.Nombre_loteria_sorteo[0]
         nombre_Sorteo = self.Nombre_loteria_sorteo[1]
-
+        self.intentos = 0
         fecha_ahorAA = fecha('%d-%m-%Y')
         peticion = Peticion_GET(nombre_Sorteo,fecha_ahorAA)
 
@@ -44,7 +43,7 @@ class Premiar_Loterias_():
                 self.respuesta = peticion
                 self.Premiar_Loterias()
         else:
-            print(f'\\nnPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {self.nombre_loteria}\n--> Sorteo: {self.nombre_sorteo}\n\n\n--> {self.respuesta}\n\n' )
+            print(f'\n\nPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {self.nombre_loteria}\n--> Sorteo: {self.nombre_sorteo}\n\n\n--> {self.respuesta}\n\n' )
             sendNotification(False,f'\n\nPREMIACION PLATAFORMA\n\n\n--> LOTERIA: {self.nombre_loteria}\n--> Sorteo: {self.nombre_sorteo}\n\n\n--> {self.respuesta}' )
 
 
