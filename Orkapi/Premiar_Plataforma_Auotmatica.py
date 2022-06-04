@@ -94,6 +94,10 @@ schedule.every().day.at("21:05:00").do(run_threaded, LEIDSA_PREMIOS)
 schedule.every().day.at("21:05:00").do(run_threaded, ANGUILA_NOCHE)
 schedule.every().day.at("21:50:00").do(run_threaded, FLORIDA_PM_PREMIOS)
 schedule.every().day.at("22:35:00").do(run_threaded, New_York_PM_Premios)
+#!--------------------------------DOMINGO-------------------------------
+schedule.every().sunday.at("15:55:00").do(run_threaded, LEIDSA_PREMIOS)
+schedule.every().sunday.at("18:05:00").do(run_threaded, LOTERIA_NACIONAL_PREMIOS)
+
 
 borrarPantalla()
 while True:
