@@ -10,21 +10,21 @@ class Premiar_Loterias_():
         print('Inicio el Proceso de Premiacion')
         self.intentos = 0
         self.Nombre_loteria_sorteo = saber_Nombre_Loteria_Sorteo(loteriaARG)
-        self.nombre_loteria = self.Nombre_loteria_sorteo[0]
-        self.nombre_sorteo = self.Nombre_loteria_sorteo[1]
-        self.fecha_AHORA = fecha('%d-%m-%Y')
-        self.respuesta = f'PUBLICANDO EN PLATAFORMA PARA LA LOTERIA: {self.nombre_loteria} CON EL SORTEO {self.nombre_sorteo}'
+        self.respuesta = f'PUBLICANDO EN PLATAFORMA PARA LA LOTERIA: {self.Nombre_loteria_sorteo[0]} CON EL SORTEO {self.Nombre_loteria_sorteo[1]}'
 
     def Premiar_Loterias(self):
+        nombre_loteria = self.Nombre_loteria_sorteo[0]
+        nombre_Sorteo = self.Nombre_loteria_sorteo[1]
 
-        peticion_GET = Peticion_GET(self.nombre_sorteo,self.fecha_AHORA)
+        fecha_ahorAA = fecha('%d-%m-%Y')
+        peticion = Peticion_GET(nombre_Sorteo,fecha_ahorAA)
 
         if(self.intentos <= 90) :
             self.intentos = self.intentos + 1
 
-            if(type(peticion_GET) == dict):
-                numeros_a_publicar = peticion_GET['numeros_ganadores']
-                result = ORKAPI(self.nombre_loteria,self.nombre_sorteo,numeros_a_publicar)
+            if(type(peticion) == dict):
+                numeros_a_publicar = peticion['numeros_ganadores']
+                result = ORKAPI(nombre_loteria,nombre_Sorteo,numeros_a_publicar)
                 if(result[0]):
                     print(f'INTENTO #{self.intentos}')
                     print(f'SE PUBLICO BIEN ----> {result[1]}')
@@ -39,9 +39,9 @@ class Premiar_Loterias_():
                     self.Premiar_Loterias()
             else:
                 print(f'\n\nINTENTO #{self.intentos}\n\n')
-                print(f'\n\nERROR --> PREMIAR PLATAFORMA --> LOTERIA: {self.nombre_loteria} Sorteo: {self.nombre_sorteo} ---> {peticion_GET}\n\n')
+                print(f'\n\nERROR --> PREMIAR PLATAFORMA --> LOTERIA: {self.nombre_loteria} Sorteo: {self.nombre_sorteo} ---> {peticion}\n\n')
                 time.sleep(20)
-                self.respuesta = peticion_GET
+                self.respuesta = peticion
                 self.Premiar_Loterias()
         else:
             print(f'\\nnPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {self.nombre_loteria}\n--> Sorteo: {self.nombre_sorteo}\n\n\n--> {self.respuesta}\n\n' )
