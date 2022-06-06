@@ -15,7 +15,7 @@ class Obtener_Numeros_DOMINICANOS():
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        self.chrome_options.add_argument("--headless")
+        #self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
             self.driver.maximize_window()
@@ -98,8 +98,11 @@ class Obtener_Numeros_DOMINICANOS():
             numero_3 = solo_undigito(numero[2])
             #! FUNCION para impedir que me publique 00 00 00, es un error de ANGUILA ------------------------------
             if(numero_1 == '00' and numero_2 == '00' and numero_3 == '00'):
+                print('PASO LA PRUEBA')
                 return False
-
+            if(numero_1 == '' or numero_2 == '' or numero_3 == ''):
+                print('PaSo prueba')
+                return False
             return [
                 self.fecha_elemento,
                 numero_1,
