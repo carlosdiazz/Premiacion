@@ -15,7 +15,7 @@ class Obtener_Numeros_DOMINICANOS():
     def iniciar_Mac_Windows(self):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        #self.chrome_options.add_argument("--headless")
+        self.chrome_options.add_argument("--headless")
         try:
             self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.chrome_options)
             self.driver.maximize_window()
@@ -90,6 +90,8 @@ class Obtener_Numeros_DOMINICANOS():
                 if(numero_actual.text != ""):
                     driver.save_screenshot('LOTERIA_PAGES.png')
                     numero.append(numero_actual.text)
+                else:
+                    break
 
         time.sleep(2)
         if(len(numero)==3):
