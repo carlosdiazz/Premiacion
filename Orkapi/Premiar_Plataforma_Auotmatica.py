@@ -1,13 +1,28 @@
 import schedule
-from Funciones_Necesarias import fecha, borrarPantalla, saber_Nombre_Loteria_Sorteo, Peticion_GET
+from Funciones_Necesarias import fecha, borrarPantalla, saber_Nombre_Loteria_Sorteo, Peticion_GET, Obtener_User_MONGO_NOTIFICACIONES
 import time
 from ORKAPI import ORKAPI
-from Funciones_para_buscar_premios import sendNotification
-
+import requests
+from TOKEN_API_PRO_DE import TOKEN_NOTIFICACION_PLATAFORMA_DESARROLLO
 import threading
 def run_threaded(job_func):
     job_thread = threading.Thread(target=job_func)
     job_thread.start()
+
+def sendNotification(message ):
+    try:
+        bot_token = TOKEN_NOTIFICACION_PLATAFORMA_DESARROLLO
+        User=Obtener_User_MONGO_NOTIFICACIONES()
+        for usuarios in User:
+            send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + usuarios + '&parse_mode=Markdown&text=' + message
+            requests.get(send_text)
+
+    except:
+        print('-----------------------------------------------------------------------')
+        print("NO SE PUEDO ENVIAR LA NOTIFICACION DE TELEGRAM")
+        print('-----------------------------------------------------------------------')
+        time.sleep(10)
+
 class Premiar_Loterias_():
 
     def __init__(self, loteriaARG):
@@ -52,7 +67,7 @@ class Premiar_Loterias_():
                 self.Premiar_Loterias()
         else:
             print(f'\n\nPREMIAR PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {self.respuesta}\n\n' )
-            sendNotification(False,f'\n\nPREMIACION PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {self.respuesta}' )
+            sendNotification(f'\n\nPREMIACION PLATAFORMA\n\n\n--> LOTERIA: {nombre_loteria}\n--> Sorteo: {nombre_Sorteo}\n\n\n--> {self.respuesta}' )
             self.intentos=0
 
 
