@@ -5,8 +5,11 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from ORKAPI import ORKAPI
 from Funciones_Necesarias import Imprimir_Comandos, Peticion_GET, fecha, imprimir_resultados, Verificar_si_un_usuario_existe, Agregar_Nuevo_Usuario_MONGODB, borrarPantalla
 from NOMBRES_VARIABLES import COMANDOS, Comandos_Premios, Comandos_Resultados, Comandos_Forzarr_Premios
-from os import remove
 from FUncion_Necesaria_FOrzar_Premio import Saber_Loteria_Forzada_Premio
+
+url = 'https://dev_admin.orkapi.net/'
+username = 'carlos@premio'
+password = 1234
 
 #Configurar Logging
 logging.basicConfig(
@@ -77,7 +80,7 @@ def Premiar_Loterias(update, context):
     if(type(peticion_GET)==dict):
 
         numeros_a_publicar = peticion_GET['numeros_ganadores']
-        result = ORKAPI(loteria,sorteo,numeros_a_publicar)
+        result = ORKAPI(loteria,sorteo,numeros_a_publicar,url,username,password)
         if(result[0]):
             context.bot.sendMessage(chat_id= user_id, text=result[1])
             context.bot.sendPhoto(chat_id= user_id, photo=open('./premiada.png','rb'))

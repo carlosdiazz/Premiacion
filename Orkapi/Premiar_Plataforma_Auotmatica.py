@@ -5,6 +5,11 @@ from ORKAPI import ORKAPI
 import requests
 from TOKEN_API_PRO_DE import TOKEN_NOTIFICACION_PLATAFORMA_DESARROLLO
 import threading
+
+url = 'https://dev_admin.orkapi.net/'
+username = 'carlos@premio'
+password = 1234
+
 def run_threaded(job_func):
     job_thread = threading.Thread(target=job_func)
     job_thread.start()
@@ -45,7 +50,7 @@ class Premiar_Loterias_():
 
             if(type(peticion) == dict):
                 numeros_a_publicar = peticion['numeros_ganadores']
-                result = ORKAPI(nombre_loteria,nombre_Sorteo,numeros_a_publicar)
+                result = ORKAPI(nombre_loteria,nombre_Sorteo,numeros_a_publicar,url,username,password)
                 if(result[0]):
                     print(f'INTENTO #{self.intentos}')
                     print(f'SE PUBLICO BIEN ----> {result[1]}')

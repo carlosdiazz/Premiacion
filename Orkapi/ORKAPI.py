@@ -1,10 +1,10 @@
 from ColocarPremio import Colocar_Numeros_Plataforma
 
-url = 'https://dev_admin.orkapi.net/'
-username = 'carlos@premio'
-password = 1234
+#url = 'https://dev_admin.orkapi.net/'
+#username = 'carlos@premio'
+#password = 1234
 
-def ORKAPI(loteria, horario, numeros_a_publicar):
+def ORKAPI(loteria, horario, numeros_a_publicar,url,username,password):
 
     print("\n\nLos numeros han sido confirmados y son Correctos\n\n")
     print("\n\nLos numeros que se van a publicar son\n\n")
