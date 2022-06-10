@@ -1,5 +1,5 @@
-URL_PLTAFORMA = 'https://dev_admin.orkapi.net/login/'
-URL_PREMIOS = 'https://dev_admin.orkapi.net/operaciones/premios/'
+URL_PLTAFORMA = ''
+URL_PREMIOS = '/operaciones/premios/'
 Input_User= '//*[@id="usuario_username"]'
 Input_Password = '//*[@id="usuario_password"]'
 boton_Login = '//*[@id="new_usuario"]/div[4]/div[2]/input'
@@ -9,7 +9,7 @@ Seleccionar_Loteria = '/html/body/div[2]/div/div/div/div[2]/div[1]/div[2]/div/ta
 Premio_1 = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[2]/div/table/tbody/tr[1]/td[2]/div/input'
 Premio_2 = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[2]/div/table/tbody/tr[2]/td[2]/div/input'
 Premio_3 = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[2]/div/table/tbody/tr[3]/td[2]/div/input'
-Boton_Premiar = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[2]/div/button[2]'
+Boton_Premiar = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[2]/div/button'
 Loteria_que_se_selecciono = '/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/form/div[1]/div/div/div/div/div[1]/div/h4'
 
 PLATAFORMA_TODO = [

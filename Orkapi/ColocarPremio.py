@@ -47,10 +47,11 @@ class Colocar_Numeros_Plataforma():
         except:
             return 'No se pudo iniciar seccion'
 
-    def Buscar_Loteria(self,LOTERIA,SORTEO):
+    def Buscar_Loteria(self,URL,LOTERIA,SORTEO):
         try:
             driver = self.driver
-            driver.get(PLATAFORMA_TODO[1])
+            url_premio=URL+PLATAFORMA_TODO[1]
+            driver.get(url_premio)
             sleep(2)
             inputLoteria = driver.find_element_by_xpath(PLATAFORMA_TODO[5]).send_keys(LOTERIA)
             sleep(3)
@@ -105,7 +106,7 @@ class Colocar_Numeros_Plataforma():
         Iniciar = self.iniciar_seccion(URL,USER,PASSWORD)
 
         if(Iniciar == True):
-            Loteria=self.Buscar_Loteria(LOTERIA,SORTEO)
+            Loteria=self.Buscar_Loteria(URL,LOTERIA,SORTEO)
             if(Loteria == True):
                 self.Premiar(LOTERIA,SORTEO,PREMIOS)
 
