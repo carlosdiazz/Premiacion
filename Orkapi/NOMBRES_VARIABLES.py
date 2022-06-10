@@ -1,7 +1,10 @@
+
+#! Solo tengo unos cuantos nombres de variables en este archivos
+
 COMANDOS = [
     '/Start',
     "/Info",
-    "/Premiar",
+    #"/Premiar",
     "/Ver_Resultados"
 ]
 

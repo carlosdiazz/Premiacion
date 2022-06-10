@@ -8,6 +8,8 @@ from Enviar_Correo import Enviar_Corre
 from os import remove
 from TOKEN_API_PRO_DE import TOKEN_NOTIFICACION
 
+#! Aqui estan todas las funciones que necesito para Buscar los Premios de Mnaera Automatica
+
 def sendNotification(VALIDAR,message ):
     try:
         mess=''

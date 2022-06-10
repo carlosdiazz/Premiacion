@@ -6,6 +6,8 @@ from email.mime.image import MIMEImage
 from TOKEN_API_PRO_DE import CORREO, PASS_CORREO
 from Funciones_Necesarias import fecha
 
+#! Con esta funcion envio un correo con los nuemros que se mandan a gaurdar a base de datos, por el momento solo se envia al correo personal mio
+
 def Enviar_Corre(loteria_Datos):
     try:
         print(f'\n\nEnviando Correo\n\n')

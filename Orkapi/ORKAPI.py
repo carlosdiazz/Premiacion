@@ -4,6 +4,8 @@ from ColocarPremio import Colocar_Numeros_Plataforma
 #username = 'carlos@premio'
 #password = 1234
 
+#! Con esta funcion entro a la cuenta de Orkapi para poder publicar los numneros
+
 def ORKAPI(loteria, horario, numeros_a_publicar,url,username,password):
 
     print("\n\nLos numeros han sido confirmados y son Correctos\n\n")

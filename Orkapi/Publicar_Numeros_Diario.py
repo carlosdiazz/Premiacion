@@ -9,6 +9,8 @@ def run_threaded(job_func):
     job_thread = threading.Thread(target=job_func)
     job_thread.start()
 
+#! Esta es la funcion que se encarga de Buscar y Publicar de forma automatica los numerose
+
 #! ---------------------------------------------------------
 schedule.every().day.at("10:05:00").do(run_threaded, Anguila_AM)
 schedule.every().day.at("12:05:00").do(run_threaded, La_Primera_AM)

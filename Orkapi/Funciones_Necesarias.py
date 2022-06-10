@@ -221,6 +221,19 @@ def saber_Nombre_Loteria_Sorteo(lote):
     else:
         return False
 
+def Saber_Loteria_Especifo_Por_Plataformas(loteria, plataforma):
+    if(plataforma == 'Desarrollo'):
+        return loteria #!Aqui devuelvo la misma loteria porque en desarrollo no cambia
+    elif(plataforma == 'MegaLottery'):
+        return ''
+    return ''
+
+def Saber_Sorteo_Especifo_Por_Plataformas(sorteo, plataforma):
+    if(plataforma == 'Desarrollo'):
+            return sorteo #!Aqui devuelvo el mismo sorteo porque en desarrollo no cambia
+    elif(plataforma == 'MegaLottery'):
+        return ''
+    return ''
 
 def Saber_Loteria_Seleccionada(inputLoteria,sorteo):
     inputLoteria=inputLoteria.lower()

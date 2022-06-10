@@ -11,6 +11,8 @@ try:
     from webdriver_manager.chrome import ChromeDriverManager
 except:
     print("")
+#? Con esta clase obtengo los numeros de la loteria de Americanos, en este caso son NY y FL... tengo que usar el metodo de devolver_numeros
+
 class Obtener_Numeros_USA():
 
     def iniciar_Mac_Windows(self):

@@ -1,5 +1,8 @@
 from API_Numeros_Americanos import Obtener_Numeros_USA
 from API_NUMEROS_DOMINICANOS import Obtener_Numeros_DOMINICANOS
+
+#! Esta funcion existe para veriifcar dos veces la loteria americana y revisar que el resultado que obtengo es el mismo
+
 def Doble_Check(Lista_de_pagina):
 
     if(Lista_de_pagina):

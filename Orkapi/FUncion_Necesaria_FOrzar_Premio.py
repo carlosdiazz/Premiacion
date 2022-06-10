@@ -2,6 +2,8 @@ from Funciones_para_buscar_premios import Anguila_AM, La_Primera_AM, La_Suerte, 
 from Funciones_para_buscar_premios import Anguila_TARDE, Loteka, La_Primera_PM, Loteria_Nacional, Leidsa, Anguila_PM, Florida_PM, New_York_PM, King_Lottery_PM
 #! ---------------------------------------------------------------------
 
+#!Esta funcion es para forzar los premios, si el robot por alguna razon no premio, por el momento solo funciona en la plataforma de desarrollo
+
 def Saber_Loteria_Forzada_Premio (loteria):
 
     if(loteria == '/Forzar_Premiar_Anguila_AM'):

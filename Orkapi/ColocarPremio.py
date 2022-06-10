@@ -8,6 +8,8 @@ try:
 except:
     print("")
 
+#! Con esta clase colocos los numeros en plataforma depediendo la plataforma que se envio
+
 class Colocar_Numeros_Plataforma():
 
     def iniciar_Mac_Windows(self):

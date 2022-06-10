@@ -10,6 +10,9 @@ try:
 except:
     print("")
 
+#? Con esta clase obtengo los numeros de la loteria Dominicanas... tengo que usar el metodo de devolver_numeros
+
+
 class Obtener_Numeros_DOMINICANOS():
 
     def iniciar_Mac_Windows(self):
