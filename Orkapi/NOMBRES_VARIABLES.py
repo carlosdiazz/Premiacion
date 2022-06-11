@@ -43,7 +43,7 @@ Comandos_Resultados = [
     '/Obtener_New_York_AM',
     '/Obtener_Loteria_Ganamas',
     '/Obtener_Anguila_Tarde',
-    '/Obtener_King_Lottery_PM'
+    '/Obtener_King_Lottery_PM',
     '/Obtener_Loteria_Loteka',
     '/Obtener_Loteria_La_Primera_PM',
     '/Obtener_Loteria_Leidsa',
