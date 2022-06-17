@@ -51,7 +51,7 @@ class Premiar_Loterias_():
         fecha_ahorAA = fecha('%d-%m-%Y')
         peticion = Peticion_GET(nombre_Sorteo,fecha_ahorAA)
 
-        if(self.intentos <= 90) :
+        if(self.intentos <= 150) :
             self.intentos = self.intentos + 1
 
             if(type(peticion) == dict):
@@ -61,7 +61,7 @@ class Premiar_Loterias_():
                     print(f'INTENTO #{self.intentos}')
                     print(f'SE PUBLICO BIEN ----> {result[1]}')
                     self.respuesta = result[1]
-                    self.intentos=100
+                    self.intentos=200
                     self.Premiar_Loterias()
 
                 else:

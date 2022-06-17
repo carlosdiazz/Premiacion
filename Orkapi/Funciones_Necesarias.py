@@ -271,9 +271,9 @@ def imprimir_resultados(json):
         return json
 
 def Obtener_User_MONGO_NOTIFICACIONES():
-    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/beta/action/find"
+    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/v1/action/find"
     payload = json.dumps({
-        "collection": "Usuarios_Notificaciones",
+        "collection": "usuarios",
         "database": "myFirstDatabase",
         "dataSource": "LoteriasCluster",
         "projection": {
@@ -295,9 +295,9 @@ def Obtener_User_MONGO_NOTIFICACIONES():
     return New_Arr
 
 def Nuevos_Usuarios_Mongo_DB(user):
-    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/beta/action/findone"
+    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/v1/action/findone"
     payload = json.dumps({
-        "collection": "Usuarios_Notificaciones",
+        "collection": "usuarios",
         "database": "myFirstDatabase",
         "dataSource": "LoteriasCluster",
         "projection": {
@@ -313,9 +313,9 @@ def Nuevos_Usuarios_Mongo_DB(user):
     arr=response.json()
 
 def Verificar_si_un_usuario_existe(user):
-    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/beta/action/findOne"
+    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/v1/action/findOne"
     payload = json.dumps({
-        "collection": "Usuarios_Notificaciones",
+        "collection": "usuarios",
         "database": "myFirstDatabase",
         "dataSource": "LoteriasCluster",
         "filter": { 'user_id': user}
@@ -335,9 +335,9 @@ def Verificar_si_un_usuario_existe(user):
         return False
 
 def Agregar_Nuevo_Usuario_MONGODB(user):
-    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/beta/action/insertOne"
+    url = "https://data.mongodb-api.com/app/data-rrmjk/endpoint/data/v1/action/insertOne"
     payload = json.dumps({
-        "collection": "Usuarios_Notificaciones",
+        "collection": "usuarios",
         "database": "myFirstDatabase",
         "dataSource": "LoteriasCluster",
         "document": { 'user_id': user}
