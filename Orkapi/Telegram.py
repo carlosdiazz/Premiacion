@@ -30,7 +30,7 @@ def start(update,context):
     if(Validar == True):
         Agregar_Nuevo_Usuario_MONGODB(str(user_id))
     name = update.effective_user['first_name']
-    update.message.reply_text(f"Hola {name} soy tu Bot para premiar, para mas informacion \n/Info \n\n\nBot de NOTIFICACIONES:\n\nhttp://t.me/Notificacion_premio_bot \n\n\nBot de NOTIFICACIONES MEGA LOTTERY:\n\nhttp://t.me/PremiosMegaLotery_bot\n\n\nBot de NOTIFICACIONES DESARROLLO:\n\nhttp://t.me/PremiosDesarrollo_bot")
+    update.message.reply_text(f"Hola {name} soy tu Bot para premiar, para mas informacion \n/Info \n\n\nBot de NOTIFICACIONES:\n\nhttp://t.me/Notificacion_premio_bot \n\n\nBot de NOTIFICACIONES MEGA LOTTERY:\n\nhttp://t.me/PremiosMegaLotery_bot\n\n\nBot de NOTIFICACIONES DESARROLLO:\n\nhttp://t.me/PremiosDesarrollo_bot\n\n\nBot de NOTIFICACIONES RAPIDITA:\n\nhttp://t.me/PremiacionRapidita_bot")
     print(update)
 
 def info(update, context):

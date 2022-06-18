@@ -3,7 +3,7 @@ import time
 import threading
 from Class_Premiar_Automatico import Premiar_Loterias_
 from Funciones_Necesarias import fecha
-from TOKEN_API_PRO_DE import plataforma_Desarrollo, plataforma_Mega_Lottery
+from TOKEN_API_PRO_DE import plataforma_Desarrollo, plataforma_Mega_Lottery, plataforma_Rapidita
 
 def run_threaded(job_func):
     job_thread = threading.Thread(target=job_func)
@@ -34,6 +34,8 @@ DEV_New_York_PM_Premios = Premiar_Loterias_('/Premiar_New_York_PM',plataforma_De
 #! PLATAFORMA MEGALOTERRY -----------------------------------------------------------------------------------------
 MGL_PRIMERA_PM_PREMIOS = Premiar_Loterias_('/Premiar_Loteria_La_Primera_PM',plataforma_Mega_Lottery).Premiar_Loterias
 
+#! PLATAFORMA RAPIDITA ---------------------------------------------------------------------------------------------
+RPD_PRIMERA_PM_PREMIOS = Premiar_Loterias_('/Premiar_Loteria_La_Primera_PM',plataforma_Rapidita).Premiar_Loterias
 
 
 
@@ -61,6 +63,9 @@ schedule.every().sunday.at("18:05:00").do(run_threaded, DEV_LOTERIA_NACIONAL_PRE
 
 #? PLATAFORMA MEGA LOTTERY ------------------------------------------------
 schedule.every().day.at("20:05:00").do(run_threaded, MGL_PRIMERA_PM_PREMIOS)
+
+#? PLATAFORMA RAPIDITA ----------------------------------------------------
+schedule.every().day.at("20:05:00").do(run_threaded, RPD_PRIMERA_PM_PREMIOS)
 
 #borrarPantalla()
 while True:

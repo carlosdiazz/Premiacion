@@ -227,6 +227,9 @@ def Saber_Loteria_Especifo_Por_Plataformas(loteria, plataforma):
     elif(plataforma == 'MegaLottery'): #! AQUI TENGO QUE AGREGAR LAS DEMAS LOTERIAS MIENTRAS AGREGUE MAS
         if(loteria == '12M'):
             return 'LA PRIMERA'
+    elif(plataforma == 'Rapidita'):
+        if(loteria == '12M'):
+            return '12M'
     return 'No se Encontro la Loteria' #! Esto no hara nada, solo escribira esto
 
 def Saber_Sorteo_Especifo_Por_Plataformas(sorteo, plataforma):
@@ -235,6 +238,9 @@ def Saber_Sorteo_Especifo_Por_Plataformas(sorteo, plataforma):
     elif(plataforma == 'MegaLottery'): #! AQUI TENGO QUE AGREGAR LAS DEMAS LOTERIAS MIENTRAS AGREGUE MAS
         if(sorteo == '12M PM'):
             return 'LA PRIMERA NOCHE'
+    elif(plataforma == 'Rapidita'):
+        if(sorteo == '12M PM'):
+            return '12M NOCHE'
     return 'No se Encontro la Loteria' #! Esto no hara nada, solo escribira esto
 
 def Saber_Loteria_Seleccionada(inputLoteria,sorteo):
