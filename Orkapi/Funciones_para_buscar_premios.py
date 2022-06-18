@@ -109,7 +109,7 @@ class Buscar():
                     print(f'\n\nSe Publico esta loteria: {loteria} con este sorteo: {sorteo} en la base de Datos. \n\n')
                     sendNotification(True,Arreglo_loteria)
                     self.intentos=0
-                    Enviar_Corre(Arreglo_loteria)
+                    #Enviar_Corre(Arreglo_loteria)
                     #remove('./LOTERIA_PAGES.png')
                     return True
                 else:
