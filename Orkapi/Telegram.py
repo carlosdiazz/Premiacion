@@ -104,6 +104,7 @@ def Obtener_numeros_loteria(update, context):
     fecha_AHORA = fecha('%d-%m-%Y')
     #! -----
     peticion_GET = Peticion_GET(sorteo,fecha_AHORA)
+    print(peticion_GET)
     resultado = imprimir_resultados(peticion_GET)
     context.bot.sendMessage(chat_id= user_id, text=resultado)
 

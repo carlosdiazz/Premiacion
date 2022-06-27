@@ -252,8 +252,10 @@ def Peticion_GET(sorteo,fecha):
         url = f'http://localhost:9000/api/sorteo/{sorteo}/{fecha}'
         r=requests.get(url)
         if(r.status_code == 200):
-            if(r.text != 'null'):
-                return r.json()
+            res=(r.json())
+            if(len(res) ==1):
+                print(type(res[0]))
+                return res[0]
             else:
                 return 'Los numeros no fueron encontrados en La Base de Datos'
         else:
