@@ -254,7 +254,7 @@ def Peticion_GET(sorteo,fecha):
         if(r.status_code == 200):
             res=(r.json())
             if(len(res) ==1):
-                print(type(res[0]))
+                #print(type(res[0]))
                 return res[0]
             else:
                 return 'Los numeros no fueron encontrados en La Base de Datos'

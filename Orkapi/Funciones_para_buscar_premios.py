@@ -58,7 +58,8 @@ def VALIDAR_QUE_NO_EXISTAN(sorteo,fecha):
         url = f'http://localhost:9000/api/sorteo/{sorteo}/{fecha}'
         r=requests.get(url)
         if(r.status_code == 200):
-            if(r.text == 'null'):
+            res=(r.json())
+            if(len(res) == 0):
                 return True
             else:
                 return 'Los Numeros ya estan Publicado'
