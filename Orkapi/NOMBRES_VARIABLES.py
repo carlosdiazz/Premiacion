@@ -69,7 +69,7 @@ Comandos_Forzarr_Premios =[
     '/Forzar_Premiar_Anguila_TARDE',
     '/Forzar_Premiar_King_LT_PM',
     '/Forzar_Premiar_Loteria_Loteka',
-    '/Forzar_Loteria_La_Primera_PM',
+    '/Forzar_Premiar_La_Primera_PM'
     '/Forzar_Premiar_Loteria_Nacional',
     '/Forzar_Premiar_Loteria_Leidsa',
     '/Forzar_Premiar_Anguila_NOCHE',
