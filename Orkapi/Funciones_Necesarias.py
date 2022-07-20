@@ -358,3 +358,9 @@ def Agregar_Nuevo_Usuario_MONGODB(user):
     response = requests.request("POST", url, headers=headers, data=payload)
     respuesta=(response.json())
     return respuesta
+
+def clearConsole():
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
